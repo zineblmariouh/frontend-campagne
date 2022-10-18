@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewTypePubliqueRencontreMediaDialog" [style]="{width: '70vw'}"
+        header="Type publique rencontre media" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Type publique rencontre media">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Type publique</label>
+                                    <p-dropdown [options]="typePubliques" [(ngModel)]="selectedTypePubliqueRencontreMedia.typePubliqueVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Type publique">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Rencontre media</label>
+                                    <p-dropdown [options]="rencontreMedias" [(ngModel)]="selectedTypePubliqueRencontreMedia.rencontreMediaVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Rencontre media">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-type-publique-create-chercheur></app-type-publique-create-chercheur>
+            <app-rencontre-media-create-chercheur></app-rencontre-media-create-chercheur>
+
+
+
+</p-dialog>
+
+
+

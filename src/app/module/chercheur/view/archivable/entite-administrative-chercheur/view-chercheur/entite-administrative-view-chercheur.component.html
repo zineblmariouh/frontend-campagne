@@ -1,0 +1,166 @@
+
+<p-dialog [(visible)]="viewEntiteAdministrativeDialog" [style]="{width: '70vw'}"
+        header="Entite administrative" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Entite administrative">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="1">Libelle</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Libelle"  [(ngModel)]="selectedEntiteAdministrative.libelle"
+                                           id="1" [(ngModel)]="selectedEntiteAdministrative.libelle"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="2">Code</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Code"  [(ngModel)]="selectedEntiteAdministrative.code"
+                                           id="2" [(ngModel)]="selectedEntiteAdministrative.code"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="3">Identifiant national</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Identifiant national"  [(ngModel)]="selectedEntiteAdministrative.identifiantNational"
+                                           id="3" [(ngModel)]="selectedEntiteAdministrative.identifiantNational"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="4">Site web</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Site web"  [(ngModel)]="selectedEntiteAdministrative.siteWeb"
+                                           id="4" [(ngModel)]="selectedEntiteAdministrative.siteWeb"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="5">Libelle court</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Libelle court"  [(ngModel)]="selectedEntiteAdministrative.libelleCourt"
+                                           id="5" [(ngModel)]="selectedEntiteAdministrative.libelleCourt"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="6">Libelle long</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Libelle long"  [(ngModel)]="selectedEntiteAdministrative.libelleLong"
+                                           id="6" [(ngModel)]="selectedEntiteAdministrative.libelleLong"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="7">Description</label>
+                                    <textarea id="7" pInputTextarea rows="5" cols="30"
+                                              placeholder="Description"  [(ngModel)]="selectedEntiteAdministrative.description"
+                                    ></textarea>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="8">Type entite administrative</label>
+                                    <p-dropdown [options]="typeEntiteAdministratives" [(ngModel)]="selectedEntiteAdministrative.typeEntiteAdministrativeVo"
+                                            id="8" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Type entite administrative">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="9">Archive</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="9"  [disabled]="true" [(ngModel)]="selectedEntiteAdministrative.archive"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="10">Date archivage</label>
+                                    <p-calendar id="10" [disabled]="true"
+                                                placeholder="Date archivage"  [(ngModel)]="selectedEntiteAdministrative.dateArchivage"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="11">Date creation</label>
+                                    <p-calendar id="11" [disabled]="true"
+                                                placeholder="Date creation"  [(ngModel)]="selectedEntiteAdministrative.dateCreation"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="12">Admin</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="12"  [disabled]="true" [(ngModel)]="selectedEntiteAdministrative.admin"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="13">Visible</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="13"  [disabled]="true" [(ngModel)]="selectedEntiteAdministrative.visible"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="14">Username</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Username"  [(ngModel)]="selectedEntiteAdministrative.username"
+                                           id="14" [(ngModel)]="selectedEntiteAdministrative.username"
+                                           autofocus>
+                                </div>
+
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-type-entite-administrative-create-chercheur></app-type-entite-administrative-create-chercheur>
+
+
+
+</p-dialog>
+
+
+

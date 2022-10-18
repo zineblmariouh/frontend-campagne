@@ -1,0 +1,317 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <p-toast></p-toast>
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                                            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2"
+                                (click)="openCreateProjetActiviteRechercheDetail('projetActiviteRechercheDetail')"></button>
+
+
+                    <button pButton pRipple label="Recherche"
+                            icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}"
+                            class="p-button-success p-mr-2 p-mb-2"
+                            (click)="this.findByCriteriaShow = !this.findByCriteriaShow"></button>
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <div class="flex">
+                        <p-splitButton label="Exporter" icon="pi pi-download" styleClass="p-button-help" [model]="excelPdfButons"></p-splitButton>
+                    </div>
+                </ng-template>
+
+            </p-toolbar>
+            <p-toolbar *ngIf="findByCriteriaShow">
+
+                <div class="align-form-search">
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="statusProjets" [(ngModel)]="searchProjetActiviteRechercheDetail.statusProjetVo"
+                                        id="1"
+                                        [filter]="true" [showClear]="true"  placeholder="Status projet"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="2"
+                                           type="text"  [(ngModel)]="searchProjetActiviteRechercheDetail.sujetIntituleReponse">
+                                    <label for="2">Sujet intitule reponse</label>
+                                </span>
+                                    <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchProjetActiviteRechercheDetail.dureePrevuEnMoisMin"
+                                                             id="3-1"></p-inputNumber>
+                                              <label for="3-1">Duree prevu en mois Min</label>
+                                       </span>
+                                       <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchProjetActiviteRechercheDetail.dureePrevuEnMoisMax"
+                                                             id="3-2"></p-inputNumber>
+                                             <label for="3-2">Duree prevu en mois Max</label>
+                                       </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="roleProjets" [(ngModel)]="searchProjetActiviteRechercheDetail.roleProjetVo"
+                                        id="4"
+                                        [filter]="true" [showClear]="true"  placeholder="Role projet"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="8" [options]="yesOrNoFinancementSpecifique" [(ngModel)]="searchProjetActiviteRechercheDetail.financementSpecifique"
+                                            [filter]="false" [showClear]="true"  placeholder="Financement specifique"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                    <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchProjetActiviteRechercheDetail.montantFinancementPrevuMin"
+                                                             id="9-1"></p-inputNumber>
+                                              <label for="9-1">Montant financement prevu Min</label>
+                                       </span>
+                                       <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchProjetActiviteRechercheDetail.montantFinancementPrevuMax"
+                                                             id="9-2"></p-inputNumber>
+                                             <label for="9-2">Montant financement prevu Max</label>
+                                       </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="etablissements" [(ngModel)]="searchProjetActiviteRechercheDetail.etablissementVo"
+                                        id="10"
+                                        [filter]="true" [showClear]="true"  placeholder="Etablissement"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="payss" [(ngModel)]="searchProjetActiviteRechercheDetail.paysVo"
+                                        id="11"
+                                        [filter]="true" [showClear]="true"  placeholder="Pays"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="projetActiviteRecherches" [(ngModel)]="searchProjetActiviteRechercheDetail.projetActiviteRechercheVo"
+                                        id="14"
+                                        [filter]="true" [showClear]="true"  placeholder="Projet activite recherche"
+                                        optionLabel="id">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="searchProjetActiviteRechercheDetail.etatEtapeCampagneVo"
+                                        id="15"
+                                        [filter]="true" [showClear]="true"  placeholder="Etat etape campagne"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                </div>
+
+                <div class="align-search-button">
+                    <button pButton pRipple label="Valider" icon="pi pi-sort-amount-down"
+                            class="p-button-info p-mr-2" (click)="searchRequest()"></button>
+                </div>
+            </p-toolbar>
+
+
+            <p-table #dt [value]="projetActiviteRechercheDetails" [columns]="cols" [rows]="4" [paginator]="true"
+                    [globalFilterFields]="['libelle', 'sujetIntituleReponse', 'dureePrevuEnMois', 'libelle', 'financementSpecifique', 'montantFinancementPrevu', 'libelle', 'libelle', 'id', 'libelle']" [(selection)]="selectedProjetActiviteRechercheDetail"
+                    [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
+                                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">Liste des Projet activite recherche details</h5>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" placeholder="Search..." (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+
+                                
+                                <th pSortableColumn="statusProjet">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Status projet</span>
+                                        <p-sortIcon field="statusProjet"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="sujetIntituleReponse">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Sujet intitule reponse</span>
+                                        <p-sortIcon field="sujetIntituleReponse"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="dureePrevuEnMois">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Duree prevu en mois</span>
+                                        <p-sortIcon field="dureePrevuEnMois"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="roleProjet">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Role projet</span>
+                                        <p-sortIcon field="roleProjet"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+
+
+
+                                
+                                <th pSortableColumn="financementSpecifique">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Financement specifique</span>
+                                        <p-sortIcon field="financementSpecifique"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="montantFinancementPrevu">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Montant financement prevu</span>
+                                        <p-sortIcon field="montantFinancementPrevu"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="etablissement">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Etablissement</span>
+                                        <p-sortIcon field="etablissement"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="pays">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Pays</span>
+                                        <p-sortIcon field="pays"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+
+
+                                <!-- 
+                                <th pSortableColumn="projetActiviteRecherche">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Projet activite recherche</span>
+                                        <p-sortIcon field="projetActiviteRecherche"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="etatEtapeCampagne">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Etat etape campagne</span>
+                                        <p-sortIcon field="etatEtapeCampagne"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                        <th>Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-projetActiviteRechercheDetail>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="projetActiviteRechercheDetail"></p-tableCheckbox>
+                        </td>
+                            
+                                <td>{{projetActiviteRechercheDetail.statusProjetVo?.libelle}}</td>
+                            
+
+                            
+                                 <td>{{projetActiviteRechercheDetail.sujetIntituleReponse}}</td>
+                            
+
+                            
+                                 <td>{{projetActiviteRechercheDetail.dureePrevuEnMois}}</td>
+                            
+
+                            
+                                <td>{{projetActiviteRechercheDetail.roleProjetVo?.libelle}}</td>
+                            
+
+                            
+                                <td><i *ngIf="projetActiviteRechercheDetail.financementSpecifique" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!projetActiviteRechercheDetail.financementSpecifique" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                            
+
+                            
+                                 <td>{{projetActiviteRechercheDetail.montantFinancementPrevu}}</td>
+                            
+
+                            
+                                <td>{{projetActiviteRechercheDetail.etablissementVo?.libelle}}</td>
+                            
+
+                            
+                                <td>{{projetActiviteRechercheDetail.paysVo?.libelle}}</td>
+                            
+
+                             <!-- 
+                                <td>{{projetActiviteRechercheDetail.projetActiviteRechercheVo?.id}}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{projetActiviteRechercheDetail.etatEtapeCampagneVo?.libelle}}</td>
+                             --> 
+
+
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editProjetActiviteRechercheDetail(projetActiviteRechercheDetail)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2"
+                                    (click)="viewProjetActiviteRechercheDetail(projetActiviteRechercheDetail)"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-mr-2"
+                                    (click)="deleteProjetActiviteRechercheDetail(projetActiviteRechercheDetail)"></button>
+
+                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning"
+                                    (click)="duplicateProjetActiviteRechercheDetail(projetActiviteRechercheDetail)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En totale
+                        il {{projetActiviteRechercheDetails ? projetActiviteRechercheDetails.length == 1 ? 'y a' : 'y a' : 'y a' }} {{projetActiviteRechercheDetails ? projetActiviteRechercheDetails.length : 0 }} {{projetActiviteRechercheDetails ? projetActiviteRechercheDetails.length == 1 ? 'projetActiviteRechercheDetail' : 'projetActiviteRechercheDetails' : 0 }}
+                        .
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <app-projet-activite-recherche-detail-create-chercheur></app-projet-activite-recherche-detail-create-chercheur>
+        <app-projet-activite-recherche-detail-edit-chercheur></app-projet-activite-recherche-detail-edit-chercheur>
+        <app-projet-activite-recherche-detail-view-chercheur></app-projet-activite-recherche-detail-view-chercheur>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>

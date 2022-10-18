@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewPaysFormationContinueDialog" [style]="{width: '70vw'}"
+        header="Pays formation continue" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Pays formation continue">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Formation continue</label>
+                                    <p-dropdown [options]="formationContinues" [(ngModel)]="selectedPaysFormationContinue.formationContinueVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="intitule"
+                                            placeholder="Formation continue">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Pays</label>
+                                    <p-dropdown [options]="payss" [(ngModel)]="selectedPaysFormationContinue.paysVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Pays">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-formation-continue-create-chercheur></app-formation-continue-create-chercheur>
+            <app-pays-create-chercheur></app-pays-create-chercheur>
+
+
+
+</p-dialog>
+
+
+

@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewRencontreGrandPubliqueJeunePubliqueTypeInstrumentIrdDialog" [style]="{width: '70vw'}"
+        header="Rencontre grand publique jeune publique type instrument ird" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Rencontre grand publique jeune publique type instrument ird">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Type instrument ird</label>
+                                    <p-dropdown [options]="typeInstrumentIrds" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliqueTypeInstrumentIrd.typeInstrumentIrdVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Type instrument ird">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Rencontre grand publique jeune publique</label>
+                                    <p-dropdown [options]="rencontreGrandPubliqueJeunePubliques" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliqueTypeInstrumentIrd.rencontreGrandPubliqueJeunePubliqueVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Rencontre grand publique jeune publique">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-type-instrument-ird-create-admin></app-type-instrument-ird-create-admin>
+            <app-rencontre-grand-publique-jeune-publique-create-admin></app-rencontre-grand-publique-jeune-publique-create-admin>
+
+
+
+</p-dialog>
+
+
+

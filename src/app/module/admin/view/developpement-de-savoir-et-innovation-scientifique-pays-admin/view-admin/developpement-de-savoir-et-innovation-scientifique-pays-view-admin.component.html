@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewDeveloppementDeSavoirEtInnovationScientifiquePaysDialog" [style]="{width: '70vw'}"
+        header="Developpement de savoir et innovation scientifique pays" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Developpement de savoir et innovation scientifique pays">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Pays</label>
+                                    <p-dropdown [options]="payss" [(ngModel)]="selectedDeveloppementDeSavoirEtInnovationScientifiquePays.paysVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Pays">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Developpement de savoir et innovation scientifique</label>
+                                    <p-dropdown [options]="developpementDeSavoirEtInnovationScientifiques" [(ngModel)]="selectedDeveloppementDeSavoirEtInnovationScientifiquePays.developpementDeSavoirEtInnovationScientifiqueVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Developpement de savoir et innovation scientifique">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-pays-create-admin></app-pays-create-admin>
+            <app-developpement-de-savoir-et-innovation-scientifique-create-admin></app-developpement-de-savoir-et-innovation-scientifique-create-admin>
+
+
+
+</p-dialog>
+
+
+

@@ -1,0 +1,387 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <p-toast></p-toast>
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                                            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2"
+                                (click)="openCreateEncadrementDoctorant('encadrementDoctorant')"></button>
+
+
+                    <button pButton pRipple label="Recherche"
+                            icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}"
+                            class="p-button-success p-mr-2 p-mb-2"
+                            (click)="this.findByCriteriaShow = !this.findByCriteriaShow"></button>
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <div class="flex">
+                        <p-splitButton label="Exporter" icon="pi pi-download" styleClass="p-button-help" [model]="excelPdfButons"></p-splitButton>
+                    </div>
+                </ng-template>
+
+            </p-toolbar>
+            <p-toolbar *ngIf="findByCriteriaShow">
+
+                <div class="align-form-search">
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="responsabiliteEncadrementDoctorants" [(ngModel)]="searchEncadrementDoctorant.responsabiliteEncadrementDoctorantVo"
+                                        id="1"
+                                        [filter]="true" [showClear]="true"  placeholder="Responsabilite encadrement doctorant"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="2" [options]="yesOrNoCodirectionInternationale" [(ngModel)]="searchEncadrementDoctorant.codirectionInternationale"
+                                            [filter]="false" [showClear]="true"  placeholder="Codirection internationale"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="3" [options]="yesOrNoCursus" [(ngModel)]="searchEncadrementDoctorant.cursus"
+                                            [filter]="false" [showClear]="true"  placeholder="Cursus"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="4"
+                                           type="text"  [(ngModel)]="searchEncadrementDoctorant.sujetThese">
+                                    <label for="4">Sujet these</label>
+                                </span>
+
+                        <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchEncadrementDoctorant.dateDebutTheseMin"
+                                    id="8-1"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="8-1">Date debut these Min</label>
+                        </span>
+
+                         <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchEncadrementDoctorant.dateDebutTheseMax"
+                                    id="8-2"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="8-2">Date debut these Max</label>
+                        </span>
+
+
+                        <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchEncadrementDoctorant.datePrevuSoutenanceTheseMin"
+                                    id="9-1"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="9-1">Date prevu soutenance these Min</label>
+                        </span>
+
+                         <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchEncadrementDoctorant.datePrevuSoutenanceTheseMax"
+                                    id="9-2"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="9-2">Date prevu soutenance these Max</label>
+                        </span>
+
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="10"
+                                           type="text"  [(ngModel)]="searchEncadrementDoctorant.intituleEcoleDoctorale">
+                                    <label for="10">Intitule ecole doctorale</label>
+                                </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="financementDoctorants" [(ngModel)]="searchEncadrementDoctorant.financementDoctorantVo"
+                                        id="11"
+                                        [filter]="true" [showClear]="true"  placeholder="Financement doctorant"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="etablissements" [(ngModel)]="searchEncadrementDoctorant.etablissementVo"
+                                        id="12"
+                                        [filter]="true" [showClear]="true"  placeholder="Etablissement"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="payss" [(ngModel)]="searchEncadrementDoctorant.paysVo"
+                                        id="13"
+                                        [filter]="true" [showClear]="true"  placeholder="Pays"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="doctorants" [(ngModel)]="searchEncadrementDoctorant.doctorantVo"
+                                        id="14"
+                                        [filter]="true" [showClear]="true"  placeholder="Doctorant"
+                                        optionLabel="id">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="encadrements" [(ngModel)]="searchEncadrementDoctorant.encadrementVo"
+                                        id="15"
+                                        [filter]="true" [showClear]="true"  placeholder="Encadrement"
+                                        optionLabel="id">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="searchEncadrementDoctorant.etatEtapeCampagneVo"
+                                        id="16"
+                                        [filter]="true" [showClear]="true"  placeholder="Etat etape campagne"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                </div>
+
+                <div class="align-search-button">
+                    <button pButton pRipple label="Valider" icon="pi pi-sort-amount-down"
+                            class="p-button-info p-mr-2" (click)="searchRequest()"></button>
+                </div>
+            </p-toolbar>
+
+
+            <p-table #dt [value]="encadrementDoctorants" [columns]="cols" [rows]="4" [paginator]="true"
+                    [globalFilterFields]="['libelle', 'codirectionInternationale', 'cursus', 'sujetThese', 'dateDebutThese', 'datePrevuSoutenanceThese', 'intituleEcoleDoctorale', 'libelle', 'libelle', 'libelle', 'id', 'id', 'libelle']" [(selection)]="selectedEncadrementDoctorant"
+                    [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
+                                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">Liste des Encadrement doctorants</h5>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" placeholder="Search..." (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+
+                                
+                                <th pSortableColumn="responsabiliteEncadrementDoctorant">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Responsabilite encadrement doctorant</span>
+                                        <p-sortIcon field="responsabiliteEncadrementDoctorant"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="codirectionInternationale">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Codirection internationale</span>
+                                        <p-sortIcon field="codirectionInternationale"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="cursus">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Cursus</span>
+                                        <p-sortIcon field="cursus"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="sujetThese">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Sujet these</span>
+                                        <p-sortIcon field="sujetThese"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+
+
+
+                                
+                                <th pSortableColumn="dateDebutThese">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Date debut these</span>
+                                        <p-sortIcon field="dateDebutThese"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="datePrevuSoutenanceThese">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Date prevu soutenance these</span>
+                                        <p-sortIcon field="datePrevuSoutenanceThese"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="intituleEcoleDoctorale">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Intitule ecole doctorale</span>
+                                        <p-sortIcon field="intituleEcoleDoctorale"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="financementDoctorant">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Financement doctorant</span>
+                                        <p-sortIcon field="financementDoctorant"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                <!-- 
+                                <th pSortableColumn="etablissement">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Etablissement</span>
+                                        <p-sortIcon field="etablissement"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="pays">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Pays</span>
+                                        <p-sortIcon field="pays"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="doctorant">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Doctorant</span>
+                                        <p-sortIcon field="doctorant"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="encadrement">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Encadrement</span>
+                                        <p-sortIcon field="encadrement"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="etatEtapeCampagne">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Etat etape campagne</span>
+                                        <p-sortIcon field="etatEtapeCampagne"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                        <th>Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-encadrementDoctorant>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="encadrementDoctorant"></p-tableCheckbox>
+                        </td>
+                            
+                                <td>{{encadrementDoctorant.responsabiliteEncadrementDoctorantVo?.libelle}}</td>
+                            
+
+                            
+                                <td><i *ngIf="encadrementDoctorant.codirectionInternationale" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!encadrementDoctorant.codirectionInternationale" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                            
+
+                            
+                                <td><i *ngIf="encadrementDoctorant.cursus" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!encadrementDoctorant.cursus" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                            
+
+                            
+                                 <td>{{encadrementDoctorant.sujetThese}}</td>
+                            
+
+                            
+                                <td>{{encadrementDoctorant.dateDebutThese | date:'dd-M-yyyy' }}</td>
+                            
+
+                            
+                                <td>{{encadrementDoctorant.datePrevuSoutenanceThese | date:'dd-M-yyyy' }}</td>
+                            
+
+                            
+                                 <td>{{encadrementDoctorant.intituleEcoleDoctorale}}</td>
+                            
+
+                            
+                                <td>{{encadrementDoctorant.financementDoctorantVo?.libelle}}</td>
+                            
+
+                             <!-- 
+                                <td>{{encadrementDoctorant.etablissementVo?.libelle}}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{encadrementDoctorant.paysVo?.libelle}}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{encadrementDoctorant.doctorantVo?.id}}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{encadrementDoctorant.encadrementVo?.id}}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{encadrementDoctorant.etatEtapeCampagneVo?.libelle}}</td>
+                             --> 
+
+
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editEncadrementDoctorant(encadrementDoctorant)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2"
+                                    (click)="viewEncadrementDoctorant(encadrementDoctorant)"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-mr-2"
+                                    (click)="deleteEncadrementDoctorant(encadrementDoctorant)"></button>
+
+                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning"
+                                    (click)="duplicateEncadrementDoctorant(encadrementDoctorant)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En totale
+                        il {{encadrementDoctorants ? encadrementDoctorants.length == 1 ? 'y a' : 'y a' : 'y a' }} {{encadrementDoctorants ? encadrementDoctorants.length : 0 }} {{encadrementDoctorants ? encadrementDoctorants.length == 1 ? 'encadrementDoctorant' : 'encadrementDoctorants' : 0 }}
+                        .
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <app-encadrement-doctorant-create-chercheur></app-encadrement-doctorant-create-chercheur>
+        <app-encadrement-doctorant-edit-chercheur></app-encadrement-doctorant-edit-chercheur>
+        <app-encadrement-doctorant-view-chercheur></app-encadrement-doctorant-view-chercheur>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>

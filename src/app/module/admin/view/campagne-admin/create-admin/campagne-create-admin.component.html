@@ -1,0 +1,1010 @@
+        <p-dialog [(visible)]="createCampagneDialog" [style]="{width: '70vw'}"
+                header="Campagne" [modal]="true"
+                styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+
+
+            <ng-template pTemplate="content" >
+                <p-tabView>
+                    <p-tabPanel header="Campagne">
+                        <div class="p-grid">
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="1">Libelle<span style="color: red;">*</span></label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Libelle"
+                                                   id="1" [(ngModel)]="selectedCampagne.libelle"
+                                                    [ngClass]="{'ng-invalid ng-dirty' : !validCampagneLibelle}"  />
+                                            <small class='p-error' *ngIf='!validCampagneLibelle'>Libelle est obligatoire.</small>
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="2">Code</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Code"
+                                                   id="2" [(ngModel)]="selectedCampagne.code"
+                                                     />
+                                            
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="3">Annee</label>
+                                            <p-inputNumber class="p-mb-2 p-mr-2" id="3"
+                                                           placeholder="Annee"
+                                                    [(ngModel)]="selectedCampagne.annee"  >
+                                            </p-inputNumber>
+                                            
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="4">Date depart</label>
+                                            <p-calendar id="4"
+                                                        placeholder="Date depart"  [(ngModel)]="selectedCampagne.dateDepart"
+                                                    dateFormat="{{dateFormat}}"  >
+                                            </p-calendar>
+                                            
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="5">Date fin</label>
+                                            <p-calendar id="5"
+                                                        placeholder="Date fin"  [(ngModel)]="selectedCampagne.dateFin"
+                                                    dateFormat="{{dateFormat}}"  >
+                                            </p-calendar>
+                                            
+                                        </div>
+
+                                        <div class="p-field p-col-11 p-md-2">
+                                            <label for="6">Etat campagne</label>
+                                            <p-dropdown [options]="etatCampagnes" [(ngModel)]="selectedCampagne.etatCampagneVo"
+                                                    id="6" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Etat campagne"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateetatCampagne('etatCampagne')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-11 p-md-2">
+                                            <label for="7">Template ouverture</label>
+                                            <p-dropdown [options]="templateOuvertures" [(ngModel)]="selectedCampagne.templateOuvertureVo"
+                                                    id="7" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="code"
+                                                    placeholder="Template ouverture"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreatetemplateOuverture('templateOuverture')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="8">Objet ouverture</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Objet ouverture"
+                                                   id="8" [(ngModel)]="selectedCampagne.objetOuverture"
+                                                     />
+                                            
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="9">Message ouverture</label>
+                                            <textarea id="9" pInputTextarea rows="5" cols="30"
+                                                      placeholder="Message ouverture"  [(ngModel)]="selectedCampagne.messageOuverture"
+                                             ></textarea>
+                                            
+                                        </div>
+
+                                        <div class="p-field p-col-11 p-md-2">
+                                            <label for="10">Template cloture</label>
+                                            <p-dropdown [options]="templateClotures" [(ngModel)]="selectedCampagne.templateClotureVo"
+                                                    id="10" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="code"
+                                                    placeholder="Template cloture"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreatetemplateCloture('templateCloture')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="11">Objet cloture</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Objet cloture"
+                                                   id="11" [(ngModel)]="selectedCampagne.objetCloture"
+                                                     />
+                                            
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="12">Message cloture</label>
+                                            <textarea id="12" pInputTextarea rows="5" cols="30"
+                                                      placeholder="Message cloture"  [(ngModel)]="selectedCampagne.messageCloture"
+                                             ></textarea>
+                                            
+                                        </div>
+
+                        </div>
+                    </p-tabPanel>
+                    <p-tabPanel header="Campagne chercheur ouvertures">
+                                   <p-tabView>
+                                    <p-tabPanel header="Création">
+                                <div class="p-grid">
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Chercheur</label>
+                                                        <p-dropdown [options]="chercheurs" [(ngModel)]="selectedCampagneChercheurOuvertures.chercheurVo"
+                                                                id="1"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="numeroMatricule"
+                                                                placeholder="Chercheur"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatechercheur('chercheur')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="3">Objet</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Objet"
+                                                           id="3" [(ngModel)]="selectedCampagneChercheurOuvertures.objet"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="4">Message</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Message"
+                                                           id="4" [(ngModel)]="selectedCampagneChercheurOuvertures.message"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                <div class="p-field  align-inputswitch p-col-12 p-md-4">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="5">Envoye</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="5"  [(ngModel)]="selectedCampagneChercheurOuvertures.envoye"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="6">Date envoi</label>
+                                                    <p-calendar id="6"
+                                                                placeholder="Date envoi"
+                                                            [(ngModel)]="selectedCampagneChercheurOuvertures.dateEnvoi"
+                                                            dateFormat="{{dateFormat}}" [showIcon]="true"  ></p-calendar>
+                                                    
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="7">Avancement</label>
+                                                    <p-inputNumber class="p-mb-2 p-mr-2" id="avancement"
+                                                                   placeholder="Avancement"  
+                                                            [(ngModel)]="selectedCampagneChercheurOuvertures.avancement"></p-inputNumber>
+                                                    
+                                                </div>
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Etat campagne chercheur</label>
+                                                        <p-dropdown [options]="etatCampagneChercheurs" [(ngModel)]="selectedCampagneChercheurOuvertures.etatCampagneChercheurVo"
+                                                                id="8"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Etat campagne chercheur"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateetatCampagneChercheur('etatCampagneChercheur')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                          <div class="p-field p-col-12 p-md-1">
+                                              <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                    label="OK" (click)="addCampagneChercheurOuvertures()">
+                                              </button>
+                                          </div>
+                                </div>
+                                </p-tabPanel>
+                                <p-tabPanel header="Liste">
+                                    <div class="card">
+                                        <p-table [value]="selectedCampagne.campagneChercheurOuverturesVo" [scrollable]="true"
+                                                scrollHeight="200px">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                                <th>Chercheur</th>
+                                                                <th>Objet</th>
+                                                                <th>Message</th>
+                                                                <th>Envoye</th>
+                                                                <th>Date envoi</th>
+                                                                <th>Avancement</th>
+                                                                <th>Etat campagne chercheur</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-p>
+                                                <tr>
+                                                            <td>{{p.chercheurVo?.numeroMatricule}}</td>
+                                                                <td>{{p.objet}}</td>
+
+                                                                <td>{{p.message}}</td>
+
+                                                                <td><i *ngIf="p.envoye" class="pi pi-check checked-toogle"></i>
+                                                                    <i *ngIf="!p.envoye" class="pi pi-times unchecked-toogle"></i>
+                                                                </td>
+
+                                                                <td>{{p.dateEnvoi | date: dateFormatColumn}}</td>
+
+                                                                <td>{{p.avancement}}</td>
+
+                                                            <td>{{p.etatCampagneChercheurVo?.libelle}}</td>
+                                                    <td>
+                                                        <button (click)="deleteCampagneChercheurOuvertures(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+
+                                </p-tabPanel>
+                                </p-tabView>
+                            </p-tabPanel>
+
+                    <p-tabPanel header="Campagne chercheur fermetures">
+                                   <p-tabView>
+                                    <p-tabPanel header="Création">
+                                <div class="p-grid">
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Chercheur</label>
+                                                        <p-dropdown [options]="chercheurs" [(ngModel)]="selectedCampagneChercheurFermetures.chercheurVo"
+                                                                id="1"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="numeroMatricule"
+                                                                placeholder="Chercheur"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatechercheur('chercheur')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="3">Objet</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Objet"
+                                                           id="3" [(ngModel)]="selectedCampagneChercheurFermetures.objet"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="4">Message</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Message"
+                                                           id="4" [(ngModel)]="selectedCampagneChercheurFermetures.message"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                <div class="p-field  align-inputswitch p-col-12 p-md-4">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="5">Envoye</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="5"  [(ngModel)]="selectedCampagneChercheurFermetures.envoye"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="6">Date envoi</label>
+                                                    <p-calendar id="6"
+                                                                placeholder="Date envoi"
+                                                            [(ngModel)]="selectedCampagneChercheurFermetures.dateEnvoi"
+                                                            dateFormat="{{dateFormat}}" [showIcon]="true"  ></p-calendar>
+                                                    
+                                                </div>
+                                          <div class="p-field p-col-12 p-md-1">
+                                              <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                    label="OK" (click)="addCampagneChercheurFermetures()">
+                                              </button>
+                                          </div>
+                                </div>
+                                </p-tabPanel>
+                                <p-tabPanel header="Liste">
+                                    <div class="card">
+                                        <p-table [value]="selectedCampagne.campagneChercheurFermeturesVo" [scrollable]="true"
+                                                scrollHeight="200px">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                                <th>Chercheur</th>
+                                                                <th>Objet</th>
+                                                                <th>Message</th>
+                                                                <th>Envoye</th>
+                                                                <th>Date envoi</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-p>
+                                                <tr>
+                                                            <td>{{p.chercheurVo?.numeroMatricule}}</td>
+                                                                <td>{{p.objet}}</td>
+
+                                                                <td>{{p.message}}</td>
+
+                                                                <td><i *ngIf="p.envoye" class="pi pi-check checked-toogle"></i>
+                                                                    <i *ngIf="!p.envoye" class="pi pi-times unchecked-toogle"></i>
+                                                                </td>
+
+                                                                <td>{{p.dateEnvoi | date: dateFormatColumn}}</td>
+
+                                                    <td>
+                                                        <button (click)="deleteCampagneChercheurFermetures(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+
+                                </p-tabPanel>
+                                </p-tabView>
+                            </p-tabPanel>
+
+                    <p-tabPanel header="Campagne relances">
+                                   <p-tabView>
+                                    <p-tabPanel header="Création">
+                                <div class="p-grid">
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="2">Date relance</label>
+                                                    <p-calendar id="2"
+                                                                placeholder="Date relance"
+                                                            [(ngModel)]="selectedCampagneRelances.dateRelance"
+                                                            dateFormat="{{dateFormat}}" [showIcon]="true"  ></p-calendar>
+                                                    
+                                                </div>
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Template relance</label>
+                                                        <p-dropdown [options]="templateRelances" [(ngModel)]="selectedCampagneRelances.templateRelanceVo"
+                                                                id="3"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="code"
+                                                                placeholder="Template relance"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatetemplateRelance('templateRelance')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="4">Objet relance</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Objet relance"
+                                                           id="4" [(ngModel)]="selectedCampagneRelances.objetRelance"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="5">Message relance</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Message relance"
+                                                           id="5" [(ngModel)]="selectedCampagneRelances.messageRelance"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                          <div class="p-field p-col-12 p-md-1">
+                                              <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                    label="OK" (click)="addCampagneRelances()">
+                                              </button>
+                                          </div>
+                                </div>
+                                </p-tabPanel>
+                                <p-tabPanel header="Liste">
+                                    <div class="card">
+                                        <p-table [value]="selectedCampagne.campagneRelancesVo" [scrollable]="true"
+                                                scrollHeight="200px">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                                <th>Date relance</th>
+                                                                <th>Template relance</th>
+                                                                <th>Objet relance</th>
+                                                                <th>Message relance</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-p>
+                                                <tr>
+                                                                <td>{{p.dateRelance | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.templateRelanceVo?.code}}</td>
+                                                                <td>{{p.objetRelance}}</td>
+
+                                                                <td>{{p.messageRelance}}</td>
+
+                                                    <td>
+                                                        <button (click)="deleteCampagneRelances(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+
+                                </p-tabPanel>
+                                </p-tabView>
+                            </p-tabPanel>
+
+                    <p-tabPanel header="Campagne rappels">
+                                   <p-tabView>
+                                    <p-tabPanel header="Création">
+                                <div class="p-grid">
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="2">Date rappel</label>
+                                                    <p-calendar id="2"
+                                                                placeholder="Date rappel"
+                                                            [(ngModel)]="selectedCampagneRappels.dateRappel"
+                                                            dateFormat="{{dateFormat}}" [showIcon]="true"  ></p-calendar>
+                                                    
+                                                </div>
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Template rappel</label>
+                                                        <p-dropdown [options]="templateRappels" [(ngModel)]="selectedCampagneRappels.templateRappelVo"
+                                                                id="3"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="code"
+                                                                placeholder="Template rappel"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatetemplateRappel('templateRappel')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="4">Objet rappel</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Objet rappel"
+                                                           id="4" [(ngModel)]="selectedCampagneRappels.objetRappel"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="5">Message rappel</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Message rappel"
+                                                           id="5" [(ngModel)]="selectedCampagneRappels.messageRappel"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                          <div class="p-field p-col-12 p-md-1">
+                                              <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                    label="OK" (click)="addCampagneRappels()">
+                                              </button>
+                                          </div>
+                                </div>
+                                </p-tabPanel>
+                                <p-tabPanel header="Liste">
+                                    <div class="card">
+                                        <p-table [value]="selectedCampagne.campagneRappelsVo" [scrollable]="true"
+                                                scrollHeight="200px">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                                <th>Date rappel</th>
+                                                                <th>Template rappel</th>
+                                                                <th>Objet rappel</th>
+                                                                <th>Message rappel</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-p>
+                                                <tr>
+                                                                <td>{{p.dateRappel | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.templateRappelVo?.code}}</td>
+                                                                <td>{{p.objetRappel}}</td>
+
+                                                                <td>{{p.messageRappel}}</td>
+
+                                                    <td>
+                                                        <button (click)="deleteCampagneRappels(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+
+                                </p-tabPanel>
+                                </p-tabView>
+                            </p-tabPanel>
+
+                    <p-tabPanel header="Distinctions">
+                                   <p-tabView>
+                                    <p-tabPanel header="Création">
+                                <div class="p-grid">
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="1">Date obtention</label>
+                                                    <p-calendar id="1"
+                                                                placeholder="Date obtention"
+                                                            [(ngModel)]="selectedDistinctions.dateObtention"
+                                                            dateFormat="{{dateFormat}}" [showIcon]="true"  ></p-calendar>
+                                                    
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="2">Intitule</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Intitule"
+                                                           id="2" [(ngModel)]="selectedDistinctions.intitule"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Type participation</label>
+                                                        <p-dropdown [options]="typeParticipations" [(ngModel)]="selectedDistinctions.typeParticipationVo"
+                                                                id="3"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Type participation"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatetypeParticipation('typeParticipation')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Pays</label>
+                                                        <p-dropdown [options]="payss" [(ngModel)]="selectedDistinctions.paysVo"
+                                                                id="4"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Pays"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatepays('pays')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Etat etape campagne</label>
+                                                        <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedDistinctions.etatEtapeCampagneVo"
+                                                                id="5"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Etat etape campagne"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Chercheur</label>
+                                                        <p-dropdown [options]="chercheurs" [(ngModel)]="selectedDistinctions.chercheurVo"
+                                                                id="6"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="numeroMatricule"
+                                                                placeholder="Chercheur"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatechercheur('chercheur')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                          <div class="p-field p-col-12 p-md-1">
+                                              <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                    label="OK" (click)="addDistinctions()">
+                                              </button>
+                                          </div>
+                                </div>
+                                </p-tabPanel>
+                                <p-tabPanel header="Liste">
+                                    <div class="card">
+                                        <p-table [value]="selectedCampagne.distinctionsVo" [scrollable]="true"
+                                                scrollHeight="200px">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                                <th>Date obtention</th>
+                                                                <th>Intitule</th>
+                                                                <th>Type participation</th>
+                                                                <th>Pays</th>
+                                                                <th>Etat etape campagne</th>
+                                                                <th>Chercheur</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-p>
+                                                <tr>
+                                                                <td>{{p.dateObtention | date: dateFormatColumn}}</td>
+
+                                                                <td>{{p.intitule}}</td>
+
+                                                            <td>{{p.typeParticipationVo?.libelle}}</td>
+                                                            <td>{{p.paysVo?.libelle}}</td>
+                                                            <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+                                                            <td>{{p.chercheurVo?.numeroMatricule}}</td>
+                                                    <td>
+                                                        <button (click)="deleteDistinctions(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+
+                                </p-tabPanel>
+                                </p-tabView>
+                            </p-tabPanel>
+
+                    <p-tabPanel header="Projet activite recherches">
+                                   <p-tabView>
+                                    <p-tabPanel header="Création">
+                                <div class="p-grid">
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="1">Temps estime pour cette annne</label>
+                                                    <p-inputNumber class="p-mb-2 p-mr-2" id="tempsEstimePourCetteAnnne"
+                                                                   placeholder="Temps estime pour cette annne"  
+                                                            [(ngModel)]="selectedProjetActiviteRecherches.tempsEstimePourCetteAnnne"></p-inputNumber>
+                                                    
+                                                </div>
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Etat etape campagne</label>
+                                                        <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedProjetActiviteRecherches.etatEtapeCampagneVo"
+                                                                id="2"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Etat etape campagne"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Chercheur</label>
+                                                        <p-dropdown [options]="chercheurs" [(ngModel)]="selectedProjetActiviteRecherches.chercheurVo"
+                                                                id="3"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="numeroMatricule"
+                                                                placeholder="Chercheur"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatechercheur('chercheur')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="5">Annee</label>
+                                                    <p-inputNumber class="p-mb-2 p-mr-2" id="annee"
+                                                                   placeholder="Annee"  
+                                                            [(ngModel)]="selectedProjetActiviteRecherches.annee"></p-inputNumber>
+                                                    
+                                                </div>
+                                          <div class="p-field p-col-12 p-md-1">
+                                              <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                    label="OK" (click)="addProjetActiviteRecherches()">
+                                              </button>
+                                          </div>
+                                </div>
+                                </p-tabPanel>
+                                <p-tabPanel header="Liste">
+                                    <div class="card">
+                                        <p-table [value]="selectedCampagne.projetActiviteRecherchesVo" [scrollable]="true"
+                                                scrollHeight="200px">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                                <th>Temps estime pour cette annne</th>
+                                                                <th>Etat etape campagne</th>
+                                                                <th>Chercheur</th>
+                                                                <th>Annee</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-p>
+                                                <tr>
+                                                                <td>{{p.tempsEstimePourCetteAnnne}}</td>
+
+                                                            <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+                                                            <td>{{p.chercheurVo?.numeroMatricule}}</td>
+                                                                <td>{{p.annee}}</td>
+
+                                                    <td>
+                                                        <button (click)="deleteProjetActiviteRecherches(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+
+                                </p-tabPanel>
+                                </p-tabView>
+                            </p-tabPanel>
+
+                    <p-tabPanel header="Instruments et dispositifs irds">
+                                   <p-tabView>
+                                    <p-tabPanel header="Création">
+                                <div class="p-grid">
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="1">Libelle<span style="color: red;">*</span></label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Libelle"
+                                                           id="1" [(ngModel)]="selectedInstrumentsEtDispositifsIrds.libelle"
+                                                           autofocus  [ngClass]="{'ng-invalid ng-dirty' : !validInstrumentsEtDispositifsIrdLibelle}"  >
+                                                    <small class='p-error' *ngIf='!validInstrumentsEtDispositifsIrdLibelle'>Libelle est obligatoire.</small>
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="2">Code</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Code"
+                                                           id="2" [(ngModel)]="selectedInstrumentsEtDispositifsIrds.code"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="3">Description</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Description"
+                                                           id="3" [(ngModel)]="selectedInstrumentsEtDispositifsIrds.description"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Chercheur</label>
+                                                        <p-dropdown [options]="chercheurs" [(ngModel)]="selectedInstrumentsEtDispositifsIrds.chercheurVo"
+                                                                id="5"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="numeroMatricule"
+                                                                placeholder="Chercheur"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatechercheur('chercheur')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                <div class="p-field  align-inputswitch p-col-12 p-md-4">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="6">Numerique</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="6"  [(ngModel)]="selectedInstrumentsEtDispositifsIrds.numerique"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                          <div class="p-field p-col-12 p-md-1">
+                                              <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                    label="OK" (click)="addInstrumentsEtDispositifsIrds()">
+                                              </button>
+                                          </div>
+                                </div>
+                                </p-tabPanel>
+                                <p-tabPanel header="Liste">
+                                    <div class="card">
+                                        <p-table [value]="selectedCampagne.instrumentsEtDispositifsIrdsVo" [scrollable]="true"
+                                                scrollHeight="200px">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                                <th>Libelle</th>
+                                                                <th>Code</th>
+                                                                <th>Description</th>
+                                                                <th>Chercheur</th>
+                                                                <th>Numerique</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-p>
+                                                <tr>
+                                                                <td>{{p.libelle}}</td>
+
+                                                                <td>{{p.code}}</td>
+
+                                                                <td>{{p.description}}</td>
+
+                                                            <td>{{p.chercheurVo?.numeroMatricule}}</td>
+                                                                <td><i *ngIf="p.numerique" class="pi pi-check checked-toogle"></i>
+                                                                    <i *ngIf="!p.numerique" class="pi pi-times unchecked-toogle"></i>
+                                                                </td>
+
+                                                    <td>
+                                                        <button (click)="deleteInstrumentsEtDispositifsIrds(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+
+                                </p-tabPanel>
+                                </p-tabView>
+                            </p-tabPanel>
+
+                    <p-tabPanel header="Gestion equipes">
+                                   <p-tabView>
+                                    <p-tabPanel header="Création">
+                                <div class="p-grid">
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="1">Temps estime pour cette annne</label>
+                                                    <p-inputNumber class="p-mb-2 p-mr-2" id="tempsEstimePourCetteAnnne"
+                                                                   placeholder="Temps estime pour cette annne"  
+                                                            [(ngModel)]="selectedGestionEquipes.tempsEstimePourCetteAnnne"></p-inputNumber>
+                                                    
+                                                </div>
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Chercheur</label>
+                                                        <p-dropdown [options]="chercheurs" [(ngModel)]="selectedGestionEquipes.chercheurVo"
+                                                                id="3"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="numeroMatricule"
+                                                                placeholder="Chercheur"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatechercheur('chercheur')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Etat etape campagne</label>
+                                                        <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedGestionEquipes.etatEtapeCampagneVo"
+                                                                id="5"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Etat etape campagne"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                          <div class="p-field p-col-12 p-md-1">
+                                              <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                    label="OK" (click)="addGestionEquipes()">
+                                              </button>
+                                          </div>
+                                </div>
+                                </p-tabPanel>
+                                <p-tabPanel header="Liste">
+                                    <div class="card">
+                                        <p-table [value]="selectedCampagne.gestionEquipesVo" [scrollable]="true"
+                                                scrollHeight="200px">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                                <th>Temps estime pour cette annne</th>
+                                                                <th>Chercheur</th>
+                                                                <th>Etat etape campagne</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-p>
+                                                <tr>
+                                                                <td>{{p.tempsEstimePourCetteAnnne}}</td>
+
+                                                            <td>{{p.chercheurVo?.numeroMatricule}}</td>
+                                                            <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+                                                    <td>
+                                                        <button (click)="deleteGestionEquipes(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+
+                                </p-tabPanel>
+                                </p-tabView>
+                            </p-tabPanel>
+
+
+                </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-grid">
+                        <div>
+                            <button pButton pRipple label="Annuler" icon="pi pi-times"
+                                    class="p-button-text" (click)="hideCreateDialog()"></button>
+                        </div>
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check" style="margin:10px" (click)="save()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+                    <app-etat-campagne-create-admin></app-etat-campagne-create-admin>
+                    <app-template-ouverture-create-admin></app-template-ouverture-create-admin>
+                    <app-template-cloture-create-admin></app-template-cloture-create-admin>
+
+                            <app-chercheur-create-admin></app-chercheur-create-admin>
+                            <app-etat-campagne-chercheur-create-admin></app-etat-campagne-chercheur-create-admin>
+                            <app-chercheur-create-admin></app-chercheur-create-admin>
+                            <app-template-relance-create-admin></app-template-relance-create-admin>
+                            <app-template-rappel-create-admin></app-template-rappel-create-admin>
+                            <app-type-participation-create-admin></app-type-participation-create-admin>
+                            <app-pays-create-admin></app-pays-create-admin>
+                            <app-etat-etape-campagne-create-admin></app-etat-etape-campagne-create-admin>
+                            <app-chercheur-create-admin></app-chercheur-create-admin>
+                            <app-etat-etape-campagne-create-admin></app-etat-etape-campagne-create-admin>
+                            <app-chercheur-create-admin></app-chercheur-create-admin>
+                            <app-chercheur-create-admin></app-chercheur-create-admin>
+                            <app-chercheur-create-admin></app-chercheur-create-admin>
+                            <app-etat-etape-campagne-create-admin></app-etat-etape-campagne-create-admin>
+
+    </p-dialog>

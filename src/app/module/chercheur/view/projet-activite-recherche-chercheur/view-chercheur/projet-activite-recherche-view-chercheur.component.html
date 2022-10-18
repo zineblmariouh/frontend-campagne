@@ -1,0 +1,115 @@
+
+<p-dialog [(visible)]="viewProjetActiviteRechercheDialog" [style]="{width: '70vw'}"
+        header="Projet activite recherche" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Projet activite recherche">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Temps estime pour cette annne</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="1" [disabled]="true"
+                                                   placeholder="Temps estime pour cette annne"  [(ngModel)]="selectedProjetActiviteRecherche.tempsEstimePourCetteAnnne"
+                                            [(ngModel)]="selectedProjetActiviteRecherche.tempsEstimePourCetteAnnne"></p-inputNumber>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Etat etape campagne</label>
+                                    <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedProjetActiviteRecherche.etatEtapeCampagneVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etat etape campagne">
+                                    </p-dropdown>
+                                </div>
+
+
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="5">Annee</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="5" [disabled]="true"
+                                                   placeholder="Annee"  [(ngModel)]="selectedProjetActiviteRecherche.annee"
+                                            [(ngModel)]="selectedProjetActiviteRecherche.annee"></p-inputNumber>
+                                </div>
+
+                </div>
+            </p-tabPanel>
+                    <p-tabPanel header="Projet activite recherche details">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedProjetActiviteRecherche.projetActiviteRechercheDetailsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Status projet</th>
+                                                            <th>Sujet intitule reponse</th>
+                                                            <th>Duree prevu en mois</th>
+                                                            <th>Role projet</th>
+                                                            <th>Financement specifique</th>
+                                                            <th>Montant financement prevu</th>
+                                                            <th>Etablissement</th>
+                                                            <th>Pays</th>
+                                                            <th>Etat etape campagne</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.statusProjetVo?.libelle}}</td>
+                                                            <td>{{p.sujetIntituleReponse}}</td>
+
+                                                            <td>{{p.dureePrevuEnMois}}</td>
+
+                                                        <td>{{p.roleProjetVo?.libelle}}</td>
+                                                            <td><i *ngIf="p.financementSpecifique" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.financementSpecifique" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.montantFinancementPrevu}}</td>
+
+                                                        <td>{{p.etablissementVo?.libelle}}</td>
+                                                        <td>{{p.paysVo?.libelle}}</td>
+                                                        <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+            <app-chercheur-create-chercheur></app-chercheur-create-chercheur>
+            <app-campagne-create-chercheur></app-campagne-create-chercheur>
+
+                    <app-status-projet-create-chercheur></app-status-projet-create-chercheur>
+                    <app-role-projet-create-chercheur></app-role-projet-create-chercheur>
+                    <app-etablissement-create-chercheur></app-etablissement-create-chercheur>
+                    <app-pays-create-chercheur></app-pays-create-chercheur>
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+
+
+</p-dialog>
+
+
+

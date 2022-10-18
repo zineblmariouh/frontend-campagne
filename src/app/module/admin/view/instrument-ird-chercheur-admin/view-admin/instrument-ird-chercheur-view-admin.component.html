@@ -1,0 +1,67 @@
+
+<p-dialog [(visible)]="viewInstrumentIrdChercheurDialog" [style]="{width: '70vw'}"
+        header="Instrument ird chercheur" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Instrument ird chercheur">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Instrument ird</label>
+                                    <p-dropdown [options]="instrumentIrds" [(ngModel)]="selectedInstrumentIrdChercheur.instrumentIrdVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Instrument ird">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Chercheur</label>
+                                    <p-dropdown [options]="chercheurs" [(ngModel)]="selectedInstrumentIrdChercheur.chercheurVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="numeroMatricule"
+                                            placeholder="Chercheur">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="3">Nature implication</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Nature implication"  [(ngModel)]="selectedInstrumentIrdChercheur.natureImplication"
+                                           id="3" [(ngModel)]="selectedInstrumentIrdChercheur.natureImplication"
+                                           autofocus>
+                                </div>
+
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-instrument-ird-create-admin></app-instrument-ird-create-admin>
+            <app-chercheur-create-admin></app-chercheur-create-admin>
+
+
+
+</p-dialog>
+
+
+

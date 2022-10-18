@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewRoleComiteEtCommissionEvaluationDialog" [style]="{width: '70vw'}"
+        header="Role comite et commission evaluation" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Role comite et commission evaluation">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Role evaluation</label>
+                                    <p-dropdown [options]="roleEvaluations" [(ngModel)]="selectedRoleComiteEtCommissionEvaluation.roleEvaluationVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Role evaluation">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Comite et commission evaluation</label>
+                                    <p-dropdown [options]="comiteEtCommissionEvaluations" [(ngModel)]="selectedRoleComiteEtCommissionEvaluation.comiteEtCommissionEvaluationVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Comite et commission evaluation">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-role-evaluation-create-chercheur></app-role-evaluation-create-chercheur>
+            <app-comite-et-commission-evaluation-create-chercheur></app-comite-et-commission-evaluation-create-chercheur>
+
+
+
+</p-dialog>
+
+
+

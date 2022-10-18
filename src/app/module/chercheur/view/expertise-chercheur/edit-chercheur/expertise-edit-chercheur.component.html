@@ -1,0 +1,499 @@
+
+        <p-dialog [(visible)]="editExpertiseDialog" [style]="{width: '70vw'}"
+                header="Expertise" [modal]="true"
+                styleClass="p-fluid">
+
+            <ng-template pTemplate="content">
+                <p-tabView>
+                    <p-tabPanel header="Expertise">
+                        <div class="p-grid">
+
+                                        <div class="p-field p-col-12 p-md-6">
+                                            <label for="1">Temps estime pour cette annne</label>
+                                            <p-inputNumber class="p-mb-2 p-mr-2" id="1"
+                                                           placeholder="Temps estime pour cette annne"  [(ngModel)]="selectedExpertise.tempsEstimePourCetteAnnne"
+                                                    [(ngModel)]="selectedExpertise.tempsEstimePourCetteAnnne"></p-inputNumber>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-6">
+                                            <label for="2">Annee</label>
+                                            <p-inputNumber class="p-mb-2 p-mr-2" id="2"
+                                                           placeholder="Annee"  [(ngModel)]="selectedExpertise.annee"
+                                                    [(ngModel)]="selectedExpertise.annee"></p-inputNumber>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-5">
+                                            <label for="6">Etat etape campagne</label>
+                                            <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedExpertise.etatEtapeCampagneVo"
+                                                    id="6" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Etat etape campagne">
+                                            </p-dropdown>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+
+
+
+                        </div>
+                    </p-tabPanel>
+                            <p-tabPanel header="Conseils scientifiques">
+                                <div class="p-grid">
+                                    <div class="p-col">
+                                                <div class="p-field">
+                                                    <label for="1">Intitule</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Intitule"
+                                                           id="1" [(ngModel)]="selectedConseilsScientifiques.intitule"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="2">Nombre jours consacres</label>
+                                                    <p-inputNumber class="p-mb-2 p-mr-2" id="nombreJoursConsacres"
+                                                                   placeholder="Nombre jours consacres"
+                                                            [(ngModel)]="selectedConseilsScientifiques.nombreJoursConsacres"></p-inputNumber>
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Nature expertise</label>
+                                                        <p-dropdown [options]="natureExpertises" [(ngModel)]="selectedConseilsScientifiques.natureExpertiseVo"
+                                                                id="0"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Nature expertise"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatenatureExpertise('natureExpertise')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Type expertise</label>
+                                                        <p-dropdown [options]="typeExpertises" [(ngModel)]="selectedConseilsScientifiques.typeExpertiseVo"
+                                                                id="1"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Type expertise"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatetypeExpertise('typeExpertise')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Etat etape campagne</label>
+                                                        <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedConseilsScientifiques.etatEtapeCampagneVo"
+                                                                id="3"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Etat etape campagne"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                        <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                label="OK" (click)="addConseilsScientifiques()"
+                                        ></button>
+                                    </div>
+                                    <div class="p-col">
+                                        <div class="card">
+                                            <p-table [value]="selectedExpertise.conseilsScientifiquesVo" [scrollable]="true"
+                                                    scrollHeight="200px">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                                    <th>Nature expertise</th>
+                                                                    <th>Intitule</th>
+                                                                    <th>Type expertise</th>
+                                                                    <th>Nombre jours consacres</th>
+                                                                    <th>Etat etape campagne</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-p>
+                                                    <tr>
+                                                                <td>{{p.natureExpertiseVo?.libelle}}</td>
+                                                                    <td>{{p.intitule}}</td>
+
+                                                                <td>{{p.typeExpertiseVo?.libelle}}</td>
+                                                                    <td>{{p.nombreJoursConsacres}}</td>
+
+                                                                <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+                                                        <td>
+                                                            <button (click)="deleteConseilsScientifiques(p)" pButton type="button"
+                                                                                                                 icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </p-tabPanel>
+                            <p-tabPanel header="Consultance scientifique ponctuelles">
+                                <div class="p-grid">
+                                    <div class="p-col">
+                                                <div class="p-field">
+                                                    <label for="1">Sujet expertise</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Sujet expertise"
+                                                           id="1" [(ngModel)]="selectedConsultanceScientifiquePonctuelles.sujetExpertise"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="2">Nombre jour dedie</label>
+                                                    <p-inputNumber class="p-mb-2 p-mr-2" id="nombreJourDedie"
+                                                                   placeholder="Nombre jour dedie"
+                                                            [(ngModel)]="selectedConsultanceScientifiquePonctuelles.nombreJourDedie"></p-inputNumber>
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="3">Date fin</label>
+                                                    <p-calendar id="3"
+                                                                placeholder="Date fin"
+                                                            [(ngModel)]="selectedConsultanceScientifiquePonctuelles.dateFin"
+                                                            dateFormat="{{dateFormat}}" [showIcon]="true"></p-calendar>
+                                                </div>
+                                                <div class="p-field  align-inputswitch">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="4">Reliee instruments ird</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="4"  [(ngModel)]="selectedConsultanceScientifiquePonctuelles.relieeInstrumentsIrd"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                <div class="p-field">
+                                                    <label for="5">Commentaire</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Commentaire"
+                                                           id="5" [(ngModel)]="selectedConsultanceScientifiquePonctuelles.commentaire"
+                                                           />
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Type expertise</label>
+                                                        <p-dropdown [options]="typeExpertises" [(ngModel)]="selectedConsultanceScientifiquePonctuelles.typeExpertiseVo"
+                                                                id="0"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Type expertise"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatetypeExpertise('typeExpertise')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Nature expertise</label>
+                                                        <p-dropdown [options]="natureExpertises" [(ngModel)]="selectedConsultanceScientifiquePonctuelles.natureExpertiseVo"
+                                                                id="1"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Nature expertise"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatenatureExpertise('natureExpertise')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Etat etape campagne</label>
+                                                        <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedConsultanceScientifiquePonctuelles.etatEtapeCampagneVo"
+                                                                id="3"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Etat etape campagne"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                        <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                label="OK" (click)="addConsultanceScientifiquePonctuelles()"
+                                        ></button>
+                                    </div>
+                                    <div class="p-col">
+                                        <div class="card">
+                                            <p-table [value]="selectedExpertise.consultanceScientifiquePonctuellesVo" [scrollable]="true"
+                                                    scrollHeight="200px">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                                    <th>Type expertise</th>
+                                                                    <th>Nature expertise</th>
+                                                                    <th>Sujet expertise</th>
+                                                                    <th>Nombre jour dedie</th>
+                                                                    <th>Date fin</th>
+                                                                    <th>Reliee instruments ird</th>
+                                                                    <th>Commentaire</th>
+                                                                    <th>Etat etape campagne</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-p>
+                                                    <tr>
+                                                                <td>{{p.typeExpertiseVo?.libelle}}</td>
+                                                                <td>{{p.natureExpertiseVo?.libelle}}</td>
+                                                                    <td>{{p.sujetExpertise}}</td>
+
+                                                                    <td>{{p.nombreJourDedie}}</td>
+
+                                                                    <td>{{p.dateFin | date: dateFormatColumn}}</td>
+
+                                                                    <td><i *ngIf="p.relieeInstrumentsIrd" class="pi pi-check checked-toogle"></i>
+                                                                        <i *ngIf="!p.relieeInstrumentsIrd" class="pi pi-times unchecked-toogle"></i>
+                                                                    </td>
+
+                                                                    <td>{{p.commentaire}}</td>
+
+                                                                <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+                                                        <td>
+                                                            <button (click)="deleteConsultanceScientifiquePonctuelles(p)" pButton type="button"
+                                                                                                                 icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </p-tabPanel>
+                            <p-tabPanel header="Comite et commission evaluations">
+                                <div class="p-grid">
+                                    <div class="p-col">
+                                                <div class="p-field">
+                                                    <label for="1">Nom</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Nom"
+                                                           id="1" [(ngModel)]="selectedComiteEtCommissionEvaluations.nom"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="2">Nom revue ou editeur</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Nom revue ou editeur"
+                                                           id="2" [(ngModel)]="selectedComiteEtCommissionEvaluations.nomRevueOuEditeur"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="3">Role</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Role"
+                                                           id="3" [(ngModel)]="selectedComiteEtCommissionEvaluations.role"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="4">Nombre jour dedie</label>
+                                                    <p-inputNumber class="p-mb-2 p-mr-2" id="nombreJourDedie"
+                                                                   placeholder="Nombre jour dedie"
+                                                            [(ngModel)]="selectedComiteEtCommissionEvaluations.nombreJourDedie"></p-inputNumber>
+                                                </div>
+
+                                                <div class="p-field  align-inputswitch">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="5">Reliee instruments ird</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="5"  [(ngModel)]="selectedComiteEtCommissionEvaluations.relieeInstrumentsIrd"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                <div class="p-field">
+                                                    <label for="6">Commentaire</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Commentaire"
+                                                           id="6" [(ngModel)]="selectedComiteEtCommissionEvaluations.commentaire"
+                                                           />
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Nature expertise</label>
+                                                        <p-dropdown [options]="natureExpertises" [(ngModel)]="selectedComiteEtCommissionEvaluations.natureExpertiseVo"
+                                                                id="0"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Nature expertise"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatenatureExpertise('natureExpertise')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Etat etape campagne</label>
+                                                        <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedComiteEtCommissionEvaluations.etatEtapeCampagneVo"
+                                                                id="2"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Etat etape campagne"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                        <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                label="OK" (click)="addComiteEtCommissionEvaluations()"
+                                        ></button>
+                                    </div>
+                                    <div class="p-col">
+                                        <div class="card">
+                                            <p-table [value]="selectedExpertise.comiteEtCommissionEvaluationsVo" [scrollable]="true"
+                                                    scrollHeight="200px">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                                    <th>Nature expertise</th>
+                                                                    <th>Nom</th>
+                                                                    <th>Nom revue ou editeur</th>
+                                                                    <th>Role</th>
+                                                                    <th>Nombre jour dedie</th>
+                                                                    <th>Reliee instruments ird</th>
+                                                                    <th>Commentaire</th>
+                                                                    <th>Etat etape campagne</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-p>
+                                                    <tr>
+                                                                <td>{{p.natureExpertiseVo?.libelle}}</td>
+                                                                    <td>{{p.nom}}</td>
+
+                                                                    <td>{{p.nomRevueOuEditeur}}</td>
+
+                                                                    <td>{{p.role}}</td>
+
+                                                                    <td>{{p.nombreJourDedie}}</td>
+
+                                                                    <td><i *ngIf="p.relieeInstrumentsIrd" class="pi pi-check checked-toogle"></i>
+                                                                        <i *ngIf="!p.relieeInstrumentsIrd" class="pi pi-times unchecked-toogle"></i>
+                                                                    </td>
+
+                                                                    <td>{{p.commentaire}}</td>
+
+                                                                <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+                                                        <td>
+                                                            <button (click)="deleteComiteEtCommissionEvaluations(p)" pButton type="button"
+                                                                                                                 icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </p-tabPanel>
+
+                </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-grid">
+                        <div>
+                            <button pButton pRipple label="Annuler" icon="pi pi-times"
+                                    class="p-button-text" (click)="hideEditDialog()"></button>
+                        </div>
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check"  style="margin:10px" (click)="edit()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+                    <app-chercheur-create-chercheur></app-chercheur-create-chercheur>
+                    <app-campagne-create-chercheur></app-campagne-create-chercheur>
+
+                            <app-nature-expertise-create-chercheur></app-nature-expertise-create-chercheur>
+                            <app-type-expertise-create-chercheur></app-type-expertise-create-chercheur>
+                            <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+                            <app-type-expertise-create-chercheur></app-type-expertise-create-chercheur>
+                            <app-nature-expertise-create-chercheur></app-nature-expertise-create-chercheur>
+                            <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+                            <app-nature-expertise-create-chercheur></app-nature-expertise-create-chercheur>
+                            <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+
+
+    </p-dialog>
+
+
+

@@ -1,0 +1,268 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <p-toast></p-toast>
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                                            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2"
+                                (click)="openCreateComiteEtCommissionEvaluation('comiteEtCommissionEvaluation')"></button>
+
+
+                    <button pButton pRipple label="Recherche"
+                            icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}"
+                            class="p-button-success p-mr-2 p-mb-2"
+                            (click)="this.findByCriteriaShow = !this.findByCriteriaShow"></button>
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <div class="flex">
+                        <p-splitButton label="Exporter" icon="pi pi-download" styleClass="p-button-help" [model]="excelPdfButons"></p-splitButton>
+                    </div>
+                </ng-template>
+
+            </p-toolbar>
+            <p-toolbar *ngIf="findByCriteriaShow">
+
+                <div class="align-form-search">
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="natureExpertises" [(ngModel)]="searchComiteEtCommissionEvaluation.natureExpertiseVo"
+                                        id="2"
+                                        [filter]="true" [showClear]="true"  placeholder="Nature expertise"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="3"
+                                           type="text"  [(ngModel)]="searchComiteEtCommissionEvaluation.nom">
+                                    <label for="3">Nom</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="5"
+                                           type="text"  [(ngModel)]="searchComiteEtCommissionEvaluation.nomRevueOuEditeur">
+                                    <label for="5">Nom revue ou editeur</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="7"
+                                           type="text"  [(ngModel)]="searchComiteEtCommissionEvaluation.role">
+                                    <label for="7">Role</label>
+                                </span>
+                                    <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchComiteEtCommissionEvaluation.nombreJourDedieMin"
+                                                             id="8-1"></p-inputNumber>
+                                              <label for="8-1">Nombre jour dedie Min</label>
+                                       </span>
+                                       <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchComiteEtCommissionEvaluation.nombreJourDedieMax"
+                                                             id="8-2"></p-inputNumber>
+                                             <label for="8-2">Nombre jour dedie Max</label>
+                                       </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="11" [options]="yesOrNoRelieeInstrumentsIrd" [(ngModel)]="searchComiteEtCommissionEvaluation.relieeInstrumentsIrd"
+                                            [filter]="false" [showClear]="true"  placeholder="Reliee instruments ird"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="expertises" [(ngModel)]="searchComiteEtCommissionEvaluation.expertiseVo"
+                                        id="14"
+                                        [filter]="true" [showClear]="true"  placeholder="Expertise"
+                                        optionLabel="id">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="searchComiteEtCommissionEvaluation.etatEtapeCampagneVo"
+                                        id="15"
+                                        [filter]="true" [showClear]="true"  placeholder="Etat etape campagne"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                </div>
+
+                <div class="align-search-button">
+                    <button pButton pRipple label="Valider" icon="pi pi-sort-amount-down"
+                            class="p-button-info p-mr-2" (click)="searchRequest()"></button>
+                </div>
+            </p-toolbar>
+
+
+            <p-table #dt [value]="comiteEtCommissionEvaluations" [columns]="cols" [rows]="4" [paginator]="true"
+                    [globalFilterFields]="['libelle', 'nom', 'nomRevueOuEditeur', 'role', 'nombreJourDedie', 'relieeInstrumentsIrd', 'id', 'libelle']" [(selection)]="selectedComiteEtCommissionEvaluation"
+                    [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
+                                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">Liste des Comite et commission evaluations</h5>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" placeholder="Search..." (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+
+
+                                
+                                <th pSortableColumn="natureExpertise">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Nature expertise</span>
+                                        <p-sortIcon field="natureExpertise"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="nom">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Nom</span>
+                                        <p-sortIcon field="nom"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+
+                                
+                                <th pSortableColumn="nomRevueOuEditeur">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Nom revue ou editeur</span>
+                                        <p-sortIcon field="nomRevueOuEditeur"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+
+                                
+                                <th pSortableColumn="role">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Role</span>
+                                        <p-sortIcon field="role"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="nombreJourDedie">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Nombre jour dedie</span>
+                                        <p-sortIcon field="nombreJourDedie"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+
+
+                                
+                                <th pSortableColumn="relieeInstrumentsIrd">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Reliee instruments ird</span>
+                                        <p-sortIcon field="relieeInstrumentsIrd"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+
+
+                                
+                                <th pSortableColumn="expertise">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Expertise</span>
+                                        <p-sortIcon field="expertise"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="etatEtapeCampagne">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Etat etape campagne</span>
+                                        <p-sortIcon field="etatEtapeCampagne"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                        <th>Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-comiteEtCommissionEvaluation>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="comiteEtCommissionEvaluation"></p-tableCheckbox>
+                        </td>
+                            
+                                <td>{{comiteEtCommissionEvaluation.natureExpertiseVo?.libelle}}</td>
+                            
+
+                            
+                                 <td>{{comiteEtCommissionEvaluation.nom}}</td>
+                            
+
+                            
+                                 <td>{{comiteEtCommissionEvaluation.nomRevueOuEditeur}}</td>
+                            
+
+                            
+                                 <td>{{comiteEtCommissionEvaluation.role}}</td>
+                            
+
+                            
+                                 <td>{{comiteEtCommissionEvaluation.nombreJourDedie}}</td>
+                            
+
+                            
+                                <td><i *ngIf="comiteEtCommissionEvaluation.relieeInstrumentsIrd" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!comiteEtCommissionEvaluation.relieeInstrumentsIrd" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                            
+
+                            
+                                <td>{{comiteEtCommissionEvaluation.expertiseVo?.id}}</td>
+                            
+
+                            
+                                <td>{{comiteEtCommissionEvaluation.etatEtapeCampagneVo?.libelle}}</td>
+                            
+
+
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editComiteEtCommissionEvaluation(comiteEtCommissionEvaluation)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2"
+                                    (click)="viewComiteEtCommissionEvaluation(comiteEtCommissionEvaluation)"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-mr-2"
+                                    (click)="deleteComiteEtCommissionEvaluation(comiteEtCommissionEvaluation)"></button>
+
+                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning"
+                                    (click)="duplicateComiteEtCommissionEvaluation(comiteEtCommissionEvaluation)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En totale
+                        il {{comiteEtCommissionEvaluations ? comiteEtCommissionEvaluations.length == 1 ? 'y a' : 'y a' : 'y a' }} {{comiteEtCommissionEvaluations ? comiteEtCommissionEvaluations.length : 0 }} {{comiteEtCommissionEvaluations ? comiteEtCommissionEvaluations.length == 1 ? 'comiteEtCommissionEvaluation' : 'comiteEtCommissionEvaluations' : 0 }}
+                        .
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <app-comite-et-commission-evaluation-create-admin></app-comite-et-commission-evaluation-create-admin>
+        <app-comite-et-commission-evaluation-edit-admin></app-comite-et-commission-evaluation-edit-admin>
+        <app-comite-et-commission-evaluation-view-admin></app-comite-et-commission-evaluation-view-admin>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>

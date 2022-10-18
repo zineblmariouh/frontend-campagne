@@ -1,0 +1,70 @@
+
+        <p-dialog [(visible)]="editTypeInstrumentIrdConsultanceScientifiquePonctuelleDialog" [style]="{width: '70vw'}"
+                header="Type instrument ird consultance scientifique ponctuelle" [modal]="true"
+                styleClass="p-fluid">
+
+            <ng-template pTemplate="content">
+                <p-tabView>
+                    <p-tabPanel header="Type instrument ird consultance scientifique ponctuelle">
+                        <div class="p-grid">
+
+                                        <div class="p-field p-col-12 p-md-5">
+                                            <label for="1">Type instrument ird</label>
+                                            <p-dropdown [options]="typeInstrumentIrds" [(ngModel)]="selectedTypeInstrumentIrdConsultanceScientifiquePonctuelle.typeInstrumentIrdVo"
+                                                    id="1" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Type instrument ird">
+                                            </p-dropdown>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreatetypeInstrumentIrd('typeInstrumentIrd')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-5">
+                                            <label for="2">Consultance scientifique ponctuelle</label>
+                                            <p-dropdown [options]="consultanceScientifiquePonctuelles" [(ngModel)]="selectedTypeInstrumentIrdConsultanceScientifiquePonctuelle.consultanceScientifiquePonctuelleVo"
+                                                    id="2" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="id"
+                                                    placeholder="Consultance scientifique ponctuelle">
+                                            </p-dropdown>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateconsultanceScientifiquePonctuelle('consultanceScientifiquePonctuelle')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+
+                        </div>
+                    </p-tabPanel>
+
+                </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-grid">
+                        <div>
+                            <button pButton pRipple label="Annuler" icon="pi pi-times"
+                                    class="p-button-text" (click)="hideEditDialog()"></button>
+                        </div>
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check"  style="margin:10px" (click)="edit()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+                    <app-type-instrument-ird-create-chercheur></app-type-instrument-ird-create-chercheur>
+                    <app-consultance-scientifique-ponctuelle-create-chercheur></app-consultance-scientifique-ponctuelle-create-chercheur>
+
+
+
+    </p-dialog>
+
+
+

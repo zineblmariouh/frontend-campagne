@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewEtablissementEnseignementDialog" [style]="{width: '70vw'}"
+        header="Etablissement enseignement" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Etablissement enseignement">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Etablissement</label>
+                                    <p-dropdown [options]="etablissements" [(ngModel)]="selectedEtablissementEnseignement.etablissementVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etablissement">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Enseignement</label>
+                                    <p-dropdown [options]="enseignements" [(ngModel)]="selectedEtablissementEnseignement.enseignementVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Enseignement">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-etablissement-create-chercheur></app-etablissement-create-chercheur>
+            <app-enseignement-create-chercheur></app-enseignement-create-chercheur>
+
+
+
+</p-dialog>
+
+
+

@@ -1,0 +1,111 @@
+
+<p-dialog [(visible)]="viewCampagneRappelDialog" [style]="{width: '70vw'}"
+        header="Campagne rappel" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Campagne rappel">
+                <div class="p-grid">
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Date rappel</label>
+                                    <p-calendar id="2" [disabled]="true"
+                                                placeholder="Date rappel"  [(ngModel)]="selectedCampagneRappel.dateRappel"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="3">Template rappel</label>
+                                    <p-dropdown [options]="templateRappels" [(ngModel)]="selectedCampagneRappel.templateRappelVo"
+                                            id="3" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="code"
+                                            placeholder="Template rappel">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="4">Objet rappel</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Objet rappel"  [(ngModel)]="selectedCampagneRappel.objetRappel"
+                                           id="4" [(ngModel)]="selectedCampagneRappel.objetRappel"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="5">Message rappel</label>
+                                    <textarea id="5" pInputTextarea rows="5" cols="30"
+                                              placeholder="Message rappel"  [(ngModel)]="selectedCampagneRappel.messageRappel"
+                                    ></textarea>
+                                </div>
+
+                </div>
+            </p-tabPanel>
+                    <p-tabPanel header="Campagne rappel chercheurs">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedCampagneRappel.campagneRappelChercheursVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Chercheur</th>
+                                                            <th>Objet</th>
+                                                            <th>Message</th>
+                                                            <th>Envoye</th>
+                                                            <th>Date envoi</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.chercheurVo?.numeroMatricule}}</td>
+                                                            <td>{{p.objet}}</td>
+
+                                                            <td>{{p.message}}</td>
+
+                                                            <td><i *ngIf="p.envoye" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.envoye" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.dateEnvoi | date: dateFormatColumn}}</td>
+
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-campagne-create-chercheur></app-campagne-create-chercheur>
+            <app-template-rappel-create-chercheur></app-template-rappel-create-chercheur>
+
+                    <app-chercheur-create-chercheur></app-chercheur-create-chercheur>
+
+
+</p-dialog>
+
+
+

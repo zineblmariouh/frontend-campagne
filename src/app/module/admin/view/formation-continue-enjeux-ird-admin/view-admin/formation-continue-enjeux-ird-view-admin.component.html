@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewFormationContinueEnjeuxIrdDialog" [style]="{width: '70vw'}"
+        header="Formation continue enjeux ird" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Formation continue enjeux ird">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Enjeux ird</label>
+                                    <p-dropdown [options]="enjeuxIrds" [(ngModel)]="selectedFormationContinueEnjeuxIrd.enjeuxIrdVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Enjeux ird">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Formation continue</label>
+                                    <p-dropdown [options]="formationContinues" [(ngModel)]="selectedFormationContinueEnjeuxIrd.formationContinueVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="intitule"
+                                            placeholder="Formation continue">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-enjeux-ird-create-admin></app-enjeux-ird-create-admin>
+            <app-formation-continue-create-admin></app-formation-continue-create-admin>
+
+
+
+</p-dialog>
+
+
+

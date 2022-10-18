@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewProjetActiviteRechercheDetailPaysDialog" [style]="{width: '70vw'}"
+        header="Projet activite recherche detail pays" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Projet activite recherche detail pays">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Pays</label>
+                                    <p-dropdown [options]="payss" [(ngModel)]="selectedProjetActiviteRechercheDetailPays.paysVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Pays">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Projet activite recherche detail</label>
+                                    <p-dropdown [options]="projetActiviteRechercheDetails" [(ngModel)]="selectedProjetActiviteRechercheDetailPays.projetActiviteRechercheDetailVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Projet activite recherche detail">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-pays-create-admin></app-pays-create-admin>
+            <app-projet-activite-recherche-detail-create-admin></app-projet-activite-recherche-detail-create-admin>
+
+
+
+</p-dialog>
+
+
+

@@ -1,0 +1,67 @@
+
+<p-dialog [(visible)]="viewInstrumentIrdConsultanceScientifiquePonctuelleDialog" [style]="{width: '70vw'}"
+        header="Instrument ird consultance scientifique ponctuelle" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Instrument ird consultance scientifique ponctuelle">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Consultance scientifique ponctuelle</label>
+                                    <p-dropdown [options]="consultanceScientifiquePonctuelles" [(ngModel)]="selectedInstrumentIrdConsultanceScientifiquePonctuelle.consultanceScientifiquePonctuelleVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Consultance scientifique ponctuelle">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Instrument ird</label>
+                                    <p-dropdown [options]="instrumentIrds" [(ngModel)]="selectedInstrumentIrdConsultanceScientifiquePonctuelle.instrumentIrdVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Instrument ird">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-6">
+                                    <div  class="label-inputswitch">
+                                        <label for="3">Existe</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="3"  [disabled]="true" [(ngModel)]="selectedInstrumentIrdConsultanceScientifiquePonctuelle.existe"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-consultance-scientifique-ponctuelle-create-admin></app-consultance-scientifique-ponctuelle-create-admin>
+            <app-instrument-ird-create-admin></app-instrument-ird-create-admin>
+
+
+
+</p-dialog>
+
+
+

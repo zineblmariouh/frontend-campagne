@@ -1,0 +1,84 @@
+
+        <p-dialog [(visible)]="editGestionEquipeDetailDialog" [style]="{width: '70vw'}"
+                header="Gestion equipe detail" [modal]="true"
+                styleClass="p-fluid">
+
+            <ng-template pTemplate="content">
+                <p-tabView>
+                    <p-tabPanel header="Gestion equipe detail">
+                        <div class="p-grid">
+
+                                        <div class="p-field p-col-12 p-md-6">
+                                            <label for="1">Nombre personne encadre</label>
+                                            <p-inputNumber class="p-mb-2 p-mr-2" id="1"
+                                                           placeholder="Nombre personne encadre"  [(ngModel)]="selectedGestionEquipeDetail.nombrePersonneEncadre"
+                                                    [(ngModel)]="selectedGestionEquipeDetail.nombrePersonneEncadre"></p-inputNumber>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-6">
+                                            <label for="2">Nombre personne hors ird</label>
+                                            <p-inputNumber class="p-mb-2 p-mr-2" id="2"
+                                                           placeholder="Nombre personne hors ird"  [(ngModel)]="selectedGestionEquipeDetail.nombrePersonneHorsIrd"
+                                                    [(ngModel)]="selectedGestionEquipeDetail.nombrePersonneHorsIrd"></p-inputNumber>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-6">
+                                            <label for="3">Nombre personne sous conventions</label>
+                                            <p-inputNumber class="p-mb-2 p-mr-2" id="3"
+                                                           placeholder="Nombre personne sous conventions"  [(ngModel)]="selectedGestionEquipeDetail.nombrePersonneSousConventions"
+                                                    [(ngModel)]="selectedGestionEquipeDetail.nombrePersonneSousConventions"></p-inputNumber>
+                                        </div>
+
+                                        <div class="p-field align-inputswitch p-col-12  p-md-6">
+                                            <div  class="label-inputswitch">
+                                                <label for="4">Formation management</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="4"  [(ngModel)]="selectedGestionEquipeDetail.formationManagement"></p-inputSwitch>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="p-field p-col-12 p-md-5">
+                                            <label for="5">Gestion equipe</label>
+                                            <p-dropdown [options]="gestionEquipes" [(ngModel)]="selectedGestionEquipeDetail.gestionEquipeVo"
+                                                    id="5" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="id"
+                                                    placeholder="Gestion equipe">
+                                            </p-dropdown>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreategestionEquipe('gestionEquipe')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+
+                        </div>
+                    </p-tabPanel>
+
+                </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-grid">
+                        <div>
+                            <button pButton pRipple label="Annuler" icon="pi pi-times"
+                                    class="p-button-text" (click)="hideEditDialog()"></button>
+                        </div>
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check"  style="margin:10px" (click)="edit()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+                    <app-gestion-equipe-create-admin></app-gestion-equipe-create-admin>
+
+
+
+    </p-dialog>
+
+
+

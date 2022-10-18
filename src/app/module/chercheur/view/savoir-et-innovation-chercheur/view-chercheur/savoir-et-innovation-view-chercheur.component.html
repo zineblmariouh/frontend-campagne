@@ -1,0 +1,191 @@
+
+<p-dialog [(visible)]="viewSavoirEtInnovationDialog" [style]="{width: '70vw'}"
+        header="Savoir et innovation" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Savoir et innovation">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Annee</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="1" [disabled]="true"
+                                                   placeholder="Annee"  [(ngModel)]="selectedSavoirEtInnovation.annee"
+                                            [(ngModel)]="selectedSavoirEtInnovation.annee"></p-inputNumber>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Temps estime pour cette annne</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="2" [disabled]="true"
+                                                   placeholder="Temps estime pour cette annne"  [(ngModel)]="selectedSavoirEtInnovation.tempsEstimePourCetteAnnne"
+                                            [(ngModel)]="selectedSavoirEtInnovation.tempsEstimePourCetteAnnne"></p-inputNumber>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="5">Etat etape campagne</label>
+                                    <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedSavoirEtInnovation.etatEtapeCampagneVo"
+                                            id="5" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etat etape campagne">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+                    <p-tabPanel header="Contrat et convention irds">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedSavoirEtInnovation.contratEtConventionIrdsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Numero</th>
+                                                            <th>Status contrat et convention</th>
+                                                            <th>Date contrat</th>
+                                                            <th>Intitule</th>
+                                                            <th>Description</th>
+                                                            <th>Etat etape campagne</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                            <td>{{p.numero}}</td>
+
+                                                        <td>{{p.statusContratEtConventionVo?.libelle}}</td>
+                                                            <td>{{p.dateContrat | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.intitule}}</td>
+
+                                                            <td>{{p.description}}</td>
+
+                                                        <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Evenement colloque scienntifiques">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedSavoirEtInnovation.evenementColloqueScienntifiquesVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Intitule</th>
+                                                            <th>Modalite</th>
+                                                            <th>Type de participation</th>
+                                                            <th>Date evenement</th>
+                                                            <th>Diplomatie stategique</th>
+                                                            <th>Modalite intervention</th>
+                                                            <th>Volume participant</th>
+                                                            <th>Etat etape campagne</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                            <td>{{p.intitule}}</td>
+
+                                                        <td>{{p.modaliteVo?.libelle}}</td>
+                                                            <td>{{p.typeDeParticipation}}</td>
+
+                                                            <td>{{p.dateEvenement | date: dateFormatColumn}}</td>
+
+                                                            <td><i *ngIf="p.diplomatieStategique" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.diplomatieStategique" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                        <td>{{p.modaliteInterventionVo?.libelle}}</td>
+                                                            <td>{{p.volumeParticipant}}</td>
+
+                                                        <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Developpement de savoir et innovation scientifiques">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedSavoirEtInnovation.developpementDeSavoirEtInnovationScientifiquesVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Titre instrument</th>
+                                                            <th>Role developpement de savoir</th>
+                                                            <th>Annee mise en oeuvre</th>
+                                                            <th>Lien web</th>
+                                                            <th>Etat etape campagne</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                            <td>{{p.titreInstrument}}</td>
+
+                                                        <td>{{p.roleDeveloppementDeSavoirVo?.libelle}}</td>
+                                                            <td>{{p.anneeMiseEnOeuvre}}</td>
+
+                                                            <td>{{p.lienWeb}}</td>
+
+                                                        <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-campagne-create-chercheur></app-campagne-create-chercheur>
+            <app-chercheur-create-chercheur></app-chercheur-create-chercheur>
+            <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+
+                    <app-status-contrat-et-convention-create-chercheur></app-status-contrat-et-convention-create-chercheur>
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+                    <app-modalite-create-chercheur></app-modalite-create-chercheur>
+                    <app-modalite-intervention-create-chercheur></app-modalite-intervention-create-chercheur>
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+                    <app-role-developpement-de-savoir-create-chercheur></app-role-developpement-de-savoir-create-chercheur>
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+
+
+</p-dialog>
+
+
+

@@ -1,0 +1,71 @@
+
+<p-dialog [(visible)]="viewCampagneChercheurFermetureDialog" [style]="{width: '70vw'}"
+        header="Campagne chercheur fermeture" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Campagne chercheur fermeture">
+                <div class="p-grid">
+
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="3">Objet</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Objet"  [(ngModel)]="selectedCampagneChercheurFermeture.objet"
+                                           id="3" [(ngModel)]="selectedCampagneChercheurFermeture.objet"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="4">Message</label>
+                                    <textarea id="4" pInputTextarea rows="5" cols="30"
+                                              placeholder="Message"  [(ngModel)]="selectedCampagneChercheurFermeture.message"
+                                    ></textarea>
+                                </div>
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-6">
+                                    <div  class="label-inputswitch">
+                                        <label for="5">Envoye</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="5"  [disabled]="true" [(ngModel)]="selectedCampagneChercheurFermeture.envoye"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="6">Date envoi</label>
+                                    <p-calendar id="6" [disabled]="true"
+                                                placeholder="Date envoi"  [(ngModel)]="selectedCampagneChercheurFermeture.dateEnvoi"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-chercheur-create-chercheur></app-chercheur-create-chercheur>
+            <app-campagne-create-chercheur></app-campagne-create-chercheur>
+
+
+
+</p-dialog>
+
+
+

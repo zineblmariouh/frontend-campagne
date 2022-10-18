@@ -1,0 +1,492 @@
+
+        <p-dialog [(visible)]="editSavoirEtInnovationDialog" [style]="{width: '70vw'}"
+                header="Savoir et innovation" [modal]="true"
+                styleClass="p-fluid">
+
+            <ng-template pTemplate="content">
+                <p-tabView>
+                    <p-tabPanel header="Savoir et innovation">
+                        <div class="p-grid">
+
+                                        <div class="p-field p-col-12 p-md-6">
+                                            <label for="1">Annee</label>
+                                            <p-inputNumber class="p-mb-2 p-mr-2" id="1"
+                                                           placeholder="Annee"  [(ngModel)]="selectedSavoirEtInnovation.annee"
+                                                    [(ngModel)]="selectedSavoirEtInnovation.annee"></p-inputNumber>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-6">
+                                            <label for="2">Temps estime pour cette annne</label>
+                                            <p-inputNumber class="p-mb-2 p-mr-2" id="2"
+                                                           placeholder="Temps estime pour cette annne"  [(ngModel)]="selectedSavoirEtInnovation.tempsEstimePourCetteAnnne"
+                                                    [(ngModel)]="selectedSavoirEtInnovation.tempsEstimePourCetteAnnne"></p-inputNumber>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-5">
+                                            <label for="3">Campagne</label>
+                                            <p-dropdown [options]="campagnes" [(ngModel)]="selectedSavoirEtInnovation.campagneVo"
+                                                    id="3" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Campagne">
+                                            </p-dropdown>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreatecampagne('campagne')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-5">
+                                            <label for="4">Chercheur</label>
+                                            <p-dropdown [options]="chercheurs" [(ngModel)]="selectedSavoirEtInnovation.chercheurVo"
+                                                    id="4" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="numeroMatricule"
+                                                    placeholder="Chercheur">
+                                            </p-dropdown>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreatechercheur('chercheur')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-5">
+                                            <label for="5">Etat etape campagne</label>
+                                            <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedSavoirEtInnovation.etatEtapeCampagneVo"
+                                                    id="5" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Etat etape campagne">
+                                            </p-dropdown>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+
+                        </div>
+                    </p-tabPanel>
+                            <p-tabPanel header="Contrat et convention irds">
+                                <div class="p-grid">
+                                    <div class="p-col">
+                                                <div class="p-field">
+                                                    <label for="1">Numero</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Numero"
+                                                           id="1" [(ngModel)]="selectedContratEtConventionIrds.numero"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="2">Date contrat</label>
+                                                    <p-calendar id="2"
+                                                                placeholder="Date contrat"
+                                                            [(ngModel)]="selectedContratEtConventionIrds.dateContrat"
+                                                            dateFormat="{{dateFormat}}" [showIcon]="true"></p-calendar>
+                                                </div>
+                                                <div class="p-field">
+                                                    <label for="3">Intitule</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Intitule"
+                                                           id="3" [(ngModel)]="selectedContratEtConventionIrds.intitule"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="4">Description</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Description"
+                                                           id="4" [(ngModel)]="selectedContratEtConventionIrds.description"
+                                                           />
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Status contrat et convention</label>
+                                                        <p-dropdown [options]="statusContratEtConventions" [(ngModel)]="selectedContratEtConventionIrds.statusContratEtConventionVo"
+                                                                id="0"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Status contrat et convention"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatestatusContratEtConvention('statusContratEtConvention')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Etat etape campagne</label>
+                                                        <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedContratEtConventionIrds.etatEtapeCampagneVo"
+                                                                id="2"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Etat etape campagne"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                        <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                label="OK" (click)="addContratEtConventionIrds()"
+                                        ></button>
+                                    </div>
+                                    <div class="p-col">
+                                        <div class="card">
+                                            <p-table [value]="selectedSavoirEtInnovation.contratEtConventionIrdsVo" [scrollable]="true"
+                                                    scrollHeight="200px">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                                    <th>Numero</th>
+                                                                    <th>Status contrat et convention</th>
+                                                                    <th>Date contrat</th>
+                                                                    <th>Intitule</th>
+                                                                    <th>Description</th>
+                                                                    <th>Etat etape campagne</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-p>
+                                                    <tr>
+                                                                    <td>{{p.numero}}</td>
+
+                                                                <td>{{p.statusContratEtConventionVo?.libelle}}</td>
+                                                                    <td>{{p.dateContrat | date: dateFormatColumn}}</td>
+
+                                                                    <td>{{p.intitule}}</td>
+
+                                                                    <td>{{p.description}}</td>
+
+                                                                <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+                                                        <td>
+                                                            <button (click)="deleteContratEtConventionIrds(p)" pButton type="button"
+                                                                                                                 icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </p-tabPanel>
+                            <p-tabPanel header="Evenement colloque scienntifiques">
+                                <div class="p-grid">
+                                    <div class="p-col">
+                                                <div class="p-field">
+                                                    <label for="1">Intitule</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Intitule"
+                                                           id="1" [(ngModel)]="selectedEvenementColloqueScienntifiques.intitule"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="2">Type de participation</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Type de participation"
+                                                           id="2" [(ngModel)]="selectedEvenementColloqueScienntifiques.typeDeParticipation"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="3">Date evenement</label>
+                                                    <p-calendar id="3"
+                                                                placeholder="Date evenement"
+                                                            [(ngModel)]="selectedEvenementColloqueScienntifiques.dateEvenement"
+                                                            dateFormat="{{dateFormat}}" [showIcon]="true"></p-calendar>
+                                                </div>
+                                                <div class="p-field  align-inputswitch">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="4">Diplomatie stategique</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="4"  [(ngModel)]="selectedEvenementColloqueScienntifiques.diplomatieStategique"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                <div class="p-field">
+                                                    <label for="5">Volume participant</label>
+                                                    <p-inputNumber class="p-mb-2 p-mr-2" id="volumeParticipant"
+                                                                   placeholder="Volume participant"
+                                                            [(ngModel)]="selectedEvenementColloqueScienntifiques.volumeParticipant"></p-inputNumber>
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Modalite</label>
+                                                        <p-dropdown [options]="modalites" [(ngModel)]="selectedEvenementColloqueScienntifiques.modaliteVo"
+                                                                id="0"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Modalite"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatemodalite('modalite')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Modalite intervention</label>
+                                                        <p-dropdown [options]="modaliteInterventions" [(ngModel)]="selectedEvenementColloqueScienntifiques.modaliteInterventionVo"
+                                                                id="1"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Modalite intervention"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatemodaliteIntervention('modaliteIntervention')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Etat etape campagne</label>
+                                                        <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedEvenementColloqueScienntifiques.etatEtapeCampagneVo"
+                                                                id="3"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Etat etape campagne"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                        <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                label="OK" (click)="addEvenementColloqueScienntifiques()"
+                                        ></button>
+                                    </div>
+                                    <div class="p-col">
+                                        <div class="card">
+                                            <p-table [value]="selectedSavoirEtInnovation.evenementColloqueScienntifiquesVo" [scrollable]="true"
+                                                    scrollHeight="200px">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                                    <th>Intitule</th>
+                                                                    <th>Modalite</th>
+                                                                    <th>Type de participation</th>
+                                                                    <th>Date evenement</th>
+                                                                    <th>Diplomatie stategique</th>
+                                                                    <th>Modalite intervention</th>
+                                                                    <th>Volume participant</th>
+                                                                    <th>Etat etape campagne</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-p>
+                                                    <tr>
+                                                                    <td>{{p.intitule}}</td>
+
+                                                                <td>{{p.modaliteVo?.libelle}}</td>
+                                                                    <td>{{p.typeDeParticipation}}</td>
+
+                                                                    <td>{{p.dateEvenement | date: dateFormatColumn}}</td>
+
+                                                                    <td><i *ngIf="p.diplomatieStategique" class="pi pi-check checked-toogle"></i>
+                                                                        <i *ngIf="!p.diplomatieStategique" class="pi pi-times unchecked-toogle"></i>
+                                                                    </td>
+
+                                                                <td>{{p.modaliteInterventionVo?.libelle}}</td>
+                                                                    <td>{{p.volumeParticipant}}</td>
+
+                                                                <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+                                                        <td>
+                                                            <button (click)="deleteEvenementColloqueScienntifiques(p)" pButton type="button"
+                                                                                                                 icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </p-tabPanel>
+                            <p-tabPanel header="Developpement de savoir et innovation scientifiques">
+                                <div class="p-grid">
+                                    <div class="p-col">
+                                                <div class="p-field">
+                                                    <label for="1">Titre instrument</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Titre instrument"
+                                                           id="1" [(ngModel)]="selectedDeveloppementDeSavoirEtInnovationScientifiques.titreInstrument"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="2">Annee mise en oeuvre</label>
+                                                    <p-inputNumber class="p-mb-2 p-mr-2" id="anneeMiseEnOeuvre"
+                                                                   placeholder="Annee mise en oeuvre"
+                                                            [(ngModel)]="selectedDeveloppementDeSavoirEtInnovationScientifiques.anneeMiseEnOeuvre"></p-inputNumber>
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="3">Lien web</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Lien web"
+                                                           id="3" [(ngModel)]="selectedDeveloppementDeSavoirEtInnovationScientifiques.lienWeb"
+                                                           />
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Role developpement de savoir</label>
+                                                        <p-dropdown [options]="roleDeveloppementDeSavoirs" [(ngModel)]="selectedDeveloppementDeSavoirEtInnovationScientifiques.roleDeveloppementDeSavoirVo"
+                                                                id="0"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Role developpement de savoir"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateroleDeveloppementDeSavoir('roleDeveloppementDeSavoir')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Etat etape campagne</label>
+                                                        <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedDeveloppementDeSavoirEtInnovationScientifiques.etatEtapeCampagneVo"
+                                                                id="2"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Etat etape campagne"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                        <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                label="OK" (click)="addDeveloppementDeSavoirEtInnovationScientifiques()"
+                                        ></button>
+                                    </div>
+                                    <div class="p-col">
+                                        <div class="card">
+                                            <p-table [value]="selectedSavoirEtInnovation.developpementDeSavoirEtInnovationScientifiquesVo" [scrollable]="true"
+                                                    scrollHeight="200px">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                                    <th>Titre instrument</th>
+                                                                    <th>Role developpement de savoir</th>
+                                                                    <th>Annee mise en oeuvre</th>
+                                                                    <th>Lien web</th>
+                                                                    <th>Etat etape campagne</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-p>
+                                                    <tr>
+                                                                    <td>{{p.titreInstrument}}</td>
+
+                                                                <td>{{p.roleDeveloppementDeSavoirVo?.libelle}}</td>
+                                                                    <td>{{p.anneeMiseEnOeuvre}}</td>
+
+                                                                    <td>{{p.lienWeb}}</td>
+
+                                                                <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+                                                        <td>
+                                                            <button (click)="deleteDeveloppementDeSavoirEtInnovationScientifiques(p)" pButton type="button"
+                                                                                                                 icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </p-tabPanel>
+
+                </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-grid">
+                        <div>
+                            <button pButton pRipple label="Annuler" icon="pi pi-times"
+                                    class="p-button-text" (click)="hideEditDialog()"></button>
+                        </div>
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check"  style="margin:10px" (click)="edit()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+                    <app-campagne-create-admin></app-campagne-create-admin>
+                    <app-chercheur-create-admin></app-chercheur-create-admin>
+                    <app-etat-etape-campagne-create-admin></app-etat-etape-campagne-create-admin>
+
+                            <app-status-contrat-et-convention-create-admin></app-status-contrat-et-convention-create-admin>
+                            <app-etat-etape-campagne-create-admin></app-etat-etape-campagne-create-admin>
+                            <app-modalite-create-admin></app-modalite-create-admin>
+                            <app-modalite-intervention-create-admin></app-modalite-intervention-create-admin>
+                            <app-etat-etape-campagne-create-admin></app-etat-etape-campagne-create-admin>
+                            <app-role-developpement-de-savoir-create-admin></app-role-developpement-de-savoir-create-admin>
+                            <app-etat-etape-campagne-create-admin></app-etat-etape-campagne-create-admin>
+
+
+    </p-dialog>
+
+
+

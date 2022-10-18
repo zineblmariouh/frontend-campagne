@@ -1,0 +1,693 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <p-toast></p-toast>
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                                            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2"
+                                (click)="openCreateChercheur('chercheur')"></button>
+
+
+                    <button pButton pRipple label="Recherche"
+                            icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}"
+                            class="p-button-success p-mr-2 p-mb-2"
+                            (click)="this.findByCriteriaShow = !this.findByCriteriaShow"></button>
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <div class="flex">
+                        <p-splitButton label="Exporter" icon="pi pi-download" styleClass="p-button-help" [model]="excelPdfButons"></p-splitButton>
+                    </div>
+                </ng-template>
+
+            </p-toolbar>
+            <p-toolbar *ngIf="findByCriteriaShow">
+
+                <div class="align-form-search">
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="1" [options]="yesOrNoConsentementRgpd" [(ngModel)]="searchChercheur.consentementRgpd"
+                                            [filter]="false" [showClear]="true"  placeholder="Consentement rgpd"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="2"
+                                           type="text"  [(ngModel)]="searchChercheur.numeroMatricule">
+                                    <label for="2">Numero matricule</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="3"
+                                           type="text"  [(ngModel)]="searchChercheur.emailPrincipale">
+                                    <label for="3">Email principale</label>
+                                </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="affectationStructurelles" [(ngModel)]="searchChercheur.affectationStructurelleVo"
+                                        id="5"
+                                        [filter]="true" [showClear]="true"  placeholder="Affectation structurelle"
+                                        optionLabel="libelleCourt">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="entiteAdministratives" [(ngModel)]="searchChercheur.entiteAdministrativeVo"
+                                        id="6"
+                                        [filter]="true" [showClear]="true"  placeholder="Entite administrative"
+                                        optionLabel="libelleCourt">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="typeEntiteAdministratives" [(ngModel)]="searchChercheur.typeEntiteAdministrativeVo"
+                                        id="7"
+                                        [filter]="true" [showClear]="true"  placeholder="Type entite administrative"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="payss" [(ngModel)]="searchChercheur.paysVo"
+                                        id="8"
+                                        [filter]="true" [showClear]="true"  placeholder="Pays"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="villes" [(ngModel)]="searchChercheur.villeVo"
+                                        id="9"
+                                        [filter]="true" [showClear]="true"  placeholder="Ville"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="departementScientifiques" [(ngModel)]="searchChercheur.departementScientifiqueVo"
+                                        id="10"
+                                        [filter]="true" [showClear]="true"  placeholder="Departement scientifique"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="commissionScientifiques" [(ngModel)]="searchChercheur.commissionScientifiqueVo"
+                                        id="11"
+                                        [filter]="true" [showClear]="true"  placeholder="Commission scientifique"
+                                        optionLabel="libelleCourt">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="grades" [(ngModel)]="searchChercheur.gradeVo"
+                                        id="12"
+                                        [filter]="true" [showClear]="true"  placeholder="Grade"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="corpss" [(ngModel)]="searchChercheur.corpsVo"
+                                        id="13"
+                                        [filter]="true" [showClear]="true"  placeholder="Corps"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="sexes" [(ngModel)]="searchChercheur.sexeVo"
+                                        id="14"
+                                        [filter]="true" [showClear]="true"  placeholder="Sexe"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="23"
+                                           type="text"  [(ngModel)]="searchChercheur.natureImplication">
+                                    <label for="23">Nature implication</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="24" [options]="yesOrNoFormationEnManagement" [(ngModel)]="searchChercheur.formationEnManagement"
+                                            [filter]="false" [showClear]="true"  placeholder="Formation en management"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="25" [options]="yesOrNoCredentialsNonExpired" [(ngModel)]="searchChercheur.credentialsNonExpired"
+                                            [filter]="false" [showClear]="true"  placeholder="Credentials non expired"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="26" [options]="yesOrNoEnabled" [(ngModel)]="searchChercheur.enabled"
+                                            [filter]="false" [showClear]="true"  placeholder="Enabled"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="27" [options]="yesOrNoAccountNonExpired" [(ngModel)]="searchChercheur.accountNonExpired"
+                                            [filter]="false" [showClear]="true"  placeholder="Account non expired"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="28" [options]="yesOrNoAccountNonLocked" [(ngModel)]="searchChercheur.accountNonLocked"
+                                            [filter]="false" [showClear]="true"  placeholder="Account non locked"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="29" [options]="yesOrNoPasswordChanged" [(ngModel)]="searchChercheur.passwordChanged"
+                                            [filter]="false" [showClear]="true"  placeholder="Password changed"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+
+                        <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchChercheur.createdAtMin"
+                                    id="30-1"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="30-1">Created at Min</label>
+                        </span>
+
+                         <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchChercheur.createdAtMax"
+                                    id="30-2"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="30-2">Created at Max</label>
+                        </span>
+
+
+                        <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchChercheur.updatedAtMin"
+                                    id="31-1"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="31-1">Updated at Min</label>
+                        </span>
+
+                         <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchChercheur.updatedAtMax"
+                                    id="31-2"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="31-2">Updated at Max</label>
+                        </span>
+
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="32"
+                                           type="text"  [(ngModel)]="searchChercheur.username">
+                                    <label for="32">Username</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="33"
+                                           type="text"  [(ngModel)]="searchChercheur.password">
+                                    <label for="33">Password</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="34"
+                                           type="text"  [(ngModel)]="searchChercheur.prenom">
+                                    <label for="34">Prenom</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="35"
+                                           type="text"  [(ngModel)]="searchChercheur.nom">
+                                    <label for="35">Nom</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="36"
+                                           type="text"  [(ngModel)]="searchChercheur.baseHorizon">
+                                    <label for="36">Base horizon</label>
+                                </span>
+                </div>
+
+                <div class="align-search-button">
+                    <button pButton pRipple label="Valider" icon="pi pi-sort-amount-down"
+                            class="p-button-info p-mr-2" (click)="searchRequest()"></button>
+                </div>
+            </p-toolbar>
+
+
+            <p-table #dt [value]="chercheurs" [columns]="cols" [rows]="4" [paginator]="true"
+                    [globalFilterFields]="['consentementRgpd', 'numeroMatricule', 'emailPrincipale', 'libelleCourt', 'libelleCourt', 'libelle', 'libelle', 'libelle', 'libelle', 'libelleCourt', 'libelle', 'libelle', 'libelle', 'natureImplication', 'formationEnManagement', 'credentialsNonExpired', 'enabled', 'accountNonExpired', 'accountNonLocked', 'passwordChanged', 'createdAt', 'updatedAt', 'username', 'password', 'prenom', 'nom', 'baseHorizon', 'role']" [(selection)]="selectedChercheur"
+                    [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
+                                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">Liste des Chercheurs</h5>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" placeholder="Search..." (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+
+                                
+                                <th pSortableColumn="consentementRgpd">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Consentement rgpd</span>
+                                        <p-sortIcon field="consentementRgpd"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="numeroMatricule">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Numero matricule</span>
+                                        <p-sortIcon field="numeroMatricule"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="emailPrincipale">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Email principale</span>
+                                        <p-sortIcon field="emailPrincipale"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+
+                                
+                                <th pSortableColumn="affectationStructurelle">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Affectation structurelle</span>
+                                        <p-sortIcon field="affectationStructurelle"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="entiteAdministrative">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Entite administrative</span>
+                                        <p-sortIcon field="entiteAdministrative"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="typeEntiteAdministrative">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Type entite administrative</span>
+                                        <p-sortIcon field="typeEntiteAdministrative"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="pays">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Pays</span>
+                                        <p-sortIcon field="pays"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="ville">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Ville</span>
+                                        <p-sortIcon field="ville"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                <!-- 
+                                <th pSortableColumn="departementScientifique">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Departement scientifique</span>
+                                        <p-sortIcon field="departementScientifique"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="commissionScientifique">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Commission scientifique</span>
+                                        <p-sortIcon field="commissionScientifique"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="grade">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Grade</span>
+                                        <p-sortIcon field="grade"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="corps">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Corps</span>
+                                        <p-sortIcon field="corps"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="sexe">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Sexe</span>
+                                        <p-sortIcon field="sexe"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+
+
+
+
+
+
+
+
+                                <!-- 
+                                <th pSortableColumn="natureImplication">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Nature implication</span>
+                                        <p-sortIcon field="natureImplication"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="formationEnManagement">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Formation en management</span>
+                                        <p-sortIcon field="formationEnManagement"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="credentialsNonExpired">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Credentials non expired</span>
+                                        <p-sortIcon field="credentialsNonExpired"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="enabled">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Enabled</span>
+                                        <p-sortIcon field="enabled"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="accountNonExpired">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Account non expired</span>
+                                        <p-sortIcon field="accountNonExpired"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="accountNonLocked">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Account non locked</span>
+                                        <p-sortIcon field="accountNonLocked"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="passwordChanged">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Password changed</span>
+                                        <p-sortIcon field="passwordChanged"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="createdAt">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Created at</span>
+                                        <p-sortIcon field="createdAt"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="updatedAt">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Updated at</span>
+                                        <p-sortIcon field="updatedAt"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="username">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Username</span>
+                                        <p-sortIcon field="username"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="password">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Password</span>
+                                        <p-sortIcon field="password"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="prenom">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Prenom</span>
+                                        <p-sortIcon field="prenom"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="nom">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Nom</span>
+                                        <p-sortIcon field="nom"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="baseHorizon">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Base horizon</span>
+                                        <p-sortIcon field="baseHorizon"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="role">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Role</span>
+                                        <p-sortIcon field="role"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                        <th>Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-chercheur>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="chercheur"></p-tableCheckbox>
+                        </td>
+                            
+                                <td><i *ngIf="chercheur.consentementRgpd" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!chercheur.consentementRgpd" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                            
+
+                            
+                                 <td>{{chercheur.numeroMatricule}}</td>
+                            
+
+                            
+                                 <td>{{chercheur.emailPrincipale}}</td>
+                            
+
+                            
+                                <td>{{chercheur.affectationStructurelleVo?.libelleCourt}}</td>
+                            
+
+                            
+                                <td>{{chercheur.entiteAdministrativeVo?.libelleCourt}}</td>
+                            
+
+                            
+                                <td>{{chercheur.typeEntiteAdministrativeVo?.libelle}}</td>
+                            
+
+                            
+                                <td>{{chercheur.paysVo?.libelle}}</td>
+                            
+
+                            
+                                <td>{{chercheur.villeVo?.libelle}}</td>
+                            
+
+                             <!-- 
+                                <td>{{chercheur.departementScientifiqueVo?.libelle}}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{chercheur.commissionScientifiqueVo?.libelleCourt}}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{chercheur.gradeVo?.libelle}}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{chercheur.corpsVo?.libelle}}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{chercheur.sexeVo?.libelle}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{chercheur.natureImplication}}</td>
+                             --> 
+
+                             <!-- 
+                                <td><i *ngIf="chercheur.formationEnManagement" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!chercheur.formationEnManagement" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                <td><i *ngIf="chercheur.credentialsNonExpired" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!chercheur.credentialsNonExpired" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                <td><i *ngIf="chercheur.enabled" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!chercheur.enabled" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                <td><i *ngIf="chercheur.accountNonExpired" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!chercheur.accountNonExpired" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                <td><i *ngIf="chercheur.accountNonLocked" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!chercheur.accountNonLocked" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                <td><i *ngIf="chercheur.passwordChanged" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!chercheur.passwordChanged" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                <td>{{chercheur.createdAt | date:'dd-M-yyyy' }}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{chercheur.updatedAt | date:'dd-M-yyyy' }}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{chercheur.username}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{chercheur.password}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{chercheur.prenom}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{chercheur.nom}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{chercheur.baseHorizon}}</td>
+                             --> 
+
+                             <!-- 
+                             --> 
+
+
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editChercheur(chercheur)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2"
+                                    (click)="viewChercheur(chercheur)"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-mr-2"
+                                    (click)="deleteChercheur(chercheur)"></button>
+
+                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning"
+                                    (click)="duplicateChercheur(chercheur)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En totale
+                        il {{chercheurs ? chercheurs.length == 1 ? 'y a' : 'y a' : 'y a' }} {{chercheurs ? chercheurs.length : 0 }} {{chercheurs ? chercheurs.length == 1 ? 'chercheur' : 'chercheurs' : 0 }}
+                        .
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <app-chercheur-create-chercheur></app-chercheur-create-chercheur>
+        <app-chercheur-edit-chercheur></app-chercheur-edit-chercheur>
+        <app-chercheur-view-chercheur></app-chercheur-view-chercheur>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>

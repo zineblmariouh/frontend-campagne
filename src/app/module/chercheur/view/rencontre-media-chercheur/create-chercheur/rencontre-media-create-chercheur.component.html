@@ -1,0 +1,177 @@
+        <p-dialog [(visible)]="createRencontreMediaDialog" [style]="{width: '70vw'}"
+                header="Rencontre media" [modal]="true"
+                styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+
+
+            <ng-template pTemplate="content" >
+                <p-tabView>
+                    <p-tabPanel header="Rencontre media">
+                        <div class="p-grid">
+
+                                        <div class="p-field p-col-11 p-md-5">
+                                            <label for="1">Format rencontre</label>
+                                            <p-dropdown [options]="formatRencontres" [(ngModel)]="selectedRencontreMedia.formatRencontreVo"
+                                                    id="1" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Format rencontre"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateformatRencontre('formatRencontre')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                    <div class="p-field p-col-12  p-md-6">
+                                        <label>Type publique</label>
+                                        <p-multiSelect [options]="typePubliqueRencontreMediasVo" [(ngModel)]="selectedRencontreMedia.typePubliqueRencontreMediasVo" defaultLabel="Select un typePublique" optionLabel="typePubliqueVo.libelle"  display="chip"></p-multiSelect>
+                                    </div>
+                                        <div class="p-field p-col-12 p-md-6">
+                                            <label for="3">Intitule sujet</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Intitule sujet"
+                                                   id="3" [(ngModel)]="selectedRencontreMedia.intituleSujet"
+                                                     />
+                                            
+                                        </div>
+
+
+
+                                    <div class="p-field p-col-12  p-md-6">
+                                        <label>Enjeux ird</label>
+                                        <p-multiSelect [options]="rencontreMediaEnjeuxIrdsVo" [(ngModel)]="selectedRencontreMedia.rencontreMediaEnjeuxIrdsVo" defaultLabel="Select un enjeuxIrd" optionLabel="enjeuxIrdVo.libelle"  display="chip"></p-multiSelect>
+                                    </div>
+                                    <div class="p-field p-col-12  p-md-6">
+                                        <label>Discipline scientifique</label>
+                                        <p-multiSelect [options]="rencontreMediaDisciplineScientifiquesVo" [(ngModel)]="selectedRencontreMedia.rencontreMediaDisciplineScientifiquesVo" defaultLabel="Select un disciplineScientifique" optionLabel="disciplineScientifiqueVo.libelleEng"  display="chip"></p-multiSelect>
+                                    </div>
+                                    <div class="p-field p-col-12  p-md-6">
+                                        <label>Pays</label>
+                                        <p-multiSelect [options]="paysRencontreMediasVo" [(ngModel)]="selectedRencontreMedia.paysRencontreMediasVo" defaultLabel="Select un pays" optionLabel="paysVo.libelle"  display="chip"></p-multiSelect>
+                                    </div>
+                                        <div class="p-field p-col-12 p-md-6">
+                                            <label for="8">Lien web</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Lien web"
+                                                   id="8" [(ngModel)]="selectedRencontreMedia.lienWeb"
+                                                     />
+                                            
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-6">
+                                            <label for="9">Remarque</label>
+                                            <textarea id="9" pInputTextarea rows="5" cols="30"
+                                                      placeholder="Remarque"  [(ngModel)]="selectedRencontreMedia.remarque"
+                                             ></textarea>
+                                            
+                                        </div>
+
+                                        <div class="p-field p-col-11 p-md-5">
+                                            <label for="10">Culture scientifique</label>
+                                            <p-dropdown [options]="cultureScientifiques" [(ngModel)]="selectedRencontreMedia.cultureScientifiqueVo"
+                                                    id="10" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="id"
+                                                    placeholder="Culture scientifique"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreatecultureScientifique('cultureScientifique')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-11 p-md-5">
+                                            <label for="11">Etat etape campagne</label>
+                                            <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedRencontreMedia.etatEtapeCampagneVo"
+                                                    id="11" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Etat etape campagne"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                        </div>
+                    </p-tabPanel>
+                    <p-tabPanel header="Rencontre media periodes">
+                                <div class="p-grid">
+                                      <div class="p-col">
+                                                 <div class="p-field p-col-12 p-md-6">
+                                                    <label for="2">Date rencontre</label>
+                                                    <p-calendar id="2"
+                                                                placeholder="Date rencontre"
+                                                            [(ngModel)]="selectedRencontreMediaPeriodes.dateRencontre"
+                                                            dateFormat="{{dateFormat}}" [showIcon]="true"  ></p-calendar>
+                                                    
+                                                </div>
+                                          <div class="p-field p-col-12 p-md-1">
+                                              <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                    label="OK" (click)="addRencontreMediaPeriodes()">
+                                              </button>
+                                          </div>
+                                        </div>
+                                </div>
+                                  <div class="p-col">
+                                    <div class="card">
+                                        <p-table [value]="selectedRencontreMedia.rencontreMediaPeriodesVo" [scrollable]="true"
+                                                scrollHeight="200px">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                                <th>Date rencontre</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-p>
+                                                <tr>
+                                                                <td>{{p.dateRencontre | date: dateFormatColumn}}</td>
+
+                                                    <td>
+                                                        <button (click)="deleteRencontreMediaPeriodes(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+
+                                 </div>
+                            </p-tabPanel>
+
+
+                </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-grid">
+                        <div>
+                            <button pButton pRipple label="Annuler" icon="pi pi-times"
+                                    class="p-button-text" (click)="hideCreateDialog()"></button>
+                        </div>
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check" style="margin:10px" (click)="save()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+                    <app-format-rencontre-create-chercheur></app-format-rencontre-create-chercheur>
+                    <app-culture-scientifique-create-chercheur></app-culture-scientifique-create-chercheur>
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+
+                            <app-type-publique-create-chercheur></app-type-publique-create-chercheur>
+                            <app-enjeux-ird-create-chercheur></app-enjeux-ird-create-chercheur>
+                            <app-discipline-scientifique-create-chercheur></app-discipline-scientifique-create-chercheur>
+                            <app-pays-create-chercheur></app-pays-create-chercheur>
+
+    </p-dialog>

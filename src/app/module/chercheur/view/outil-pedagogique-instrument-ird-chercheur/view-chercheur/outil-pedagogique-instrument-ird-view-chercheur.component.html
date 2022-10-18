@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewOutilPedagogiqueInstrumentIrdDialog" [style]="{width: '70vw'}"
+        header="Outil pedagogique instrument ird" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Outil pedagogique instrument ird">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Instrument ird</label>
+                                    <p-dropdown [options]="instrumentIrds" [(ngModel)]="selectedOutilPedagogiqueInstrumentIrd.instrumentIrdVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Instrument ird">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Outil pedagogique</label>
+                                    <p-dropdown [options]="outilPedagogiques" [(ngModel)]="selectedOutilPedagogiqueInstrumentIrd.outilPedagogiqueVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Outil pedagogique">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-instrument-ird-create-chercheur></app-instrument-ird-create-chercheur>
+            <app-outil-pedagogique-create-chercheur></app-outil-pedagogique-create-chercheur>
+
+
+
+</p-dialog>
+
+
+

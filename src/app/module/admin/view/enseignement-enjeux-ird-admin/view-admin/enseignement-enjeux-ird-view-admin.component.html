@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewEnseignementEnjeuxIrdDialog" [style]="{width: '70vw'}"
+        header="Enseignement enjeux ird" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Enseignement enjeux ird">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Enseignement</label>
+                                    <p-dropdown [options]="enseignements" [(ngModel)]="selectedEnseignementEnjeuxIrd.enseignementVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Enseignement">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Enjeux ird</label>
+                                    <p-dropdown [options]="enjeuxIrds" [(ngModel)]="selectedEnseignementEnjeuxIrd.enjeuxIrdVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Enjeux ird">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-enseignement-create-admin></app-enseignement-create-admin>
+            <app-enjeux-ird-create-admin></app-enjeux-ird-create-admin>
+
+
+
+</p-dialog>
+
+
+

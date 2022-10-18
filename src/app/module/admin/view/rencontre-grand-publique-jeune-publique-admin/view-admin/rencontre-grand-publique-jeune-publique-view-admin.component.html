@@ -1,0 +1,371 @@
+
+<p-dialog [(visible)]="viewRencontreGrandPubliqueJeunePubliqueDialog" [style]="{width: '70vw'}"
+        header="Rencontre grand publique jeune publique" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Rencontre grand publique jeune publique">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="1">Format rencontre</label>
+                                    <p-dropdown [options]="formatRencontres" [(ngModel)]="selectedRencontreGrandPubliqueJeunePublique.formatRencontreVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Format rencontre">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="3">Intitule sujet</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Intitule sujet"  [(ngModel)]="selectedRencontreGrandPubliqueJeunePublique.intituleSujet"
+                                           id="3" [(ngModel)]="selectedRencontreGrandPubliqueJeunePublique.intituleSujet"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="6">Nombre personne estime</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="6" [disabled]="true"
+                                                   placeholder="Nombre personne estime"  [(ngModel)]="selectedRencontreGrandPubliqueJeunePublique.nombrePersonneEstime"
+                                            [(ngModel)]="selectedRencontreGrandPubliqueJeunePublique.nombrePersonneEstime"></p-inputNumber>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="11">Contexte</label>
+                                    <p-dropdown [options]="contextes" [(ngModel)]="selectedRencontreGrandPubliqueJeunePublique.contexteVo"
+                                            id="11" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Contexte">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="12">Lien instrument ird</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="12"  [disabled]="true" [(ngModel)]="selectedRencontreGrandPubliqueJeunePublique.lienInstrumentIrd"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="15">Pays</label>
+                                    <p-dropdown [options]="payss" [(ngModel)]="selectedRencontreGrandPubliqueJeunePublique.paysVo"
+                                            id="15" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Pays">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="16">Lien web</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Lien web"  [(ngModel)]="selectedRencontreGrandPubliqueJeunePublique.lienWeb"
+                                           id="16" [(ngModel)]="selectedRencontreGrandPubliqueJeunePublique.lienWeb"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="17">Remarque</label>
+                                    <textarea id="17" pInputTextarea rows="5" cols="30"
+                                              placeholder="Remarque"  [(ngModel)]="selectedRencontreGrandPubliqueJeunePublique.remarque"
+                                    ></textarea>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="18">Culture scientifique</label>
+                                    <p-dropdown [options]="cultureScientifiques" [(ngModel)]="selectedRencontreGrandPubliqueJeunePublique.cultureScientifiqueVo"
+                                            id="18" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Culture scientifique">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="19">Etat etape campagne</label>
+                                    <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedRencontreGrandPubliqueJeunePublique.etatEtapeCampagneVo"
+                                            id="19" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etat etape campagne">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+                    <p-tabPanel header="Type publique rencontre grand publique jeune publiques">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedRencontreGrandPubliqueJeunePublique.typePubliqueRencontreGrandPubliqueJeunePubliquesVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Type publique</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.typePubliqueVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Rencontre grand publique jeune publique enjeux irds">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedRencontreGrandPubliqueJeunePublique.rencontreGrandPubliqueJeunePubliqueEnjeuxIrdsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Enjeux ird</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.enjeuxIrdVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Rencontre grand publique jeune publique discipline scientifiques">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedRencontreGrandPubliqueJeunePublique.rencontreGrandPubliqueJeunePubliqueDisciplineScientifiquesVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Discipline scientifique</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.disciplineScientifiqueVo?.libelleEng}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Rencontre grand publique jeune publique periodes">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedRencontreGrandPubliqueJeunePublique.rencontreGrandPubliqueJeunePubliquePeriodesVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Date rencontre</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                            <td>{{p.dateRencontre | date: dateFormatColumn}}</td>
+
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Structure oganisatrices">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedRencontreGrandPubliqueJeunePublique.structureOganisatricesVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Etablissement</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.etablissementVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Pays rencontre grand publique jeune publiques">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedRencontreGrandPubliqueJeunePublique.paysRencontreGrandPubliqueJeunePubliquesVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Pays</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.paysVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Pays organisateur rencontre grand publique jeune publiques">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedRencontreGrandPubliqueJeunePublique.paysOrganisateurRencontreGrandPubliqueJeunePubliquesVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Pays</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.paysVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Rencontre grand publique jeune publique instrument irds">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedRencontreGrandPubliqueJeunePublique.rencontreGrandPubliqueJeunePubliqueInstrumentIrdsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Instrument ird</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.instrumentIrdVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Rencontre grand publique jeune publique type instrument irds">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedRencontreGrandPubliqueJeunePublique.rencontreGrandPubliqueJeunePubliqueTypeInstrumentIrdsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Type instrument ird</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.typeInstrumentIrdVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-format-rencontre-create-admin></app-format-rencontre-create-admin>
+            <app-contexte-create-admin></app-contexte-create-admin>
+            <app-pays-create-admin></app-pays-create-admin>
+            <app-culture-scientifique-create-admin></app-culture-scientifique-create-admin>
+            <app-etat-etape-campagne-create-admin></app-etat-etape-campagne-create-admin>
+
+                    <app-type-publique-create-admin></app-type-publique-create-admin>
+                    <app-enjeux-ird-create-admin></app-enjeux-ird-create-admin>
+                    <app-discipline-scientifique-create-admin></app-discipline-scientifique-create-admin>
+                    <app-etablissement-create-admin></app-etablissement-create-admin>
+                    <app-pays-create-admin></app-pays-create-admin>
+                    <app-pays-create-admin></app-pays-create-admin>
+                    <app-instrument-ird-create-admin></app-instrument-ird-create-admin>
+                    <app-type-instrument-ird-create-admin></app-type-instrument-ird-create-admin>
+
+
+</p-dialog>
+
+
+

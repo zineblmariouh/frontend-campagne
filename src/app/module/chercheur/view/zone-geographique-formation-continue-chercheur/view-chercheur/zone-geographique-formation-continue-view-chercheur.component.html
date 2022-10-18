@@ -1,0 +1,69 @@
+
+<p-dialog [(visible)]="viewZoneGeographiqueFormationContinueDialog" [style]="{width: '70vw'}"
+        header="Zone geographique formation continue" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Zone geographique formation continue">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Formation continue</label>
+                                    <p-dropdown [options]="formationContinues" [(ngModel)]="selectedZoneGeographiqueFormationContinue.formationContinueVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="intitule"
+                                            placeholder="Formation continue">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Zone geographique</label>
+                                    <p-dropdown [options]="zoneGeographiques" [(ngModel)]="selectedZoneGeographiqueFormationContinue.zoneGeographiqueVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Zone geographique">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="3">Pays</label>
+                                    <p-dropdown [options]="payss" [(ngModel)]="selectedZoneGeographiqueFormationContinue.paysVo"
+                                            id="3" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Pays">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-formation-continue-create-chercheur></app-formation-continue-create-chercheur>
+            <app-zone-geographique-create-chercheur></app-zone-geographique-create-chercheur>
+            <app-pays-create-chercheur></app-pays-create-chercheur>
+
+
+
+</p-dialog>
+
+
+

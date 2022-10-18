@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewCommunauteSavoirEncadrementEtudiantDialog" [style]="{width: '70vw'}"
+        header="Communaute savoir encadrement etudiant" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Communaute savoir encadrement etudiant">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Communaute savoir</label>
+                                    <p-dropdown [options]="communauteSavoirs" [(ngModel)]="selectedCommunauteSavoirEncadrementEtudiant.communauteSavoirVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Communaute savoir">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Encadrement etudiant</label>
+                                    <p-dropdown [options]="encadrementEtudiants" [(ngModel)]="selectedCommunauteSavoirEncadrementEtudiant.encadrementEtudiantVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Encadrement etudiant">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-communaute-savoir-create-admin></app-communaute-savoir-create-admin>
+            <app-encadrement-etudiant-create-admin></app-encadrement-etudiant-create-admin>
+
+
+
+</p-dialog>
+
+
+

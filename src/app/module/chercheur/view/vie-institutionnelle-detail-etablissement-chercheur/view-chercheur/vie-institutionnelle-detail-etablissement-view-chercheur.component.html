@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewVieInstitutionnelleDetailEtablissementDialog" [style]="{width: '70vw'}"
+        header="Vie institutionnelle detail etablissement" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Vie institutionnelle detail etablissement">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Vie institutionnelle detail</label>
+                                    <p-dropdown [options]="vieInstitutionnelleDetails" [(ngModel)]="selectedVieInstitutionnelleDetailEtablissement.vieInstitutionnelleDetailVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Vie institutionnelle detail">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Etablissement</label>
+                                    <p-dropdown [options]="etablissements" [(ngModel)]="selectedVieInstitutionnelleDetailEtablissement.etablissementVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etablissement">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-vie-institutionnelle-detail-create-chercheur></app-vie-institutionnelle-detail-create-chercheur>
+            <app-etablissement-create-chercheur></app-etablissement-create-chercheur>
+
+
+
+</p-dialog>
+
+
+

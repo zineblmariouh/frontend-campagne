@@ -1,0 +1,246 @@
+        <p-dialog [(visible)]="createComiteEtCommissionEvaluationDialog" [style]="{width: '70vw'}"
+                header="Comite et commission evaluation" [modal]="true"
+                styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+
+
+            <ng-template pTemplate="content" >
+                <p-tabView>
+                    <p-tabPanel header="Comite et commission evaluation">
+                        <div class="p-grid">
+
+                                    <div class="p-field p-col-12  p-md-4">
+                                        <label>Type expertise evaluation</label>
+                                        <p-multiSelect [options]="typeExpertiseEvaluationComiteEtCommissionEvaluationsVo" [(ngModel)]="selectedComiteEtCommissionEvaluation.typeExpertiseEvaluationComiteEtCommissionEvaluationsVo" defaultLabel="Select un typeExpertiseEvaluation" optionLabel="typeExpertiseEvaluationVo.libelle"  display="chip"></p-multiSelect>
+                                    </div>
+                                        <div class="p-field p-col-11 p-md-3">
+                                            <label for="2">Nature expertise<span style="color: red;">*</span></label>
+                                            <p-dropdown [options]="natureExpertises" [(ngModel)]="selectedComiteEtCommissionEvaluation.natureExpertiseVo"
+                                                    id="2" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Nature expertise" [ngClass]="{'ng-invalid ng-dirty' : !validComiteEtCommissionEvaluationNatureExpertise}"  >
+                                            </p-dropdown>
+                                            <small class='p-error' *ngIf='!validComiteEtCommissionEvaluationNatureExpertise'>NatureExpertise est obligatoire.</small>
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreatenatureExpertise('natureExpertise')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-4">
+                                            <label for="3">Nom<span style="color: red;">*</span></label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Nom"
+                                                   id="3" [(ngModel)]="selectedComiteEtCommissionEvaluation.nom"
+                                                    [ngClass]="{'ng-invalid ng-dirty' : !validComiteEtCommissionEvaluationNom}"  />
+                                            <small class='p-error' *ngIf='!validComiteEtCommissionEvaluationNom'>Nom est obligatoire.</small>
+                                        </div>
+
+
+
+                                    <div class="p-field p-col-12  p-md-4">
+                                        <label>Etablissement</label>
+                                        <p-multiSelect [options]="etablissementComiteEtCommissionEvaluationsVo" [(ngModel)]="selectedComiteEtCommissionEvaluation.etablissementComiteEtCommissionEvaluationsVo" defaultLabel="Select un etablissement" optionLabel="etablissementVo.libelle"  display="chip"></p-multiSelect>
+                                    </div>
+                                        <div class="p-field p-col-12 p-md-4">
+                                            <label for="5">Nom revue ou editeur<span style="color: red;">*</span></label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Nom revue ou editeur"
+                                                   id="5" [(ngModel)]="selectedComiteEtCommissionEvaluation.nomRevueOuEditeur"
+                                                    [ngClass]="{'ng-invalid ng-dirty' : !validComiteEtCommissionEvaluationNomRevueOuEditeur}"  />
+                                            <small class='p-error' *ngIf='!validComiteEtCommissionEvaluationNomRevueOuEditeur'>NomRevueOuEditeur est obligatoire.</small>
+                                        </div>
+
+
+
+                                    <div class="p-field p-col-12  p-md-4">
+                                        <label>Role evaluation</label>
+                                        <p-multiSelect [options]="roleComiteEtCommissionEvaluationsVo" [(ngModel)]="selectedComiteEtCommissionEvaluation.roleComiteEtCommissionEvaluationsVo" defaultLabel="Select un roleEvaluation" optionLabel="roleEvaluationVo.libelle"  display="chip"></p-multiSelect>
+                                    </div>
+                                        <div class="p-field p-col-12 p-md-4">
+                                            <label for="7">Role</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Role"
+                                                   id="7" [(ngModel)]="selectedComiteEtCommissionEvaluation.role"
+                                                     />
+                                            
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-4">
+                                            <label for="8">Nombre jour dedie<span style="color: red;">*</span></label>
+                                            <p-inputNumber class="p-mb-2 p-mr-2" id="8"
+                                                           placeholder="Nombre jour dedie"
+                                                    [(ngModel)]="selectedComiteEtCommissionEvaluation.nombreJourDedie" [ngClass]="{'ng-invalid ng-dirty' : !validComiteEtCommissionEvaluationNombreJourDedie}"  >
+                                            </p-inputNumber>
+                                            <small class='p-error' *ngIf='!validComiteEtCommissionEvaluationNombreJourDedie'>NombreJourDedie est obligatoire.</small>
+                                        </div>
+
+                                    <div class="p-field p-col-12  p-md-4">
+                                        <label>Discipline scientifique</label>
+                                        <p-multiSelect [options]="disciplineScientifiqueComiteEtCommissionEvaluationsVo" [(ngModel)]="selectedComiteEtCommissionEvaluation.disciplineScientifiqueComiteEtCommissionEvaluationsVo" defaultLabel="Select un disciplineScientifique" optionLabel="disciplineScientifiqueVo.libelleEng"  display="chip"></p-multiSelect>
+                                    </div>
+                                    <div class="p-field p-col-12  p-md-4">
+                                        <label>Enjeux ird</label>
+                                        <p-multiSelect [options]="enjeuxIrdComiteEtCommissionEvaluationsVo" [(ngModel)]="selectedComiteEtCommissionEvaluation.enjeuxIrdComiteEtCommissionEvaluationsVo" defaultLabel="Select un enjeuxIrd" optionLabel="enjeuxIrdVo.libelle"  display="chip"></p-multiSelect>
+                                    </div>
+                                        <div class="p-field align-inputswitch p-col-12  p-md-4">
+                                            <div  class="label-inputswitch">
+                                                <label for="11">Reliee instruments ird<span style="color: red;">*</span></label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="11"  [(ngModel)]="selectedComiteEtCommissionEvaluation.relieeInstrumentsIrd"
+                                                    [ngClass]="{'ng-invalid ng-dirty' : !validComiteEtCommissionEvaluationRelieeInstrumentsIrd}"  >
+                                                </p-inputSwitch>
+                                                <small class='p-error' *ngIf='!validComiteEtCommissionEvaluationRelieeInstrumentsIrd'>RelieeInstrumentsIrd est obligatoire.</small>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="p-field p-col-12 p-md-4">
+                                            <label for="13">Commentaire</label>
+                                            <textarea id="13" pInputTextarea rows="5" cols="30"
+                                                      placeholder="Commentaire"  [(ngModel)]="selectedComiteEtCommissionEvaluation.commentaire"
+                                             ></textarea>
+                                            
+                                        </div>
+
+                                        <div class="p-field p-col-11 p-md-3">
+                                            <label for="14">Expertise</label>
+                                            <p-dropdown [options]="expertises" [(ngModel)]="selectedComiteEtCommissionEvaluation.expertiseVo"
+                                                    id="14" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="id"
+                                                    placeholder="Expertise"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateexpertise('expertise')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-11 p-md-3">
+                                            <label for="15">Etat etape campagne</label>
+                                            <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedComiteEtCommissionEvaluation.etatEtapeCampagneVo"
+                                                    id="15" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Etat etape campagne"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                        </div>
+                    </p-tabPanel>
+                    <p-tabPanel header="Instrument ird comite et commission evaluations">
+                                <div class="p-grid">
+                                      <div class="p-col">
+                                                    <div class="p-field p-col-11 p-md-5">
+                                                        <label>Instrument ird</label>
+                                                        <p-dropdown [options]="instrumentIrds" [(ngModel)]="selectedInstrumentIrdComiteEtCommissionEvaluations.instrumentIrdVo"
+                                                                id="1"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Instrument ird"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateinstrumentIrd('instrumentIrd')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                    <div class="p-field p-col-11 p-md-5">
+                                                        <label>Type instrument ird</label>
+                                                        <p-dropdown [options]="typeInstrumentIrds" [(ngModel)]="selectedInstrumentIrdComiteEtCommissionEvaluations.typeInstrumentIrdVo"
+                                                                id="2"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Type instrument ird"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatetypeInstrumentIrd('typeInstrumentIrd')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                          <div class="p-field p-col-12 p-md-1">
+                                              <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                    label="OK" (click)="addInstrumentIrdComiteEtCommissionEvaluations()">
+                                              </button>
+                                          </div>
+                                        </div>
+                                </div>
+                                  <div class="p-col">
+                                    <div class="card">
+                                        <p-table [value]="selectedComiteEtCommissionEvaluation.instrumentIrdComiteEtCommissionEvaluationsVo" [scrollable]="true"
+                                                scrollHeight="200px">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                                <th>Instrument ird</th>
+                                                                <th>Type instrument ird</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-p>
+                                                <tr>
+                                                            <td>{{p.instrumentIrdVo?.libelle}}</td>
+                                                            <td>{{p.typeInstrumentIrdVo?.libelle}}</td>
+                                                    <td>
+                                                        <button (click)="deleteInstrumentIrdComiteEtCommissionEvaluations(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+
+                                 </div>
+                            </p-tabPanel>
+
+
+                </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-grid">
+                        <div>
+                            <button pButton pRipple label="Annuler" icon="pi pi-times"
+                                    class="p-button-text" (click)="hideCreateDialog()"></button>
+                        </div>
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check" style="margin:10px" (click)="save()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+                    <app-nature-expertise-create-admin></app-nature-expertise-create-admin>
+                    <app-expertise-create-admin></app-expertise-create-admin>
+                    <app-etat-etape-campagne-create-admin></app-etat-etape-campagne-create-admin>
+
+                            <app-type-expertise-evaluation-create-admin></app-type-expertise-evaluation-create-admin>
+                            <app-etablissement-create-admin></app-etablissement-create-admin>
+                            <app-role-evaluation-create-admin></app-role-evaluation-create-admin>
+                            <app-discipline-scientifique-create-admin></app-discipline-scientifique-create-admin>
+                            <app-enjeux-ird-create-admin></app-enjeux-ird-create-admin>
+                            <app-instrument-ird-create-admin></app-instrument-ird-create-admin>
+                            <app-type-instrument-ird-create-admin></app-type-instrument-ird-create-admin>
+
+    </p-dialog>

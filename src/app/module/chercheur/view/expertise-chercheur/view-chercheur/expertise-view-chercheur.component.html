@@ -1,0 +1,199 @@
+
+<p-dialog [(visible)]="viewExpertiseDialog" [style]="{width: '70vw'}"
+        header="Expertise" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Expertise">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Temps estime pour cette annne</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="1" [disabled]="true"
+                                                   placeholder="Temps estime pour cette annne"  [(ngModel)]="selectedExpertise.tempsEstimePourCetteAnnne"
+                                            [(ngModel)]="selectedExpertise.tempsEstimePourCetteAnnne"></p-inputNumber>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Annee</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="2" [disabled]="true"
+                                                   placeholder="Annee"  [(ngModel)]="selectedExpertise.annee"
+                                            [(ngModel)]="selectedExpertise.annee"></p-inputNumber>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="6">Etat etape campagne</label>
+                                    <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedExpertise.etatEtapeCampagneVo"
+                                            id="6" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etat etape campagne">
+                                    </p-dropdown>
+                                </div>
+
+
+
+
+                </div>
+            </p-tabPanel>
+                    <p-tabPanel header="Conseils scientifiques">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedExpertise.conseilsScientifiquesVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Nature expertise</th>
+                                                            <th>Intitule</th>
+                                                            <th>Type expertise</th>
+                                                            <th>Nombre jours consacres</th>
+                                                            <th>Etat etape campagne</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.natureExpertiseVo?.libelle}}</td>
+                                                            <td>{{p.intitule}}</td>
+
+                                                        <td>{{p.typeExpertiseVo?.libelle}}</td>
+                                                            <td>{{p.nombreJoursConsacres}}</td>
+
+                                                        <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Consultance scientifique ponctuelles">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedExpertise.consultanceScientifiquePonctuellesVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Type expertise</th>
+                                                            <th>Nature expertise</th>
+                                                            <th>Sujet expertise</th>
+                                                            <th>Nombre jour dedie</th>
+                                                            <th>Date fin</th>
+                                                            <th>Reliee instruments ird</th>
+                                                            <th>Commentaire</th>
+                                                            <th>Etat etape campagne</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.typeExpertiseVo?.libelle}}</td>
+                                                        <td>{{p.natureExpertiseVo?.libelle}}</td>
+                                                            <td>{{p.sujetExpertise}}</td>
+
+                                                            <td>{{p.nombreJourDedie}}</td>
+
+                                                            <td>{{p.dateFin | date: dateFormatColumn}}</td>
+
+                                                            <td><i *ngIf="p.relieeInstrumentsIrd" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.relieeInstrumentsIrd" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.commentaire}}</td>
+
+                                                        <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Comite et commission evaluations">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedExpertise.comiteEtCommissionEvaluationsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Nature expertise</th>
+                                                            <th>Nom</th>
+                                                            <th>Nom revue ou editeur</th>
+                                                            <th>Role</th>
+                                                            <th>Nombre jour dedie</th>
+                                                            <th>Reliee instruments ird</th>
+                                                            <th>Commentaire</th>
+                                                            <th>Etat etape campagne</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.natureExpertiseVo?.libelle}}</td>
+                                                            <td>{{p.nom}}</td>
+
+                                                            <td>{{p.nomRevueOuEditeur}}</td>
+
+                                                            <td>{{p.role}}</td>
+
+                                                            <td>{{p.nombreJourDedie}}</td>
+
+                                                            <td><i *ngIf="p.relieeInstrumentsIrd" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.relieeInstrumentsIrd" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.commentaire}}</td>
+
+                                                        <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+            <app-chercheur-create-chercheur></app-chercheur-create-chercheur>
+            <app-campagne-create-chercheur></app-campagne-create-chercheur>
+
+                    <app-nature-expertise-create-chercheur></app-nature-expertise-create-chercheur>
+                    <app-type-expertise-create-chercheur></app-type-expertise-create-chercheur>
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+                    <app-type-expertise-create-chercheur></app-type-expertise-create-chercheur>
+                    <app-nature-expertise-create-chercheur></app-nature-expertise-create-chercheur>
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+                    <app-nature-expertise-create-chercheur></app-nature-expertise-create-chercheur>
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+
+
+</p-dialog>
+
+
+

@@ -1,0 +1,219 @@
+
+<p-dialog [(visible)]="viewCultureScientifiqueDialog" [style]="{width: '70vw'}"
+        header="Culture scientifique" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Culture scientifique">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Annee</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="1" [disabled]="true"
+                                                   placeholder="Annee"  [(ngModel)]="selectedCultureScientifique.annee"
+                                            [(ngModel)]="selectedCultureScientifique.annee"></p-inputNumber>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Temps estime pour cette annne</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="2" [disabled]="true"
+                                                   placeholder="Temps estime pour cette annne"  [(ngModel)]="selectedCultureScientifique.tempsEstimePourCetteAnnne"
+                                            [(ngModel)]="selectedCultureScientifique.tempsEstimePourCetteAnnne"></p-inputNumber>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="5">Etat etape campagne</label>
+                                    <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedCultureScientifique.etatEtapeCampagneVo"
+                                            id="5" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etat etape campagne">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="6">Nature activite grand publique</label>
+                                    <p-dropdown [options]="natureActiviteGrandPubliques" [(ngModel)]="selectedCultureScientifique.natureActiviteGrandPubliqueVo"
+                                            id="6" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Nature activite grand publique">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+                    <p-tabPanel header="Rencontre grand publique jeune publiques">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedCultureScientifique.rencontreGrandPubliqueJeunePubliquesVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Format rencontre</th>
+                                                            <th>Intitule sujet</th>
+                                                            <th>Nombre personne estime</th>
+                                                            <th>Contexte</th>
+                                                            <th>Lien instrument ird</th>
+                                                            <th>Pays</th>
+                                                            <th>Lien web</th>
+                                                            <th>Remarque</th>
+                                                            <th>Etat etape campagne</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.formatRencontreVo?.libelle}}</td>
+                                                            <td>{{p.intituleSujet}}</td>
+
+                                                            <td>{{p.nombrePersonneEstime}}</td>
+
+                                                        <td>{{p.contexteVo?.libelle}}</td>
+                                                            <td><i *ngIf="p.lienInstrumentIrd" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.lienInstrumentIrd" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                        <td>{{p.paysVo?.libelle}}</td>
+                                                            <td>{{p.lienWeb}}</td>
+
+                                                            <td>{{p.remarque}}</td>
+
+                                                        <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Rencontre medias">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedCultureScientifique.rencontreMediasVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Format rencontre</th>
+                                                            <th>Intitule sujet</th>
+                                                            <th>Lien web</th>
+                                                            <th>Remarque</th>
+                                                            <th>Etat etape campagne</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.formatRencontreVo?.libelle}}</td>
+                                                            <td>{{p.intituleSujet}}</td>
+
+                                                            <td>{{p.lienWeb}}</td>
+
+                                                            <td>{{p.remarque}}</td>
+
+                                                        <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Outil pedagogiques">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedCultureScientifique.outilPedagogiquesVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Nom</th>
+                                                            <th>Role outil pedagogique</th>
+                                                            <th>Date diffusion</th>
+                                                            <th>Disponnible numerique</th>
+                                                            <th>Lien web</th>
+                                                            <th>Lien instrument ird</th>
+                                                            <th>Partenaire eventuel</th>
+                                                            <th>Remarque</th>
+                                                            <th>Etat etape campagne</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                            <td>{{p.nom}}</td>
+
+                                                            <td>{{p.roleOutilPedagogique}}</td>
+
+                                                            <td>{{p.dateDiffusion | date: dateFormatColumn}}</td>
+
+                                                            <td><i *ngIf="p.disponnibleNumerique" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.disponnibleNumerique" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.lienWeb}}</td>
+
+                                                            <td><i *ngIf="p.lienInstrumentIrd" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.lienInstrumentIrd" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.partenaireEventuel}}</td>
+
+                                                            <td>{{p.remarque}}</td>
+
+                                                        <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-campagne-create-chercheur></app-campagne-create-chercheur>
+            <app-chercheur-create-chercheur></app-chercheur-create-chercheur>
+            <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+            <app-nature-activite-grand-publique-create-chercheur></app-nature-activite-grand-publique-create-chercheur>
+
+                    <app-format-rencontre-create-chercheur></app-format-rencontre-create-chercheur>
+                    <app-contexte-create-chercheur></app-contexte-create-chercheur>
+                    <app-pays-create-chercheur></app-pays-create-chercheur>
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+                    <app-format-rencontre-create-chercheur></app-format-rencontre-create-chercheur>
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+
+
+</p-dialog>
+
+
+

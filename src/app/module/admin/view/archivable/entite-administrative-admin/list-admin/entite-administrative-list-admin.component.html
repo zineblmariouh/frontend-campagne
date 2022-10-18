@@ -1,0 +1,379 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <p-toast></p-toast>
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                                            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2"
+                                (click)="openCreateEntiteAdministrative('entiteAdministrative')"></button>
+
+
+                    <button pButton pRipple label="Recherche"
+                            icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}"
+                            class="p-button-success p-mr-2 p-mb-2"
+                            (click)="this.findByCriteriaShow = !this.findByCriteriaShow"></button>
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <div class="flex">
+                        <p-splitButton label="Exporter" icon="pi pi-download" styleClass="p-button-help" [model]="excelPdfButons"></p-splitButton>
+                    </div>
+                </ng-template>
+
+            </p-toolbar>
+            <p-toolbar *ngIf="findByCriteriaShow">
+
+                <div class="align-form-search">
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="1"
+                                           type="text"  [(ngModel)]="searchEntiteAdministrative.libelle">
+                                    <label for="1">Libelle</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="2"
+                                           type="text"  [(ngModel)]="searchEntiteAdministrative.code">
+                                    <label for="2">Code</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="3"
+                                           type="text"  [(ngModel)]="searchEntiteAdministrative.identifiantNational">
+                                    <label for="3">Identifiant national</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="4"
+                                           type="text"  [(ngModel)]="searchEntiteAdministrative.siteWeb">
+                                    <label for="4">Site web</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="5"
+                                           type="text"  [(ngModel)]="searchEntiteAdministrative.libelleCourt">
+                                    <label for="5">Libelle court</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="6"
+                                           type="text"  [(ngModel)]="searchEntiteAdministrative.libelleLong">
+                                    <label for="6">Libelle long</label>
+                                </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="typeEntiteAdministratives" [(ngModel)]="searchEntiteAdministrative.typeEntiteAdministrativeVo"
+                                        id="8"
+                                        [filter]="true" [showClear]="true"  placeholder="Type entite administrative"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="9" [options]="yesOrNoArchive" [(ngModel)]="searchEntiteAdministrative.archive"
+                                            [filter]="false" [showClear]="true"  placeholder="Archive"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+
+                        <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchEntiteAdministrative.dateArchivageMin"
+                                    id="10-1"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="10-1">Date archivage Min</label>
+                        </span>
+
+                         <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchEntiteAdministrative.dateArchivageMax"
+                                    id="10-2"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="10-2">Date archivage Max</label>
+                        </span>
+
+
+                        <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchEntiteAdministrative.dateCreationMin"
+                                    id="11-1"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="11-1">Date creation Min</label>
+                        </span>
+
+                         <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchEntiteAdministrative.dateCreationMax"
+                                    id="11-2"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="11-2">Date creation Max</label>
+                        </span>
+
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="12" [options]="yesOrNoAdmin" [(ngModel)]="searchEntiteAdministrative.admin"
+                                            [filter]="false" [showClear]="true"  placeholder="Admin"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="13" [options]="yesOrNoVisible" [(ngModel)]="searchEntiteAdministrative.visible"
+                                            [filter]="false" [showClear]="true"  placeholder="Visible"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="14"
+                                           type="text"  [(ngModel)]="searchEntiteAdministrative.username">
+                                    <label for="14">Username</label>
+                                </span>
+                </div>
+
+                <div class="align-search-button">
+                    <button pButton pRipple label="Valider" icon="pi pi-sort-amount-down"
+                            class="p-button-info p-mr-2" (click)="searchRequest()"></button>
+                </div>
+            </p-toolbar>
+
+
+            <p-table #dt [value]="entiteAdministratives" [columns]="cols" [rows]="4" [paginator]="true"
+                    [globalFilterFields]="['libelle', 'code', 'identifiantNational', 'siteWeb', 'libelleCourt', 'libelleLong', 'libelle', 'archive', 'dateArchivage', 'dateCreation', 'admin', 'visible', 'username']" [(selection)]="selectedEntiteAdministrative"
+                    [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
+                                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">Liste des Entite administratives</h5>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" placeholder="Search..." (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+
+                                
+                                <th pSortableColumn="libelle">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Libelle</span>
+                                        <p-sortIcon field="libelle"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="code">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Code</span>
+                                        <p-sortIcon field="code"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="identifiantNational">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Identifiant national</span>
+                                        <p-sortIcon field="identifiantNational"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="siteWeb">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Site web</span>
+                                        <p-sortIcon field="siteWeb"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="libelleCourt">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Libelle court</span>
+                                        <p-sortIcon field="libelleCourt"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="libelleLong">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Libelle long</span>
+                                        <p-sortIcon field="libelleLong"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+
+                                
+                                <th pSortableColumn="typeEntiteAdministrative">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Type entite administrative</span>
+                                        <p-sortIcon field="typeEntiteAdministrative"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="archive">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Archive</span>
+                                        <p-sortIcon field="archive"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                <!-- 
+                                <th pSortableColumn="dateArchivage">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Date archivage</span>
+                                        <p-sortIcon field="dateArchivage"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="dateCreation">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Date creation</span>
+                                        <p-sortIcon field="dateCreation"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="admin">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Admin</span>
+                                        <p-sortIcon field="admin"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="visible">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Visible</span>
+                                        <p-sortIcon field="visible"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="username">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Username</span>
+                                        <p-sortIcon field="username"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                        <th>Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-entiteAdministrative>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="entiteAdministrative"></p-tableCheckbox>
+                        </td>
+                            
+                                 <td>{{entiteAdministrative.libelle}}</td>
+                            
+
+                            
+                                 <td>{{entiteAdministrative.code}}</td>
+                            
+
+                            
+                                 <td>{{entiteAdministrative.identifiantNational}}</td>
+                            
+
+                            
+                                 <td>{{entiteAdministrative.siteWeb}}</td>
+                            
+
+                            
+                                 <td>{{entiteAdministrative.libelleCourt}}</td>
+                            
+
+                            
+                                 <td>{{entiteAdministrative.libelleLong}}</td>
+                            
+
+                            
+                                <td>{{entiteAdministrative.typeEntiteAdministrativeVo?.libelle}}</td>
+                            
+
+                            
+                                <td><i *ngIf="entiteAdministrative.archive" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!entiteAdministrative.archive" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                            
+
+                             <!-- 
+                                <td>{{entiteAdministrative.dateArchivage | date:'dd-M-yyyy' }}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{entiteAdministrative.dateCreation | date:'dd-M-yyyy' }}</td>
+                             --> 
+
+                             <!-- 
+                                <td><i *ngIf="entiteAdministrative.admin" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!entiteAdministrative.admin" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                <td><i *ngIf="entiteAdministrative.visible" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!entiteAdministrative.visible" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{entiteAdministrative.username}}</td>
+                             --> 
+
+
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editEntiteAdministrative(entiteAdministrative)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2"
+                                    (click)="viewEntiteAdministrative(entiteAdministrative)"></button>
+                            <button *ngIf="!entiteAdministrative.archive" pButton pRipple icon="pi pi-calendar-minus" class="p-button-rounded p-button-help p-mr-2"
+                                    (click)="archiverEntiteAdministrative(entiteAdministrative)"></button>
+
+                            <button *ngIf="entiteAdministrative.archive" pButton pRipple icon="pi pi-calendar-plus" class="p-button-rounded p-button-secondary p-mr-2"
+                                    (click)="desarchiverEntiteAdministrative(entiteAdministrative)"></button>
+
+                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning"
+                                    (click)="duplicateEntiteAdministrative(entiteAdministrative)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En totale
+                        il {{entiteAdministratives ? entiteAdministratives.length == 1 ? 'y a' : 'y a' : 'y a' }} {{entiteAdministratives ? entiteAdministratives.length : 0 }} {{entiteAdministratives ? entiteAdministratives.length == 1 ? 'entiteAdministrative' : 'entiteAdministratives' : 0 }}
+                        .
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <app-entite-administrative-create-admin></app-entite-administrative-create-admin>
+        <app-entite-administrative-edit-admin></app-entite-administrative-edit-admin>
+        <app-entite-administrative-view-admin></app-entite-administrative-view-admin>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewEncadrementEtudiantEnjeuxIrdDialog" [style]="{width: '70vw'}"
+        header="Encadrement etudiant enjeux ird" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Encadrement etudiant enjeux ird">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Encadrement etudiant</label>
+                                    <p-dropdown [options]="encadrementEtudiants" [(ngModel)]="selectedEncadrementEtudiantEnjeuxIrd.encadrementEtudiantVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Encadrement etudiant">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Enjeux ird</label>
+                                    <p-dropdown [options]="enjeuxIrds" [(ngModel)]="selectedEncadrementEtudiantEnjeuxIrd.enjeuxIrdVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Enjeux ird">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-encadrement-etudiant-create-admin></app-encadrement-etudiant-create-admin>
+            <app-enjeux-ird-create-admin></app-enjeux-ird-create-admin>
+
+
+
+</p-dialog>
+
+
+

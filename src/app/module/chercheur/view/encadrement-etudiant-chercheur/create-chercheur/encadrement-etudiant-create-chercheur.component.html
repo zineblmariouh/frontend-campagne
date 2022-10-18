@@ -1,0 +1,183 @@
+        <p-dialog [(visible)]="createEncadrementEtudiantDialog" [style]="{width: '70vw'}"
+                header="Encadrement etudiant" [modal]="true"
+                styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+
+
+            <ng-template pTemplate="content" >
+                <p-tabView>
+                    <p-tabPanel header="Encadrement etudiant">
+                        <div class="p-grid">
+
+                                        <div class="p-field p-col-11 p-md-3">
+                                            <label for="1">Niveau formation post bac</label>
+                                            <p-dropdown [options]="niveauFormationPostBacs" [(ngModel)]="selectedEncadrementEtudiant.niveauFormationPostBacVo"
+                                                    id="1" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Niveau formation post bac"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateniveauFormationPostBac('niveauFormationPostBac')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-11 p-md-3">
+                                            <label for="2">Responsabilite direction encadrement etudiant</label>
+                                            <p-dropdown [options]="responsabiliteDirectionEncadrementEtudiants" [(ngModel)]="selectedEncadrementEtudiant.responsabiliteDirectionEncadrementEtudiantVo"
+                                                    id="2" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Responsabilite direction encadrement etudiant"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateresponsabiliteDirectionEncadrementEtudiant('responsabiliteDirectionEncadrementEtudiant')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-4">
+                                            <label for="3">Sujet etude</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Sujet etude"
+                                                   id="3" [(ngModel)]="selectedEncadrementEtudiant.sujetEtude"
+                                                     />
+                                            
+                                        </div>
+
+
+
+                                    <div class="p-field p-col-12  p-md-4">
+                                        <label>Enjeux ird</label>
+                                        <p-multiSelect [options]="encadrementEtudiantEnjeuxIrdsVo" [(ngModel)]="selectedEncadrementEtudiant.encadrementEtudiantEnjeuxIrdsVo" defaultLabel="Select un enjeuxIrd" optionLabel="enjeuxIrdVo.libelle"  display="chip"></p-multiSelect>
+                                    </div>
+                                    <div class="p-field p-col-12  p-md-4">
+                                        <label>Discipline scientifique</label>
+                                        <p-multiSelect [options]="encadrementEtudiantDisciplineScientifiquesVo" [(ngModel)]="selectedEncadrementEtudiant.encadrementEtudiantDisciplineScientifiquesVo" defaultLabel="Select un disciplineScientifique" optionLabel="disciplineScientifiqueVo.libelleEng"  display="chip"></p-multiSelect>
+                                    </div>
+                                        <div class="p-field p-col-11 p-md-3">
+                                            <label for="6">Etudiant</label>
+                                            <p-dropdown [options]="etudiants" [(ngModel)]="selectedEncadrementEtudiant.etudiantVo"
+                                                    id="6" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="id"
+                                                    placeholder="Etudiant"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateetudiant('etudiant')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-11 p-md-3">
+                                            <label for="7">Etablissement</label>
+                                            <p-dropdown [options]="etablissements" [(ngModel)]="selectedEncadrementEtudiant.etablissementVo"
+                                                    id="7" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Etablissement"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateetablissement('etablissement')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-4">
+                                            <label for="8">Cursus</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Cursus"
+                                                   id="8" [(ngModel)]="selectedEncadrementEtudiant.cursus"
+                                                     />
+                                            
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-11 p-md-3">
+                                            <label for="9">Pays</label>
+                                            <p-dropdown [options]="payss" [(ngModel)]="selectedEncadrementEtudiant.paysVo"
+                                                    id="9" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Pays"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreatepays('pays')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-11 p-md-3">
+                                            <label for="10">Encadrement</label>
+                                            <p-dropdown [options]="encadrements" [(ngModel)]="selectedEncadrementEtudiant.encadrementVo"
+                                                    id="10" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="id"
+                                                    placeholder="Encadrement"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateencadrement('encadrement')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-11 p-md-3">
+                                            <label for="11">Etat etape campagne</label>
+                                            <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedEncadrementEtudiant.etatEtapeCampagneVo"
+                                                    id="11" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Etat etape campagne"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                        </div>
+                    </p-tabPanel>
+
+                </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-grid">
+                        <div>
+                            <button pButton pRipple label="Annuler" icon="pi pi-times"
+                                    class="p-button-text" (click)="hideCreateDialog()"></button>
+                        </div>
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check" style="margin:10px" (click)="save()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+                    <app-niveau-formation-post-bac-create-chercheur></app-niveau-formation-post-bac-create-chercheur>
+                    <app-responsabilite-direction-encadrement-etudiant-create-chercheur></app-responsabilite-direction-encadrement-etudiant-create-chercheur>
+                    <app-etudiant-create-chercheur></app-etudiant-create-chercheur>
+                    <app-etablissement-create-chercheur></app-etablissement-create-chercheur>
+                    <app-pays-create-chercheur></app-pays-create-chercheur>
+                    <app-encadrement-create-chercheur></app-encadrement-create-chercheur>
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+
+                            <app-enjeux-ird-create-chercheur></app-enjeux-ird-create-chercheur>
+                            <app-discipline-scientifique-create-chercheur></app-discipline-scientifique-create-chercheur>
+
+    </p-dialog>

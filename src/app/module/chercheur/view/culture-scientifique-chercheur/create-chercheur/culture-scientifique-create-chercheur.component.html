@@ -1,0 +1,647 @@
+    <p-toast></p-toast>
+    <div class="card">
+        <p-message severity="{{info}}" text="{{msgsContents}}"></p-message>
+    </div>
+
+<p-panel header="Culture scientifique"   *ngIf="isLoaded" >
+    <div class="p-fluid">
+
+
+
+            <ng-template pTemplate="content" [ngIf]="true">
+                <p-tabView>
+                    <p-tabPanel header="Culture scientifique">
+                        <div class="p-grid">
+
+                                        <div class="p-field p-col-12 p-md-6">
+                                            <label for="1">Annee</label>
+                                            <p-inputNumber class="p-mb-2 p-mr-2" id="1"
+                                                           placeholder="Annee"
+                                                    [(ngModel)]="selectedCultureScientifique.annee"  >
+                                            </p-inputNumber>
+                                            
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-6">
+                                            <label for="2">Temps estime pour cette annne</label>
+                                            <p-inputNumber class="p-mb-2 p-mr-2" id="2"
+                                                           placeholder="Temps estime pour cette annne"
+                                                    [(ngModel)]="selectedCultureScientifique.tempsEstimePourCetteAnnne"  >
+                                            </p-inputNumber>
+                                            
+                                        </div>
+
+                                        <div class="p-field p-col-11 p-md-5">
+                                            <label for="5">Etat etape campagne</label>
+                                            <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedCultureScientifique.etatEtapeCampagneVo"
+                                                    id="5" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Etat etape campagne"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-11 p-md-5">
+                                            <label for="6">Nature activite grand publique</label>
+                                            <p-dropdown [options]="natureActiviteGrandPubliques" [(ngModel)]="selectedCultureScientifique.natureActiviteGrandPubliqueVo"
+                                                    id="6" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Nature activite grand publique"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreatenatureActiviteGrandPublique('natureActiviteGrandPublique')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                        </div>
+                    </p-tabPanel>
+                    <p-tabPanel header="Rencontre grand publique jeune publiques">
+                                   <p-tabView>
+                                    <p-tabPanel header="Création">
+                                <div class="p-grid">
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Format rencontre</label>
+                                                        <p-dropdown [options]="formatRencontres" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliques.formatRencontreVo"
+                                                                id="1"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Format rencontre"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateformatRencontre('formatRencontre')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Type publique</label>
+                                                    <p-multiSelect [options]="typePubliqueRencontreGrandPubliqueJeunePubliquesVo" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliques.typePubliqueRencontreGrandPubliqueJeunePubliquesVo"
+                                                            defaultLabel="Selectionner un Type publique"
+                                                            optionLabel="typePubliqueVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="3">Intitule sujet</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Intitule sujet"
+                                                           id="3" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliques.intituleSujet"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Enjeux ird</label>
+                                                    <p-multiSelect [options]="rencontreGrandPubliqueJeunePubliqueEnjeuxIrdsVo" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliques.rencontreGrandPubliqueJeunePubliqueEnjeuxIrdsVo"
+                                                            defaultLabel="Selectionner un Enjeux ird"
+                                                            optionLabel="enjeuxIrdVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Discipline scientifique</label>
+                                                    <p-multiSelect [options]="rencontreGrandPubliqueJeunePubliqueDisciplineScientifiquesVo" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliques.rencontreGrandPubliqueJeunePubliqueDisciplineScientifiquesVo"
+                                                            defaultLabel="Selectionner un Discipline scientifique"
+                                                            optionLabel="disciplineScientifiqueVo.libelleEng"  display="chip"></p-multiSelect>
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="6">Nombre personne estime</label>
+                                                    <p-inputNumber class="p-mb-2 p-mr-2" id="nombrePersonneEstime"
+                                                                   placeholder="Nombre personne estime"  
+                                                            [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliques.nombrePersonneEstime"></p-inputNumber>
+                                                    
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Etablissement</label>
+                                                    <p-multiSelect [options]="structureOganisatricesVo" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliques.structureOganisatricesVo"
+                                                            defaultLabel="Selectionner un Etablissement"
+                                                            optionLabel="etablissementVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Pays</label>
+                                                    <p-multiSelect [options]="paysRencontreGrandPubliqueJeunePubliquesVo" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliques.paysRencontreGrandPubliqueJeunePubliquesVo"
+                                                            defaultLabel="Selectionner un Pays"
+                                                            optionLabel="paysVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Pays</label>
+                                                    <p-multiSelect [options]="paysOrganisateurRencontreGrandPubliqueJeunePubliquesVo" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliques.paysOrganisateurRencontreGrandPubliqueJeunePubliquesVo"
+                                                            defaultLabel="Selectionner un Pays"
+                                                            optionLabel="paysVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Contexte</label>
+                                                        <p-dropdown [options]="contextes" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliques.contexteVo"
+                                                                id="11"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Contexte"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatecontexte('contexte')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                <div class="p-field  align-inputswitch p-col-12 p-md-4">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="12">Lien instrument ird</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="12"  [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliques.lienInstrumentIrd"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Instrument ird</label>
+                                                    <p-multiSelect [options]="rencontreGrandPubliqueJeunePubliqueInstrumentIrdsVo" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliques.rencontreGrandPubliqueJeunePubliqueInstrumentIrdsVo"
+                                                            defaultLabel="Selectionner un Instrument ird"
+                                                            optionLabel="instrumentIrdVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Type instrument ird</label>
+                                                    <p-multiSelect [options]="rencontreGrandPubliqueJeunePubliqueTypeInstrumentIrdsVo" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliques.rencontreGrandPubliqueJeunePubliqueTypeInstrumentIrdsVo"
+                                                            defaultLabel="Selectionner un Type instrument ird"
+                                                            optionLabel="typeInstrumentIrdVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Pays</label>
+                                                        <p-dropdown [options]="payss" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliques.paysVo"
+                                                                id="15"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Pays"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatepays('pays')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="16">Lien web</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Lien web"
+                                                           id="16" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliques.lienWeb"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="17">Remarque</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Remarque"
+                                                           id="17" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliques.remarque"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Etat etape campagne</label>
+                                                        <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliques.etatEtapeCampagneVo"
+                                                                id="19"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Etat etape campagne"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                          <div class="p-field p-col-12 p-md-1">
+                                              <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                    label="OK" (click)="addRencontreGrandPubliqueJeunePubliques()">
+                                              </button>
+                                          </div>
+                                </div>
+                                </p-tabPanel>
+                                <p-tabPanel header="Liste">
+                                    <div class="card">
+                                        <p-table [value]="selectedCultureScientifique.rencontreGrandPubliqueJeunePubliquesVo" [scrollable]="true"
+                                                scrollHeight="200px">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                                <th>Format rencontre</th>
+                                                                <th>Intitule sujet</th>
+                                                                <th>Nombre personne estime</th>
+                                                                <th>Contexte</th>
+                                                                <th>Lien instrument ird</th>
+                                                                <th>Pays</th>
+                                                                <th>Lien web</th>
+                                                                <th>Remarque</th>
+                                                                <th>Etat etape campagne</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-p>
+                                                <tr>
+                                                            <td>{{p.formatRencontreVo?.libelle}}</td>
+                                                                <td>{{p.intituleSujet}}</td>
+
+                                                                <td>{{p.nombrePersonneEstime}}</td>
+
+                                                            <td>{{p.contexteVo?.libelle}}</td>
+                                                                <td><i *ngIf="p.lienInstrumentIrd" class="pi pi-check checked-toogle"></i>
+                                                                    <i *ngIf="!p.lienInstrumentIrd" class="pi pi-times unchecked-toogle"></i>
+                                                                </td>
+
+                                                            <td>{{p.paysVo?.libelle}}</td>
+                                                                <td>{{p.lienWeb}}</td>
+
+                                                                <td>{{p.remarque}}</td>
+
+                                                            <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+                                                    <td>
+                                                        <button (click)="deleteRencontreGrandPubliqueJeunePubliques(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+
+                                </p-tabPanel>
+                                </p-tabView>
+                            </p-tabPanel>
+
+                    <p-tabPanel header="Rencontre medias">
+                                   <p-tabView>
+                                    <p-tabPanel header="Création">
+                                <div class="p-grid">
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Format rencontre</label>
+                                                        <p-dropdown [options]="formatRencontres" [(ngModel)]="selectedRencontreMedias.formatRencontreVo"
+                                                                id="1"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Format rencontre"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateformatRencontre('formatRencontre')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Type publique</label>
+                                                    <p-multiSelect [options]="typePubliqueRencontreMediasVo" [(ngModel)]="selectedRencontreMedias.typePubliqueRencontreMediasVo"
+                                                            defaultLabel="Selectionner un Type publique"
+                                                            optionLabel="typePubliqueVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="3">Intitule sujet</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Intitule sujet"
+                                                           id="3" [(ngModel)]="selectedRencontreMedias.intituleSujet"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Enjeux ird</label>
+                                                    <p-multiSelect [options]="rencontreMediaEnjeuxIrdsVo" [(ngModel)]="selectedRencontreMedias.rencontreMediaEnjeuxIrdsVo"
+                                                            defaultLabel="Selectionner un Enjeux ird"
+                                                            optionLabel="enjeuxIrdVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Discipline scientifique</label>
+                                                    <p-multiSelect [options]="rencontreMediaDisciplineScientifiquesVo" [(ngModel)]="selectedRencontreMedias.rencontreMediaDisciplineScientifiquesVo"
+                                                            defaultLabel="Selectionner un Discipline scientifique"
+                                                            optionLabel="disciplineScientifiqueVo.libelleEng"  display="chip"></p-multiSelect>
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Pays</label>
+                                                    <p-multiSelect [options]="paysRencontreMediasVo" [(ngModel)]="selectedRencontreMedias.paysRencontreMediasVo"
+                                                            defaultLabel="Selectionner un Pays"
+                                                            optionLabel="paysVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="8">Lien web</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Lien web"
+                                                           id="8" [(ngModel)]="selectedRencontreMedias.lienWeb"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="9">Remarque</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Remarque"
+                                                           id="9" [(ngModel)]="selectedRencontreMedias.remarque"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Etat etape campagne</label>
+                                                        <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedRencontreMedias.etatEtapeCampagneVo"
+                                                                id="11"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Etat etape campagne"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                          <div class="p-field p-col-12 p-md-1">
+                                              <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                    label="OK" (click)="addRencontreMedias()">
+                                              </button>
+                                          </div>
+                                </div>
+                                </p-tabPanel>
+                                <p-tabPanel header="Liste">
+                                    <div class="card">
+                                        <p-table [value]="selectedCultureScientifique.rencontreMediasVo" [scrollable]="true"
+                                                scrollHeight="200px">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                                <th>Format rencontre</th>
+                                                                <th>Intitule sujet</th>
+                                                                <th>Lien web</th>
+                                                                <th>Remarque</th>
+                                                                <th>Etat etape campagne</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-p>
+                                                <tr>
+                                                            <td>{{p.formatRencontreVo?.libelle}}</td>
+                                                                <td>{{p.intituleSujet}}</td>
+
+                                                                <td>{{p.lienWeb}}</td>
+
+                                                                <td>{{p.remarque}}</td>
+
+                                                            <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+                                                    <td>
+                                                        <button (click)="deleteRencontreMedias(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+
+                                </p-tabPanel>
+                                </p-tabView>
+                            </p-tabPanel>
+
+                    <p-tabPanel header="Outil pedagogiques">
+                                   <p-tabView>
+                                    <p-tabPanel header="Création">
+                                <div class="p-grid">
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="1">Nom</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Nom"
+                                                           id="1" [(ngModel)]="selectedOutilPedagogiques.nom"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Enjeux ird</label>
+                                                    <p-multiSelect [options]="outilPedagogiqueEnjeuxIrdsVo" [(ngModel)]="selectedOutilPedagogiques.outilPedagogiqueEnjeuxIrdsVo"
+                                                            defaultLabel="Selectionner un Enjeux ird"
+                                                            optionLabel="enjeuxIrdVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Discipline scientifique</label>
+                                                    <p-multiSelect [options]="outilPedagogiqueDisciplineScientifiquesVo" [(ngModel)]="selectedOutilPedagogiques.outilPedagogiqueDisciplineScientifiquesVo"
+                                                            defaultLabel="Selectionner un Discipline scientifique"
+                                                            optionLabel="disciplineScientifiqueVo.libelleEng"  display="chip"></p-multiSelect>
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="4">Role outil pedagogique</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Role outil pedagogique"
+                                                           id="4" [(ngModel)]="selectedOutilPedagogiques.roleOutilPedagogique"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="5">Date diffusion</label>
+                                                    <p-calendar id="5"
+                                                                placeholder="Date diffusion"
+                                                            [(ngModel)]="selectedOutilPedagogiques.dateDiffusion"
+                                                            dateFormat="{{dateFormat}}" [showIcon]="true"  ></p-calendar>
+                                                    
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Publique cible</label>
+                                                    <p-multiSelect [options]="outilPedagogiquePubliqueCiblesVo" [(ngModel)]="selectedOutilPedagogiques.outilPedagogiquePubliqueCiblesVo"
+                                                            defaultLabel="Selectionner un Publique cible"
+                                                            optionLabel="publiqueCibleVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Type outil</label>
+                                                    <p-multiSelect [options]="typeOutilPedagogiquesVo" [(ngModel)]="selectedOutilPedagogiques.typeOutilPedagogiquesVo"
+                                                            defaultLabel="Selectionner un Type outil"
+                                                            optionLabel="typeOutilVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                <div class="p-field  align-inputswitch p-col-12 p-md-4">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="8">Disponnible numerique</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="8"  [(ngModel)]="selectedOutilPedagogiques.disponnibleNumerique"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Langue</label>
+                                                    <p-multiSelect [options]="outilPedagogiqueLanguesVo" [(ngModel)]="selectedOutilPedagogiques.outilPedagogiqueLanguesVo"
+                                                            defaultLabel="Selectionner un Langue"
+                                                            optionLabel="langueVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Pays</label>
+                                                    <p-multiSelect [options]="outilPedagogiquePaysConceptionsVo" [(ngModel)]="selectedOutilPedagogiques.outilPedagogiquePaysConceptionsVo"
+                                                            defaultLabel="Selectionner un Pays"
+                                                            optionLabel="paysVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="11">Lien web</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Lien web"
+                                                           id="11" [(ngModel)]="selectedOutilPedagogiques.lienWeb"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Pays</label>
+                                                    <p-multiSelect [options]="outilPedagogiquePaysDiffusionsVo" [(ngModel)]="selectedOutilPedagogiques.outilPedagogiquePaysDiffusionsVo"
+                                                            defaultLabel="Selectionner un Pays"
+                                                            optionLabel="paysVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                <div class="p-field  align-inputswitch p-col-12 p-md-4">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="13">Lien instrument ird</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="13"  [(ngModel)]="selectedOutilPedagogiques.lienInstrumentIrd"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Instrument ird</label>
+                                                    <p-multiSelect [options]="outilPedagogiqueInstrumentIrdsVo" [(ngModel)]="selectedOutilPedagogiques.outilPedagogiqueInstrumentIrdsVo"
+                                                            defaultLabel="Selectionner un Instrument ird"
+                                                            optionLabel="instrumentIrdVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                <div class="p-field p-col-12  p-md-4">
+                                                    <label>Type instrument ird</label>
+                                                    <p-multiSelect [options]="outilPedagogiqueTypeInstrumentIrdsVo" [(ngModel)]="selectedOutilPedagogiques.outilPedagogiqueTypeInstrumentIrdsVo"
+                                                            defaultLabel="Selectionner un Type instrument ird"
+                                                            optionLabel="typeInstrumentIrdVo.libelle"  display="chip"></p-multiSelect>
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="16">Partenaire eventuel</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Partenaire eventuel"
+                                                           id="16" [(ngModel)]="selectedOutilPedagogiques.partenaireEventuel"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                 <div class="p-field p-col-12 p-md-4">
+                                                    <label for="17">Remarque</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Remarque"
+                                                           id="17" [(ngModel)]="selectedOutilPedagogiques.remarque"
+                                                           autofocus   >
+                                                    
+                                                </div>
+                                                    <div class="p-field p-col-11 p-md-3">
+                                                        <label>Etat etape campagne</label>
+                                                        <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedOutilPedagogiques.etatEtapeCampagneVo"
+                                                                id="19"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Etat etape campagne"  
+                                                        >
+                                                        </p-dropdown>
+                                                        
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                          <div class="p-field p-col-12 p-md-1">
+                                              <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                    label="OK" (click)="addOutilPedagogiques()">
+                                              </button>
+                                          </div>
+                                </div>
+                                </p-tabPanel>
+                                <p-tabPanel header="Liste">
+                                    <div class="card">
+                                        <p-table [value]="selectedCultureScientifique.outilPedagogiquesVo" [scrollable]="true"
+                                                scrollHeight="200px">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                                <th>Nom</th>
+                                                                <th>Role outil pedagogique</th>
+                                                                <th>Date diffusion</th>
+                                                                <th>Disponnible numerique</th>
+                                                                <th>Lien web</th>
+                                                                <th>Lien instrument ird</th>
+                                                                <th>Partenaire eventuel</th>
+                                                                <th>Remarque</th>
+                                                                <th>Etat etape campagne</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-p>
+                                                <tr>
+                                                                <td>{{p.nom}}</td>
+
+                                                                <td>{{p.roleOutilPedagogique}}</td>
+
+                                                                <td>{{p.dateDiffusion | date: dateFormatColumn}}</td>
+
+                                                                <td><i *ngIf="p.disponnibleNumerique" class="pi pi-check checked-toogle"></i>
+                                                                    <i *ngIf="!p.disponnibleNumerique" class="pi pi-times unchecked-toogle"></i>
+                                                                </td>
+
+                                                                <td>{{p.lienWeb}}</td>
+
+                                                                <td><i *ngIf="p.lienInstrumentIrd" class="pi pi-check checked-toogle"></i>
+                                                                    <i *ngIf="!p.lienInstrumentIrd" class="pi pi-times unchecked-toogle"></i>
+                                                                </td>
+
+                                                                <td>{{p.partenaireEventuel}}</td>
+
+                                                                <td>{{p.remarque}}</td>
+
+                                                            <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+                                                    <td>
+                                                        <button (click)="deleteOutilPedagogiques(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+
+                                </p-tabPanel>
+                                </p-tabView>
+                            </p-tabPanel>
+
+
+                </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" [ngIf]="true">
+                <div class="p-grid">
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check" style="margin:10px" (click)="save()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+                    <app-campagne-create-chercheur></app-campagne-create-chercheur>
+                    <app-chercheur-create-chercheur></app-chercheur-create-chercheur>
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+                    <app-nature-activite-grand-publique-create-chercheur></app-nature-activite-grand-publique-create-chercheur>
+
+                            <app-format-rencontre-create-chercheur></app-format-rencontre-create-chercheur>
+                            <app-contexte-create-chercheur></app-contexte-create-chercheur>
+                            <app-pays-create-chercheur></app-pays-create-chercheur>
+                            <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+                            <app-format-rencontre-create-chercheur></app-format-rencontre-create-chercheur>
+                            <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+                            <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+
+    </div>
+</p-panel>

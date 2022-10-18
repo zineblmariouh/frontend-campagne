@@ -1,0 +1,28 @@
+import {TypeEntiteAdministrativeVo} from './TypeEntiteAdministrative.model';
+
+
+
+export class EntiteAdministrativeVo {
+
+    public id: number;
+
+    public libelle: string;
+    public code: string;
+    public identifiantNational: string;
+    public siteWeb: string;
+    public libelleCourt: string;
+    public libelleLong: string;
+    public description: string;
+    public archive: null | boolean;
+    public dateArchivage: Date;
+    public dateCreation: Date;
+    public admin: null | boolean;
+    public visible: null | boolean;
+    public username: string;
+                public dateArchivageMax: string ;
+                public dateArchivageMin: string ;
+                public dateCreationMax: string ;
+                public dateCreationMin: string ;
+      public typeEntiteAdministrativeVo: TypeEntiteAdministrativeVo ;
+
+}

@@ -1,0 +1,83 @@
+        <p-dialog [(visible)]="createInstrumentIrdComiteEtCommissionEvaluationDialog" [style]="{width: '70vw'}"
+                header="Instrument ird comite et commission evaluation" [modal]="true"
+                styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+
+
+            <ng-template pTemplate="content" >
+                <p-tabView>
+                    <p-tabPanel header="Instrument ird comite et commission evaluation">
+                        <div class="p-grid">
+
+                                        <div class="p-field p-col-11 p-md-5">
+                                            <label for="1">Instrument ird</label>
+                                            <p-dropdown [options]="instrumentIrds" [(ngModel)]="selectedInstrumentIrdComiteEtCommissionEvaluation.instrumentIrdVo"
+                                                    id="1" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Instrument ird"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateinstrumentIrd('instrumentIrd')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-11 p-md-5">
+                                            <label for="2">Type instrument ird</label>
+                                            <p-dropdown [options]="typeInstrumentIrds" [(ngModel)]="selectedInstrumentIrdComiteEtCommissionEvaluation.typeInstrumentIrdVo"
+                                                    id="2" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Type instrument ird"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreatetypeInstrumentIrd('typeInstrumentIrd')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-11 p-md-5">
+                                            <label for="3">Comite et commission evaluation</label>
+                                            <p-dropdown [options]="comiteEtCommissionEvaluations" [(ngModel)]="selectedInstrumentIrdComiteEtCommissionEvaluation.comiteEtCommissionEvaluationVo"
+                                                    id="3" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="id"
+                                                    placeholder="Comite et commission evaluation"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreatecomiteEtCommissionEvaluation('comiteEtCommissionEvaluation')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                        </div>
+                    </p-tabPanel>
+
+                </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-grid">
+                        <div>
+                            <button pButton pRipple label="Annuler" icon="pi pi-times"
+                                    class="p-button-text" (click)="hideCreateDialog()"></button>
+                        </div>
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check" style="margin:10px" (click)="save()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+                    <app-instrument-ird-create-admin></app-instrument-ird-create-admin>
+                    <app-type-instrument-ird-create-admin></app-type-instrument-ird-create-admin>
+                    <app-comite-et-commission-evaluation-create-admin></app-comite-et-commission-evaluation-create-admin>
+
+
+    </p-dialog>

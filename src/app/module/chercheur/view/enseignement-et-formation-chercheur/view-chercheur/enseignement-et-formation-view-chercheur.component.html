@@ -1,0 +1,183 @@
+
+<p-dialog [(visible)]="viewEnseignementEtFormationDialog" [style]="{width: '70vw'}"
+        header="Enseignement et formation" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Enseignement et formation">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Annee</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="1" [disabled]="true"
+                                                   placeholder="Annee"  [(ngModel)]="selectedEnseignementEtFormation.annee"
+                                            [(ngModel)]="selectedEnseignementEtFormation.annee"></p-inputNumber>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Temps estime pour cette annne</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="2" [disabled]="true"
+                                                   placeholder="Temps estime pour cette annne"  [(ngModel)]="selectedEnseignementEtFormation.tempsEstimePourCetteAnnne"
+                                            [(ngModel)]="selectedEnseignementEtFormation.tempsEstimePourCetteAnnne"></p-inputNumber>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="3">Etat etape campagne</label>
+                                    <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedEnseignementEtFormation.etatEtapeCampagneVo"
+                                            id="3" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etat etape campagne">
+                                    </p-dropdown>
+                                </div>
+
+
+
+
+                </div>
+            </p-tabPanel>
+                    <p-tabPanel header="Enseignements">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedEnseignementEtFormation.enseignementsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Intitule</th>
+                                                            <th>Nombre heure</th>
+                                                            <th>Modalite etude</th>
+                                                            <th>Etabilssement non reconnu</th>
+                                                            <th>Etat etape campagne</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                            <td>{{p.intitule}}</td>
+
+                                                            <td>{{p.nombreHeure}}</td>
+
+                                                        <td>{{p.modaliteEtudeVo?.libelle}}</td>
+                                                            <td><i *ngIf="p.etabilssementNonReconnu" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.etabilssementNonReconnu" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                        <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Formation continues">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedEnseignementEtFormation.formationContinuesVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Intitule</th>
+                                                            <th>Nombre heures dispensees dans annee</th>
+                                                            <th>Modalite formation continue</th>
+                                                            <th>Etat etape campagne</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                            <td>{{p.intitule}}</td>
+
+                                                            <td>{{p.nombreHeuresDispenseesDansAnnee}}</td>
+
+                                                        <td>{{p.modaliteFormationContinueVo?.libelle}}</td>
+                                                        <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Responsabilite pedagogiques">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedEnseignementEtFormation.responsabilitePedagogiquesVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Niveau responsabilite pedagogique</th>
+                                                            <th>Status cursus</th>
+                                                            <th>Intitule cursus</th>
+                                                            <th>Service renforcement capacite</th>
+                                                            <th>Cursus construit avec etablissements</th>
+                                                            <th>Etat etape campagne</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.niveauResponsabilitePedagogiqueVo?.libelle}}</td>
+                                                        <td>{{p.statusCursusVo?.libelle}}</td>
+                                                            <td>{{p.intituleCursus}}</td>
+
+                                                            <td><i *ngIf="p.serviceRenforcementCapacite" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.serviceRenforcementCapacite" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td><i *ngIf="p.cursusConstruitAvecEtablissements" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.cursusConstruitAvecEtablissements" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                        <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+            <app-chercheur-create-chercheur></app-chercheur-create-chercheur>
+            <app-campagne-create-chercheur></app-campagne-create-chercheur>
+
+                    <app-modalite-etude-create-chercheur></app-modalite-etude-create-chercheur>
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+                    <app-modalite-formation-continue-create-chercheur></app-modalite-formation-continue-create-chercheur>
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+                    <app-niveau-responsabilite-pedagogique-create-chercheur></app-niveau-responsabilite-pedagogique-create-chercheur>
+                    <app-status-cursus-create-chercheur></app-status-cursus-create-chercheur>
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+
+
+</p-dialog>
+
+
+

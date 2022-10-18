@@ -1,0 +1,69 @@
+
+<p-dialog [(visible)]="viewEnseignementZoneGeographiqueDialog" [style]="{width: '70vw'}"
+        header="Enseignement zone geographique" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Enseignement zone geographique">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Enseignement</label>
+                                    <p-dropdown [options]="enseignements" [(ngModel)]="selectedEnseignementZoneGeographique.enseignementVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Enseignement">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Zone geographique</label>
+                                    <p-dropdown [options]="zoneGeographiques" [(ngModel)]="selectedEnseignementZoneGeographique.zoneGeographiqueVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Zone geographique">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="3">Pays</label>
+                                    <p-dropdown [options]="payss" [(ngModel)]="selectedEnseignementZoneGeographique.paysVo"
+                                            id="3" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Pays">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-enseignement-create-chercheur></app-enseignement-create-chercheur>
+            <app-zone-geographique-create-chercheur></app-zone-geographique-create-chercheur>
+            <app-pays-create-chercheur></app-pays-create-chercheur>
+
+
+
+</p-dialog>
+
+
+

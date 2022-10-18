@@ -1,0 +1,214 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <p-toast></p-toast>
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                                            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2"
+                                (click)="openCreateGestionEquipeDetail('gestionEquipeDetail')"></button>
+
+
+                    <button pButton pRipple label="Recherche"
+                            icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}"
+                            class="p-button-success p-mr-2 p-mb-2"
+                            (click)="this.findByCriteriaShow = !this.findByCriteriaShow"></button>
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <div class="flex">
+                        <p-splitButton label="Exporter" icon="pi pi-download" styleClass="p-button-help" [model]="excelPdfButons"></p-splitButton>
+                    </div>
+                </ng-template>
+
+            </p-toolbar>
+            <p-toolbar *ngIf="findByCriteriaShow">
+
+                <div class="align-form-search">
+                                    <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchGestionEquipeDetail.nombrePersonneEncadreMin"
+                                                             id="1-1"></p-inputNumber>
+                                              <label for="1-1">Nombre personne encadre Min</label>
+                                       </span>
+                                       <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchGestionEquipeDetail.nombrePersonneEncadreMax"
+                                                             id="1-2"></p-inputNumber>
+                                             <label for="1-2">Nombre personne encadre Max</label>
+                                       </span>
+                                    <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchGestionEquipeDetail.nombrePersonneHorsIrdMin"
+                                                             id="2-1"></p-inputNumber>
+                                              <label for="2-1">Nombre personne hors ird Min</label>
+                                       </span>
+                                       <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchGestionEquipeDetail.nombrePersonneHorsIrdMax"
+                                                             id="2-2"></p-inputNumber>
+                                             <label for="2-2">Nombre personne hors ird Max</label>
+                                       </span>
+                                    <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchGestionEquipeDetail.nombrePersonneSousConventionsMin"
+                                                             id="3-1"></p-inputNumber>
+                                              <label for="3-1">Nombre personne sous conventions Min</label>
+                                       </span>
+                                       <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchGestionEquipeDetail.nombrePersonneSousConventionsMax"
+                                                             id="3-2"></p-inputNumber>
+                                             <label for="3-2">Nombre personne sous conventions Max</label>
+                                       </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="4" [options]="yesOrNoFormationManagement" [(ngModel)]="searchGestionEquipeDetail.formationManagement"
+                                            [filter]="false" [showClear]="true"  placeholder="Formation management"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="gestionEquipes" [(ngModel)]="searchGestionEquipeDetail.gestionEquipeVo"
+                                        id="5"
+                                        [filter]="true" [showClear]="true"  placeholder="Gestion equipe"
+                                        optionLabel="id">
+                                </p-dropdown>
+                            </span>
+                </div>
+
+                <div class="align-search-button">
+                    <button pButton pRipple label="Valider" icon="pi pi-sort-amount-down"
+                            class="p-button-info p-mr-2" (click)="searchRequest()"></button>
+                </div>
+            </p-toolbar>
+
+
+            <p-table #dt [value]="gestionEquipeDetails" [columns]="cols" [rows]="4" [paginator]="true"
+                    [globalFilterFields]="['nombrePersonneEncadre', 'nombrePersonneHorsIrd', 'nombrePersonneSousConventions', 'formationManagement', 'id']" [(selection)]="selectedGestionEquipeDetail"
+                    [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
+                                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">Liste des Gestion equipe details</h5>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" placeholder="Search..." (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+
+                                
+                                <th pSortableColumn="nombrePersonneEncadre">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Nombre personne encadre</span>
+                                        <p-sortIcon field="nombrePersonneEncadre"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="nombrePersonneHorsIrd">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Nombre personne hors ird</span>
+                                        <p-sortIcon field="nombrePersonneHorsIrd"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="nombrePersonneSousConventions">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Nombre personne sous conventions</span>
+                                        <p-sortIcon field="nombrePersonneSousConventions"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="formationManagement">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Formation management</span>
+                                        <p-sortIcon field="formationManagement"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="gestionEquipe">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Gestion equipe</span>
+                                        <p-sortIcon field="gestionEquipe"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                        <th>Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-gestionEquipeDetail>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="gestionEquipeDetail"></p-tableCheckbox>
+                        </td>
+                            
+                                 <td>{{gestionEquipeDetail.nombrePersonneEncadre}}</td>
+                            
+
+                            
+                                 <td>{{gestionEquipeDetail.nombrePersonneHorsIrd}}</td>
+                            
+
+                            
+                                 <td>{{gestionEquipeDetail.nombrePersonneSousConventions}}</td>
+                            
+
+                            
+                                <td><i *ngIf="gestionEquipeDetail.formationManagement" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!gestionEquipeDetail.formationManagement" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                            
+
+                            
+                                <td>{{gestionEquipeDetail.gestionEquipeVo?.id}}</td>
+                            
+
+
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editGestionEquipeDetail(gestionEquipeDetail)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2"
+                                    (click)="viewGestionEquipeDetail(gestionEquipeDetail)"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-mr-2"
+                                    (click)="deleteGestionEquipeDetail(gestionEquipeDetail)"></button>
+
+                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning"
+                                    (click)="duplicateGestionEquipeDetail(gestionEquipeDetail)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En totale
+                        il {{gestionEquipeDetails ? gestionEquipeDetails.length == 1 ? 'y a' : 'y a' : 'y a' }} {{gestionEquipeDetails ? gestionEquipeDetails.length : 0 }} {{gestionEquipeDetails ? gestionEquipeDetails.length == 1 ? 'gestionEquipeDetail' : 'gestionEquipeDetails' : 0 }}
+                        .
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <app-gestion-equipe-detail-create-chercheur></app-gestion-equipe-detail-create-chercheur>
+        <app-gestion-equipe-detail-edit-chercheur></app-gestion-equipe-detail-edit-chercheur>
+        <app-gestion-equipe-detail-view-chercheur></app-gestion-equipe-detail-view-chercheur>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>

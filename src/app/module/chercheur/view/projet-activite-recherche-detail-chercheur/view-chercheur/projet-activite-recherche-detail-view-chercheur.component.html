@@ -1,0 +1,269 @@
+
+<p-dialog [(visible)]="viewProjetActiviteRechercheDetailDialog" [style]="{width: '70vw'}"
+        header="Projet activite recherche detail" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Projet activite recherche detail">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="1">Status projet</label>
+                                    <p-dropdown [options]="statusProjets" [(ngModel)]="selectedProjetActiviteRechercheDetail.statusProjetVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Status projet">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="2">Sujet intitule reponse</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Sujet intitule reponse"  [(ngModel)]="selectedProjetActiviteRechercheDetail.sujetIntituleReponse"
+                                           id="2" [(ngModel)]="selectedProjetActiviteRechercheDetail.sujetIntituleReponse"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="3">Duree prevu en mois</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="3" [disabled]="true"
+                                                   placeholder="Duree prevu en mois"  [(ngModel)]="selectedProjetActiviteRechercheDetail.dureePrevuEnMois"
+                                            [(ngModel)]="selectedProjetActiviteRechercheDetail.dureePrevuEnMois"></p-inputNumber>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="4">Role projet</label>
+                                    <p-dropdown [options]="roleProjets" [(ngModel)]="selectedProjetActiviteRechercheDetail.roleProjetVo"
+                                            id="4" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Role projet">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="8">Financement specifique</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="8"  [disabled]="true" [(ngModel)]="selectedProjetActiviteRechercheDetail.financementSpecifique"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="9">Montant financement prevu</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="9" [disabled]="true"
+                                                   placeholder="Montant financement prevu"  [(ngModel)]="selectedProjetActiviteRechercheDetail.montantFinancementPrevu"
+                                            [(ngModel)]="selectedProjetActiviteRechercheDetail.montantFinancementPrevu"></p-inputNumber>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="10">Etablissement</label>
+                                    <p-dropdown [options]="etablissements" [(ngModel)]="selectedProjetActiviteRechercheDetail.etablissementVo"
+                                            id="10" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etablissement">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="11">Pays</label>
+                                    <p-dropdown [options]="payss" [(ngModel)]="selectedProjetActiviteRechercheDetail.paysVo"
+                                            id="11" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Pays">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="14">Projet activite recherche</label>
+                                    <p-dropdown [options]="projetActiviteRecherches" [(ngModel)]="selectedProjetActiviteRechercheDetail.projetActiviteRechercheVo"
+                                            id="14" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Projet activite recherche">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="15">Etat etape campagne</label>
+                                    <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedProjetActiviteRechercheDetail.etatEtapeCampagneVo"
+                                            id="15" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etat etape campagne">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+                    <p-tabPanel header="Projet activite recherche detail enjeux irds">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedProjetActiviteRechercheDetail.projetActiviteRechercheDetailEnjeuxIrdsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Enjeux ird</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.enjeuxIrdVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Projet activite recherche detail instrument irds">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedProjetActiviteRechercheDetail.projetActiviteRechercheDetailInstrumentIrdsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Instrument ird</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.instrumentIrdVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Projet activite recherche detail payss">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedProjetActiviteRechercheDetail.projetActiviteRechercheDetailPayssVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Pays</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.paysVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Projet activite recherche detail institution co contractants">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedProjetActiviteRechercheDetail.projetActiviteRechercheDetailInstitutionCoContractantsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Etablissement</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.etablissementVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Projet activite recherche detail etablissement lanceurs">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedProjetActiviteRechercheDetail.projetActiviteRechercheDetailEtablissementLanceursVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Etablissement</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.etablissementVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-status-projet-create-chercheur></app-status-projet-create-chercheur>
+            <app-role-projet-create-chercheur></app-role-projet-create-chercheur>
+            <app-etablissement-create-chercheur></app-etablissement-create-chercheur>
+            <app-pays-create-chercheur></app-pays-create-chercheur>
+            <app-projet-activite-recherche-create-chercheur></app-projet-activite-recherche-create-chercheur>
+            <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+
+                    <app-enjeux-ird-create-chercheur></app-enjeux-ird-create-chercheur>
+                    <app-instrument-ird-create-chercheur></app-instrument-ird-create-chercheur>
+                    <app-pays-create-chercheur></app-pays-create-chercheur>
+                    <app-etablissement-create-chercheur></app-etablissement-create-chercheur>
+                    <app-etablissement-create-chercheur></app-etablissement-create-chercheur>
+
+
+</p-dialog>
+
+
+

@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewObjetFormationGeneriqueDeResponsabilitePedagogiqueDialog" [style]="{width: '70vw'}"
+        header="Objet formation generique de responsabilite pedagogique" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Objet formation generique de responsabilite pedagogique">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Objet formation generique</label>
+                                    <p-dropdown [options]="objetFormationGeneriques" [(ngModel)]="selectedObjetFormationGeneriqueDeResponsabilitePedagogique.objetFormationGeneriqueVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Objet formation generique">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Responsabilite pedagogique</label>
+                                    <p-dropdown [options]="responsabilitePedagogiques" [(ngModel)]="selectedObjetFormationGeneriqueDeResponsabilitePedagogique.responsabilitePedagogiqueVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Responsabilite pedagogique">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-objet-formation-generique-create-admin></app-objet-formation-generique-create-admin>
+            <app-responsabilite-pedagogique-create-admin></app-responsabilite-pedagogique-create-admin>
+
+
+
+</p-dialog>
+
+
+

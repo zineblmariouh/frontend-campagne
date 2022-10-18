@@ -1,0 +1,69 @@
+
+<p-dialog [(visible)]="viewZoneActiviteInteractionRechercheDialog" [style]="{width: '70vw'}"
+        header="Zone activite interaction recherche" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Zone activite interaction recherche">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Pays</label>
+                                    <p-dropdown [options]="payss" [(ngModel)]="selectedZoneActiviteInteractionRecherche.paysVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Pays">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="3">Zone geographique</label>
+                                    <p-dropdown [options]="zoneGeographiques" [(ngModel)]="selectedZoneActiviteInteractionRecherche.zoneGeographiqueVo"
+                                            id="3" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Zone geographique">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="4">Chercheur</label>
+                                    <p-dropdown [options]="chercheurs" [(ngModel)]="selectedZoneActiviteInteractionRecherche.chercheurVo"
+                                            id="4" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="numeroMatricule"
+                                            placeholder="Chercheur">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-pays-create-admin></app-pays-create-admin>
+            <app-zone-geographique-create-admin></app-zone-geographique-create-admin>
+            <app-chercheur-create-admin></app-chercheur-create-admin>
+
+
+
+</p-dialog>
+
+
+

@@ -1,0 +1,198 @@
+        <p-dialog [(visible)]="createOutilPedagogiqueDialog" [style]="{width: '70vw'}"
+                header="Outil pedagogique" [modal]="true"
+                styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+
+
+            <ng-template pTemplate="content" >
+                <p-tabView>
+                    <p-tabPanel header="Outil pedagogique">
+                        <div class="p-grid">
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="1">Nom</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Nom"
+                                                   id="1" [(ngModel)]="selectedOutilPedagogique.nom"
+                                                     />
+                                            
+                                        </div>
+
+
+
+                                    <div class="p-field p-col-12  p-md-3">
+                                        <label>Enjeux ird</label>
+                                        <p-multiSelect [options]="outilPedagogiqueEnjeuxIrdsVo" [(ngModel)]="selectedOutilPedagogique.outilPedagogiqueEnjeuxIrdsVo" defaultLabel="Select un enjeuxIrd" optionLabel="enjeuxIrdVo.libelle"  display="chip"></p-multiSelect>
+                                    </div>
+                                    <div class="p-field p-col-12  p-md-3">
+                                        <label>Discipline scientifique</label>
+                                        <p-multiSelect [options]="outilPedagogiqueDisciplineScientifiquesVo" [(ngModel)]="selectedOutilPedagogique.outilPedagogiqueDisciplineScientifiquesVo" defaultLabel="Select un disciplineScientifique" optionLabel="disciplineScientifiqueVo.libelleEng"  display="chip"></p-multiSelect>
+                                    </div>
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="4">Role outil pedagogique</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Role outil pedagogique"
+                                                   id="4" [(ngModel)]="selectedOutilPedagogique.roleOutilPedagogique"
+                                                     />
+                                            
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="5">Date diffusion</label>
+                                            <p-calendar id="5"
+                                                        placeholder="Date diffusion"  [(ngModel)]="selectedOutilPedagogique.dateDiffusion"
+                                                    dateFormat="{{dateFormat}}"  >
+                                            </p-calendar>
+                                            
+                                        </div>
+
+                                    <div class="p-field p-col-12  p-md-3">
+                                        <label>Publique cible</label>
+                                        <p-multiSelect [options]="outilPedagogiquePubliqueCiblesVo" [(ngModel)]="selectedOutilPedagogique.outilPedagogiquePubliqueCiblesVo" defaultLabel="Select un publiqueCible" optionLabel="publiqueCibleVo.libelle"  display="chip"></p-multiSelect>
+                                    </div>
+                                    <div class="p-field p-col-12  p-md-3">
+                                        <label>Type outil</label>
+                                        <p-multiSelect [options]="typeOutilPedagogiquesVo" [(ngModel)]="selectedOutilPedagogique.typeOutilPedagogiquesVo" defaultLabel="Select un typeOutil" optionLabel="typeOutilVo.libelle"  display="chip"></p-multiSelect>
+                                    </div>
+                                        <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                            <div  class="label-inputswitch">
+                                                <label for="8">Disponnible numerique</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="8"  [(ngModel)]="selectedOutilPedagogique.disponnibleNumerique"
+                                                     >
+                                                </p-inputSwitch>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                    <div class="p-field p-col-12  p-md-3">
+                                        <label>Langue</label>
+                                        <p-multiSelect [options]="outilPedagogiqueLanguesVo" [(ngModel)]="selectedOutilPedagogique.outilPedagogiqueLanguesVo" defaultLabel="Select un langue" optionLabel="langueVo.libelle"  display="chip"></p-multiSelect>
+                                    </div>
+                                    <div class="p-field p-col-12  p-md-3">
+                                        <label>Pays</label>
+                                        <p-multiSelect [options]="outilPedagogiquePaysConceptionsVo" [(ngModel)]="selectedOutilPedagogique.outilPedagogiquePaysConceptionsVo" defaultLabel="Select un pays" optionLabel="paysVo.libelle"  display="chip"></p-multiSelect>
+                                    </div>
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="11">Lien web</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Lien web"
+                                                   id="11" [(ngModel)]="selectedOutilPedagogique.lienWeb"
+                                                     />
+                                            
+                                        </div>
+
+
+
+                                    <div class="p-field p-col-12  p-md-3">
+                                        <label>Pays</label>
+                                        <p-multiSelect [options]="outilPedagogiquePaysDiffusionsVo" [(ngModel)]="selectedOutilPedagogique.outilPedagogiquePaysDiffusionsVo" defaultLabel="Select un pays" optionLabel="paysVo.libelle"  display="chip"></p-multiSelect>
+                                    </div>
+                                        <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                            <div  class="label-inputswitch">
+                                                <label for="13">Lien instrument ird</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="13"  [(ngModel)]="selectedOutilPedagogique.lienInstrumentIrd"
+                                                     >
+                                                </p-inputSwitch>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                    <div class="p-field p-col-12  p-md-3">
+                                        <label>Instrument ird</label>
+                                        <p-multiSelect [options]="outilPedagogiqueInstrumentIrdsVo" [(ngModel)]="selectedOutilPedagogique.outilPedagogiqueInstrumentIrdsVo" defaultLabel="Select un instrumentIrd" optionLabel="instrumentIrdVo.libelle"  display="chip"></p-multiSelect>
+                                    </div>
+                                    <div class="p-field p-col-12  p-md-3">
+                                        <label>Type instrument ird</label>
+                                        <p-multiSelect [options]="outilPedagogiqueTypeInstrumentIrdsVo" [(ngModel)]="selectedOutilPedagogique.outilPedagogiqueTypeInstrumentIrdsVo" defaultLabel="Select un typeInstrumentIrd" optionLabel="typeInstrumentIrdVo.libelle"  display="chip"></p-multiSelect>
+                                    </div>
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="16">Partenaire eventuel</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Partenaire eventuel"
+                                                   id="16" [(ngModel)]="selectedOutilPedagogique.partenaireEventuel"
+                                                     />
+                                            
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="17">Remarque</label>
+                                            <textarea id="17" pInputTextarea rows="5" cols="30"
+                                                      placeholder="Remarque"  [(ngModel)]="selectedOutilPedagogique.remarque"
+                                             ></textarea>
+                                            
+                                        </div>
+
+                                        <div class="p-field p-col-11 p-md-2">
+                                            <label for="18">Culture scientifique</label>
+                                            <p-dropdown [options]="cultureScientifiques" [(ngModel)]="selectedOutilPedagogique.cultureScientifiqueVo"
+                                                    id="18" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="id"
+                                                    placeholder="Culture scientifique"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreatecultureScientifique('cultureScientifique')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-11 p-md-2">
+                                            <label for="19">Etat etape campagne</label>
+                                            <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedOutilPedagogique.etatEtapeCampagneVo"
+                                                    id="19" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Etat etape campagne"  >
+                                            </p-dropdown>
+                                            
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                        </div>
+                    </p-tabPanel>
+
+                </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-grid">
+                        <div>
+                            <button pButton pRipple label="Annuler" icon="pi pi-times"
+                                    class="p-button-text" (click)="hideCreateDialog()"></button>
+                        </div>
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check" style="margin:10px" (click)="save()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+                    <app-culture-scientifique-create-chercheur></app-culture-scientifique-create-chercheur>
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+
+                            <app-enjeux-ird-create-chercheur></app-enjeux-ird-create-chercheur>
+                            <app-discipline-scientifique-create-chercheur></app-discipline-scientifique-create-chercheur>
+                            <app-publique-cible-create-chercheur></app-publique-cible-create-chercheur>
+                            <app-type-outil-create-chercheur></app-type-outil-create-chercheur>
+                            <app-langue-create-chercheur></app-langue-create-chercheur>
+                            <app-pays-create-chercheur></app-pays-create-chercheur>
+                            <app-pays-create-chercheur></app-pays-create-chercheur>
+                            <app-instrument-ird-create-chercheur></app-instrument-ird-create-chercheur>
+                            <app-type-instrument-ird-create-chercheur></app-type-instrument-ird-create-chercheur>
+
+    </p-dialog>

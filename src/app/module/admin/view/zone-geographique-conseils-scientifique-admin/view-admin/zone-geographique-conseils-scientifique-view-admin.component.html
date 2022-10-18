@@ -1,0 +1,79 @@
+
+<p-dialog [(visible)]="viewZoneGeographiqueConseilsScientifiqueDialog" [style]="{width: '70vw'}"
+        header="Zone geographique conseils scientifique" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Zone geographique conseils scientifique">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Conseils scientifique</label>
+                                    <p-dropdown [options]="conseilsScientifiques" [(ngModel)]="selectedZoneGeographiqueConseilsScientifique.conseilsScientifiqueVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Conseils scientifique">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Zone geographique</label>
+                                    <p-dropdown [options]="zoneGeographiques" [(ngModel)]="selectedZoneGeographiqueConseilsScientifique.zoneGeographiqueVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Zone geographique">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="3">Pays</label>
+                                    <p-dropdown [options]="payss" [(ngModel)]="selectedZoneGeographiqueConseilsScientifique.paysVo"
+                                            id="3" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Pays">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="4">Libelle</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Libelle"  [(ngModel)]="selectedZoneGeographiqueConseilsScientifique.libelle"
+                                           id="4" [(ngModel)]="selectedZoneGeographiqueConseilsScientifique.libelle"
+                                           autofocus>
+                                </div>
+
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-conseils-scientifique-create-admin></app-conseils-scientifique-create-admin>
+            <app-zone-geographique-create-admin></app-zone-geographique-create-admin>
+            <app-pays-create-admin></app-pays-create-admin>
+
+
+
+</p-dialog>
+
+
+

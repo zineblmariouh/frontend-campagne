@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewTypePubliqueRencontreGrandPubliqueJeunePubliqueDialog" [style]="{width: '70vw'}"
+        header="Type publique rencontre grand publique jeune publique" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Type publique rencontre grand publique jeune publique">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Rencontre grand publique jeune publique</label>
+                                    <p-dropdown [options]="rencontreGrandPubliqueJeunePubliques" [(ngModel)]="selectedTypePubliqueRencontreGrandPubliqueJeunePublique.rencontreGrandPubliqueJeunePubliqueVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Rencontre grand publique jeune publique">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Type publique</label>
+                                    <p-dropdown [options]="typePubliques" [(ngModel)]="selectedTypePubliqueRencontreGrandPubliqueJeunePublique.typePubliqueVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Type publique">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-rencontre-grand-publique-jeune-publique-create-admin></app-rencontre-grand-publique-jeune-publique-create-admin>
+            <app-type-publique-create-admin></app-type-publique-create-admin>
+
+
+
+</p-dialog>
+
+
+

@@ -1,0 +1,103 @@
+
+<p-dialog [(visible)]="viewContratEtConventionIrdDialog" [style]="{width: '70vw'}"
+        header="Contrat et convention ird" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Contrat et convention ird">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="1">Numero</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Numero"  [(ngModel)]="selectedContratEtConventionIrd.numero"
+                                           id="1" [(ngModel)]="selectedContratEtConventionIrd.numero"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="2">Status contrat et convention</label>
+                                    <p-dropdown [options]="statusContratEtConventions" [(ngModel)]="selectedContratEtConventionIrd.statusContratEtConventionVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Status contrat et convention">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="3">Date contrat</label>
+                                    <p-calendar id="3" [disabled]="true"
+                                                placeholder="Date contrat"  [(ngModel)]="selectedContratEtConventionIrd.dateContrat"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="4">Intitule</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Intitule"  [(ngModel)]="selectedContratEtConventionIrd.intitule"
+                                           id="4" [(ngModel)]="selectedContratEtConventionIrd.intitule"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="5">Description</label>
+                                    <textarea id="5" pInputTextarea rows="5" cols="30"
+                                              placeholder="Description"  [(ngModel)]="selectedContratEtConventionIrd.description"
+                                    ></textarea>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="6">Savoir et innovation</label>
+                                    <p-dropdown [options]="savoirEtInnovations" [(ngModel)]="selectedContratEtConventionIrd.savoirEtInnovationVo"
+                                            id="6" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Savoir et innovation">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="7">Etat etape campagne</label>
+                                    <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedContratEtConventionIrd.etatEtapeCampagneVo"
+                                            id="7" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etat etape campagne">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-status-contrat-et-convention-create-chercheur></app-status-contrat-et-convention-create-chercheur>
+            <app-savoir-et-innovation-create-chercheur></app-savoir-et-innovation-create-chercheur>
+            <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+
+
+
+</p-dialog>
+
+
+

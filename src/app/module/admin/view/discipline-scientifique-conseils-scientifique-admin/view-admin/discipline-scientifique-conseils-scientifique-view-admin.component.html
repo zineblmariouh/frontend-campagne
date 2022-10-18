@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewDisciplineScientifiqueConseilsScientifiqueDialog" [style]="{width: '70vw'}"
+        header="Discipline scientifique conseils scientifique" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Discipline scientifique conseils scientifique">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Conseils scientifique</label>
+                                    <p-dropdown [options]="conseilsScientifiques" [(ngModel)]="selectedDisciplineScientifiqueConseilsScientifique.conseilsScientifiqueVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Conseils scientifique">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Discipline scientifique</label>
+                                    <p-dropdown [options]="disciplineScientifiques" [(ngModel)]="selectedDisciplineScientifiqueConseilsScientifique.disciplineScientifiqueVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelleEng"
+                                            placeholder="Discipline scientifique">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-conseils-scientifique-create-admin></app-conseils-scientifique-create-admin>
+            <app-discipline-scientifique-create-admin></app-discipline-scientifique-create-admin>
+
+
+
+</p-dialog>
+
+
+

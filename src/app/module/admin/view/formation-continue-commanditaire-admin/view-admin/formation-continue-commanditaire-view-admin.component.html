@@ -1,0 +1,69 @@
+
+<p-dialog [(visible)]="viewFormationContinueCommanditaireDialog" [style]="{width: '70vw'}"
+        header="Formation continue commanditaire" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Formation continue commanditaire">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Commanditaire</label>
+                                    <p-dropdown [options]="commanditaires" [(ngModel)]="selectedFormationContinueCommanditaire.commanditaireVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Commanditaire">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Formation continue</label>
+                                    <p-dropdown [options]="formationContinues" [(ngModel)]="selectedFormationContinueCommanditaire.formationContinueVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="intitule"
+                                            placeholder="Formation continue">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="3">Pays</label>
+                                    <p-dropdown [options]="payss" [(ngModel)]="selectedFormationContinueCommanditaire.paysVo"
+                                            id="3" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Pays">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-commanditaire-create-admin></app-commanditaire-create-admin>
+            <app-formation-continue-create-admin></app-formation-continue-create-admin>
+            <app-pays-create-admin></app-pays-create-admin>
+
+
+
+</p-dialog>
+
+
+

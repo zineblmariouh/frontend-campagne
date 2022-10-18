@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewEtablissementConsultanceScientifiquePonctuelleDialog" [style]="{width: '70vw'}"
+        header="Etablissement consultance scientifique ponctuelle" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Etablissement consultance scientifique ponctuelle">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Consultance scientifique ponctuelle</label>
+                                    <p-dropdown [options]="consultanceScientifiquePonctuelles" [(ngModel)]="selectedEtablissementConsultanceScientifiquePonctuelle.consultanceScientifiquePonctuelleVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Consultance scientifique ponctuelle">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Etablissement</label>
+                                    <p-dropdown [options]="etablissements" [(ngModel)]="selectedEtablissementConsultanceScientifiquePonctuelle.etablissementVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etablissement">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-consultance-scientifique-ponctuelle-create-chercheur></app-consultance-scientifique-ponctuelle-create-chercheur>
+            <app-etablissement-create-chercheur></app-etablissement-create-chercheur>
+
+
+
+</p-dialog>
+
+
+

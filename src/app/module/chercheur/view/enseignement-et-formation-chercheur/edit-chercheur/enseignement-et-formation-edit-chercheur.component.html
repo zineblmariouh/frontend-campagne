@@ -1,0 +1,424 @@
+
+        <p-dialog [(visible)]="editEnseignementEtFormationDialog" [style]="{width: '70vw'}"
+                header="Enseignement et formation" [modal]="true"
+                styleClass="p-fluid">
+
+            <ng-template pTemplate="content">
+                <p-tabView>
+                    <p-tabPanel header="Enseignement et formation">
+                        <div class="p-grid">
+
+                                        <div class="p-field p-col-12 p-md-6">
+                                            <label for="1">Annee</label>
+                                            <p-inputNumber class="p-mb-2 p-mr-2" id="1"
+                                                           placeholder="Annee"  [(ngModel)]="selectedEnseignementEtFormation.annee"
+                                                    [(ngModel)]="selectedEnseignementEtFormation.annee"></p-inputNumber>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-6">
+                                            <label for="2">Temps estime pour cette annne</label>
+                                            <p-inputNumber class="p-mb-2 p-mr-2" id="2"
+                                                           placeholder="Temps estime pour cette annne"  [(ngModel)]="selectedEnseignementEtFormation.tempsEstimePourCetteAnnne"
+                                                    [(ngModel)]="selectedEnseignementEtFormation.tempsEstimePourCetteAnnne"></p-inputNumber>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-5">
+                                            <label for="3">Etat etape campagne</label>
+                                            <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedEnseignementEtFormation.etatEtapeCampagneVo"
+                                                    id="3" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Etat etape campagne">
+                                            </p-dropdown>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+
+
+
+                        </div>
+                    </p-tabPanel>
+                            <p-tabPanel header="Enseignements">
+                                <div class="p-grid">
+                                    <div class="p-col">
+                                                <div class="p-field">
+                                                    <label for="1">Intitule</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Intitule"
+                                                           id="1" [(ngModel)]="selectedEnseignements.intitule"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="2">Nombre heure</label>
+                                                    <p-inputNumber class="p-mb-2 p-mr-2" id="nombreHeure"
+                                                                   placeholder="Nombre heure"
+                                                            [(ngModel)]="selectedEnseignements.nombreHeure"></p-inputNumber>
+                                                </div>
+
+                                                <div class="p-field  align-inputswitch">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="3">Etabilssement non reconnu</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="3"  [(ngModel)]="selectedEnseignements.etabilssementNonReconnu"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Modalite etude</label>
+                                                        <p-dropdown [options]="modaliteEtudes" [(ngModel)]="selectedEnseignements.modaliteEtudeVo"
+                                                                id="0"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Modalite etude"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatemodaliteEtude('modaliteEtude')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Etat etape campagne</label>
+                                                        <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedEnseignements.etatEtapeCampagneVo"
+                                                                id="1"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Etat etape campagne"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                        <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                label="OK" (click)="addEnseignements()"
+                                        ></button>
+                                    </div>
+                                    <div class="p-col">
+                                        <div class="card">
+                                            <p-table [value]="selectedEnseignementEtFormation.enseignementsVo" [scrollable]="true"
+                                                    scrollHeight="200px">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                                    <th>Intitule</th>
+                                                                    <th>Nombre heure</th>
+                                                                    <th>Modalite etude</th>
+                                                                    <th>Etabilssement non reconnu</th>
+                                                                    <th>Etat etape campagne</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-p>
+                                                    <tr>
+                                                                    <td>{{p.intitule}}</td>
+
+                                                                    <td>{{p.nombreHeure}}</td>
+
+                                                                <td>{{p.modaliteEtudeVo?.libelle}}</td>
+                                                                    <td><i *ngIf="p.etabilssementNonReconnu" class="pi pi-check checked-toogle"></i>
+                                                                        <i *ngIf="!p.etabilssementNonReconnu" class="pi pi-times unchecked-toogle"></i>
+                                                                    </td>
+
+                                                                <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+                                                        <td>
+                                                            <button (click)="deleteEnseignements(p)" pButton type="button"
+                                                                                                                 icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </p-tabPanel>
+                            <p-tabPanel header="Formation continues">
+                                <div class="p-grid">
+                                    <div class="p-col">
+                                                <div class="p-field">
+                                                    <label for="1">Intitule</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Intitule"
+                                                           id="1" [(ngModel)]="selectedFormationContinues.intitule"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="2">Nombre heures dispensees dans annee</label>
+                                                    <p-inputNumber class="p-mb-2 p-mr-2" id="nombreHeuresDispenseesDansAnnee"
+                                                                   placeholder="Nombre heures dispensees dans annee"
+                                                            [(ngModel)]="selectedFormationContinues.nombreHeuresDispenseesDansAnnee"></p-inputNumber>
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Modalite formation continue</label>
+                                                        <p-dropdown [options]="modaliteFormationContinues" [(ngModel)]="selectedFormationContinues.modaliteFormationContinueVo"
+                                                                id="0"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Modalite formation continue"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatemodaliteFormationContinue('modaliteFormationContinue')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Etat etape campagne</label>
+                                                        <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedFormationContinues.etatEtapeCampagneVo"
+                                                                id="2"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Etat etape campagne"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                        <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                label="OK" (click)="addFormationContinues()"
+                                        ></button>
+                                    </div>
+                                    <div class="p-col">
+                                        <div class="card">
+                                            <p-table [value]="selectedEnseignementEtFormation.formationContinuesVo" [scrollable]="true"
+                                                    scrollHeight="200px">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                                    <th>Intitule</th>
+                                                                    <th>Nombre heures dispensees dans annee</th>
+                                                                    <th>Modalite formation continue</th>
+                                                                    <th>Etat etape campagne</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-p>
+                                                    <tr>
+                                                                    <td>{{p.intitule}}</td>
+
+                                                                    <td>{{p.nombreHeuresDispenseesDansAnnee}}</td>
+
+                                                                <td>{{p.modaliteFormationContinueVo?.libelle}}</td>
+                                                                <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+                                                        <td>
+                                                            <button (click)="deleteFormationContinues(p)" pButton type="button"
+                                                                                                                 icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </p-tabPanel>
+                            <p-tabPanel header="Responsabilite pedagogiques">
+                                <div class="p-grid">
+                                    <div class="p-col">
+                                                <div class="p-field">
+                                                    <label for="1">Intitule cursus</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Intitule cursus"
+                                                           id="1" [(ngModel)]="selectedResponsabilitePedagogiques.intituleCursus"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field  align-inputswitch">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="2">Service renforcement capacite</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="2"  [(ngModel)]="selectedResponsabilitePedagogiques.serviceRenforcementCapacite"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                <div class="p-field  align-inputswitch">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="3">Cursus construit avec etablissements</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="3"  [(ngModel)]="selectedResponsabilitePedagogiques.cursusConstruitAvecEtablissements"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Niveau responsabilite pedagogique</label>
+                                                        <p-dropdown [options]="niveauResponsabilitePedagogiques" [(ngModel)]="selectedResponsabilitePedagogiques.niveauResponsabilitePedagogiqueVo"
+                                                                id="0"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Niveau responsabilite pedagogique"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateniveauResponsabilitePedagogique('niveauResponsabilitePedagogique')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Status cursus</label>
+                                                        <p-dropdown [options]="statusCursuss" [(ngModel)]="selectedResponsabilitePedagogiques.statusCursusVo"
+                                                                id="1"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Status cursus"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatestatusCursus('statusCursus')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Etat etape campagne</label>
+                                                        <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedResponsabilitePedagogiques.etatEtapeCampagneVo"
+                                                                id="2"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Etat etape campagne"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreateetatEtapeCampagne('etatEtapeCampagne')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                        <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                label="OK" (click)="addResponsabilitePedagogiques()"
+                                        ></button>
+                                    </div>
+                                    <div class="p-col">
+                                        <div class="card">
+                                            <p-table [value]="selectedEnseignementEtFormation.responsabilitePedagogiquesVo" [scrollable]="true"
+                                                    scrollHeight="200px">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                                    <th>Niveau responsabilite pedagogique</th>
+                                                                    <th>Status cursus</th>
+                                                                    <th>Intitule cursus</th>
+                                                                    <th>Service renforcement capacite</th>
+                                                                    <th>Cursus construit avec etablissements</th>
+                                                                    <th>Etat etape campagne</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-p>
+                                                    <tr>
+                                                                <td>{{p.niveauResponsabilitePedagogiqueVo?.libelle}}</td>
+                                                                <td>{{p.statusCursusVo?.libelle}}</td>
+                                                                    <td>{{p.intituleCursus}}</td>
+
+                                                                    <td><i *ngIf="p.serviceRenforcementCapacite" class="pi pi-check checked-toogle"></i>
+                                                                        <i *ngIf="!p.serviceRenforcementCapacite" class="pi pi-times unchecked-toogle"></i>
+                                                                    </td>
+
+                                                                    <td><i *ngIf="p.cursusConstruitAvecEtablissements" class="pi pi-check checked-toogle"></i>
+                                                                        <i *ngIf="!p.cursusConstruitAvecEtablissements" class="pi pi-times unchecked-toogle"></i>
+                                                                    </td>
+
+                                                                <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+                                                        <td>
+                                                            <button (click)="deleteResponsabilitePedagogiques(p)" pButton type="button"
+                                                                                                                 icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </p-tabPanel>
+
+                </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-grid">
+                        <div>
+                            <button pButton pRipple label="Annuler" icon="pi pi-times"
+                                    class="p-button-text" (click)="hideEditDialog()"></button>
+                        </div>
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check"  style="margin:10px" (click)="edit()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+                    <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+                    <app-chercheur-create-chercheur></app-chercheur-create-chercheur>
+                    <app-campagne-create-chercheur></app-campagne-create-chercheur>
+
+                            <app-modalite-etude-create-chercheur></app-modalite-etude-create-chercheur>
+                            <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+                            <app-modalite-formation-continue-create-chercheur></app-modalite-formation-continue-create-chercheur>
+                            <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+                            <app-niveau-responsabilite-pedagogique-create-chercheur></app-niveau-responsabilite-pedagogique-create-chercheur>
+                            <app-status-cursus-create-chercheur></app-status-cursus-create-chercheur>
+                            <app-etat-etape-campagne-create-chercheur></app-etat-etape-campagne-create-chercheur>
+
+
+    </p-dialog>
+
+
+

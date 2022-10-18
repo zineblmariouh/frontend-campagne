@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewTypeEtudeEnseignementDialog" [style]="{width: '70vw'}"
+        header="Type etude enseignement" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Type etude enseignement">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Enseignement</label>
+                                    <p-dropdown [options]="enseignements" [(ngModel)]="selectedTypeEtudeEnseignement.enseignementVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Enseignement">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Type etude</label>
+                                    <p-dropdown [options]="typeEtudes" [(ngModel)]="selectedTypeEtudeEnseignement.typeEtudeVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Type etude">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-enseignement-create-admin></app-enseignement-create-admin>
+            <app-type-etude-create-admin></app-type-etude-create-admin>
+
+
+
+</p-dialog>
+
+
+

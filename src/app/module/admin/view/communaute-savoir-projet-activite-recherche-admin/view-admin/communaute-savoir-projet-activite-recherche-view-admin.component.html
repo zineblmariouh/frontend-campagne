@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewCommunauteSavoirProjetActiviteRechercheDialog" [style]="{width: '70vw'}"
+        header="Communaute savoir projet activite recherche" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Communaute savoir projet activite recherche">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Projet activite recherche</label>
+                                    <p-dropdown [options]="projetActiviteRecherches" [(ngModel)]="selectedCommunauteSavoirProjetActiviteRecherche.projetActiviteRechercheVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Projet activite recherche">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Communaute savoir</label>
+                                    <p-dropdown [options]="communauteSavoirs" [(ngModel)]="selectedCommunauteSavoirProjetActiviteRecherche.communauteSavoirVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Communaute savoir">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-projet-activite-recherche-create-admin></app-projet-activite-recherche-create-admin>
+            <app-communaute-savoir-create-admin></app-communaute-savoir-create-admin>
+
+
+
+</p-dialog>
+
+
+

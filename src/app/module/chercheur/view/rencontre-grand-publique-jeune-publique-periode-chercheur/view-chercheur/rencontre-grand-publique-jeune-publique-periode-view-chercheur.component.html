@@ -1,0 +1,52 @@
+
+<p-dialog [(visible)]="viewRencontreGrandPubliqueJeunePubliquePeriodeDialog" [style]="{width: '70vw'}"
+        header="Rencontre grand publique jeune publique periode" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Rencontre grand publique jeune publique periode">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Rencontre grand publique jeune publique</label>
+                                    <p-dropdown [options]="rencontreGrandPubliqueJeunePubliques" [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliquePeriode.rencontreGrandPubliqueJeunePubliqueVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Rencontre grand publique jeune publique">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Date rencontre</label>
+                                    <p-calendar id="2" [disabled]="true"
+                                                placeholder="Date rencontre"  [(ngModel)]="selectedRencontreGrandPubliqueJeunePubliquePeriode.dateRencontre"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-rencontre-grand-publique-jeune-publique-create-chercheur></app-rencontre-grand-publique-jeune-publique-create-chercheur>
+
+
+
+</p-dialog>
+
+
+

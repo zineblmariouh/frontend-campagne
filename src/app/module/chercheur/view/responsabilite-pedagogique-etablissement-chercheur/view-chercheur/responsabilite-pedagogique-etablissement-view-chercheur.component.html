@@ -1,0 +1,69 @@
+
+<p-dialog [(visible)]="viewResponsabilitePedagogiqueEtablissementDialog" [style]="{width: '70vw'}"
+        header="Responsabilite pedagogique etablissement" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Responsabilite pedagogique etablissement">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Etablissement</label>
+                                    <p-dropdown [options]="etablissements" [(ngModel)]="selectedResponsabilitePedagogiqueEtablissement.etablissementVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etablissement">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Responsabilite pedagogique</label>
+                                    <p-dropdown [options]="responsabilitePedagogiques" [(ngModel)]="selectedResponsabilitePedagogiqueEtablissement.responsabilitePedagogiqueVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Responsabilite pedagogique">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="3">Pays</label>
+                                    <p-dropdown [options]="payss" [(ngModel)]="selectedResponsabilitePedagogiqueEtablissement.paysVo"
+                                            id="3" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Pays">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-etablissement-create-chercheur></app-etablissement-create-chercheur>
+            <app-responsabilite-pedagogique-create-chercheur></app-responsabilite-pedagogique-create-chercheur>
+            <app-pays-create-chercheur></app-pays-create-chercheur>
+
+
+
+</p-dialog>
+
+
+

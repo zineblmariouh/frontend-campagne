@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewStructureOganisatriceDialog" [style]="{width: '70vw'}"
+        header="Structure oganisatrice" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Structure oganisatrice">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Rencontre grand publique jeune publique</label>
+                                    <p-dropdown [options]="rencontreGrandPubliqueJeunePubliques" [(ngModel)]="selectedStructureOganisatrice.rencontreGrandPubliqueJeunePubliqueVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Rencontre grand publique jeune publique">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Etablissement</label>
+                                    <p-dropdown [options]="etablissements" [(ngModel)]="selectedStructureOganisatrice.etablissementVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etablissement">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-rencontre-grand-publique-jeune-publique-create-admin></app-rencontre-grand-publique-jeune-publique-create-admin>
+            <app-etablissement-create-admin></app-etablissement-create-admin>
+
+
+
+</p-dialog>
+
+
+

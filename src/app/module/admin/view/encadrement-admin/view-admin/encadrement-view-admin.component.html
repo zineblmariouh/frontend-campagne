@@ -1,0 +1,193 @@
+
+<p-dialog [(visible)]="viewEncadrementDialog" [style]="{width: '70vw'}"
+        header="Encadrement" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Encadrement">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Annee</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="1" [disabled]="true"
+                                                   placeholder="Annee"  [(ngModel)]="selectedEncadrement.annee"
+                                            [(ngModel)]="selectedEncadrement.annee"></p-inputNumber>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Temps estime pour cette annne</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="2" [disabled]="true"
+                                                   placeholder="Temps estime pour cette annne"  [(ngModel)]="selectedEncadrement.tempsEstimePourCetteAnnne"
+                                            [(ngModel)]="selectedEncadrement.tempsEstimePourCetteAnnne"></p-inputNumber>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="3">Campagne</label>
+                                    <p-dropdown [options]="campagnes" [(ngModel)]="selectedEncadrement.campagneVo"
+                                            id="3" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Campagne">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="4">Chercheur</label>
+                                    <p-dropdown [options]="chercheurs" [(ngModel)]="selectedEncadrement.chercheurVo"
+                                            id="4" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="numeroMatricule"
+                                            placeholder="Chercheur">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="7">Etat etape campagne</label>
+                                    <p-dropdown [options]="etatEtapeCampagnes" [(ngModel)]="selectedEncadrement.etatEtapeCampagneVo"
+                                            id="7" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etat etape campagne">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+                    <p-tabPanel header="Encadrement etudiants">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedEncadrement.encadrementEtudiantsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Niveau formation post bac</th>
+                                                            <th>Responsabilite direction encadrement etudiant</th>
+                                                            <th>Sujet etude</th>
+                                                            <th>Etudiant</th>
+                                                            <th>Etablissement</th>
+                                                            <th>Cursus</th>
+                                                            <th>Pays</th>
+                                                            <th>Etat etape campagne</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.niveauFormationPostBacVo?.libelle}}</td>
+                                                        <td>{{p.responsabiliteDirectionEncadrementEtudiantVo?.libelle}}</td>
+                                                            <td>{{p.sujetEtude}}</td>
+
+                                                        <td>{{p.etudiantVo?.id}}</td>
+                                                        <td>{{p.etablissementVo?.libelle}}</td>
+                                                            <td>{{p.cursus}}</td>
+
+                                                        <td>{{p.paysVo?.libelle}}</td>
+                                                        <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Encadrement doctorants">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedEncadrement.encadrementDoctorantsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Responsabilite encadrement doctorant</th>
+                                                            <th>Codirection internationale</th>
+                                                            <th>Cursus</th>
+                                                            <th>Sujet these</th>
+                                                            <th>Date debut these</th>
+                                                            <th>Date prevu soutenance these</th>
+                                                            <th>Intitule ecole doctorale</th>
+                                                            <th>Financement doctorant</th>
+                                                            <th>Etablissement</th>
+                                                            <th>Pays</th>
+                                                            <th>Doctorant</th>
+                                                            <th>Etat etape campagne</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                        <td>{{p.responsabiliteEncadrementDoctorantVo?.libelle}}</td>
+                                                            <td><i *ngIf="p.codirectionInternationale" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.codirectionInternationale" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td><i *ngIf="p.cursus" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.cursus" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.sujetThese}}</td>
+
+                                                            <td>{{p.dateDebutThese | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.datePrevuSoutenanceThese | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.intituleEcoleDoctorale}}</td>
+
+                                                        <td>{{p.financementDoctorantVo?.libelle}}</td>
+                                                        <td>{{p.etablissementVo?.libelle}}</td>
+                                                        <td>{{p.paysVo?.libelle}}</td>
+                                                        <td>{{p.doctorantVo?.id}}</td>
+                                                        <td>{{p.etatEtapeCampagneVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-campagne-create-admin></app-campagne-create-admin>
+            <app-chercheur-create-admin></app-chercheur-create-admin>
+            <app-etat-etape-campagne-create-admin></app-etat-etape-campagne-create-admin>
+
+                    <app-niveau-formation-post-bac-create-admin></app-niveau-formation-post-bac-create-admin>
+                    <app-responsabilite-direction-encadrement-etudiant-create-admin></app-responsabilite-direction-encadrement-etudiant-create-admin>
+                    <app-etudiant-create-admin></app-etudiant-create-admin>
+                    <app-etablissement-create-admin></app-etablissement-create-admin>
+                    <app-pays-create-admin></app-pays-create-admin>
+                    <app-etat-etape-campagne-create-admin></app-etat-etape-campagne-create-admin>
+                    <app-responsabilite-encadrement-doctorant-create-admin></app-responsabilite-encadrement-doctorant-create-admin>
+                    <app-financement-doctorant-create-admin></app-financement-doctorant-create-admin>
+                    <app-etablissement-create-admin></app-etablissement-create-admin>
+                    <app-pays-create-admin></app-pays-create-admin>
+                    <app-doctorant-create-admin></app-doctorant-create-admin>
+                    <app-etat-etape-campagne-create-admin></app-etat-etape-campagne-create-admin>
+
+
+</p-dialog>
+
+
+

@@ -1,0 +1,57 @@
+
+<p-dialog [(visible)]="viewEvenementColloqueScienntifiquePaysDialog" [style]="{width: '70vw'}"
+        header="Evenement colloque scienntifique pays" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Evenement colloque scienntifique pays">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Evenement colloque scienntifique</label>
+                                    <p-dropdown [options]="evenementColloqueScienntifiques" [(ngModel)]="selectedEvenementColloqueScienntifiquePays.evenementColloqueScienntifiqueVo"
+                                            id="1" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="id"
+                                            placeholder="Evenement colloque scienntifique">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Pays</label>
+                                    <p-dropdown [options]="payss" [(ngModel)]="selectedEvenementColloqueScienntifiquePays.paysVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Pays">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-evenement-colloque-scienntifique-create-admin></app-evenement-colloque-scienntifique-create-admin>
+            <app-pays-create-admin></app-pays-create-admin>
+
+
+
+</p-dialog>
+
+
+
